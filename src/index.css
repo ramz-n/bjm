@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #063d2e;
+  --color-primary-dim: #e5e1d4;
+  --color-secondary: #f8f6ef;
+  --color-accent: #3f6459;
+  --color-accent-dim: #e5e1d4;
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --animate-pulse-slow: pulse-slow 2.4s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-plaster);
+  color: var(--color-ink);
+  font-feature-settings: "tnum" 1, "cv11" 1;
+}
