@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const links = [
     { href: "/", label: "Home" },
-    { href: "/prayer-timetable", label: "Prayer Times" },
+    { href: "/prayer-timetable", label: "Prayer Timetable" },
     { href: "/key-dates", label: "Key Dates" },
     { href: "/contact", label: "Contact" },
 ];
@@ -15,7 +15,7 @@ const Header = () => {
 
     return (
         <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur bg-primary">
-            <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+            <nav className="mx-auto flex max-w-6xl items-center justify-between px-10 py-4">
                 <Link to="/" className="flex items-center gap-1 text-primary-dim">
                     <span className="flex h-9 w-9 items-center justify-center rounded-full border border-brass-soft bg-verdigris-dim text-verdigris">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
