@@ -1,0 +1,49 @@
+interface Features {
+    title: string;
+    body: string;
+}
+
+const features: Features[] = [
+    {
+        title: "Community Owned",
+        body: "BJM is a registered mosqued owned by the community in Chitwan.",
+    },
+    {
+        title: "Events & Congregation",
+        body: "The mosque conducts various events and congregational prayers",
+    },
+    {
+        title: "Charity Program",
+        body: "The mosques helps poor and needy through its charity program.",
+    },
+];
+
+const About = () => {
+    return (
+        <section className="border-y border-line bg-plaster-dim/50">
+            <div className="mx-auto container py-16 flex flex-col items-center gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <p className="font-mono text-xs uppercase tracking-[0.2em] text-verdigris">About Al Jamiatul Barkatiya Jame Masjid</p>
+                        <h2 className="mt-2 max-w-xl font-display text-3xl font-semibold text-ink">
+                            Barkati Jame Masjid is one of the oldest mosque located in Narayanghat, Chitwan. Established in 1955 AD, the mosque has been helping community actively.
+                        </h2>
+                    </div>
+
+                    <img className="rounded-2xl shadow-2xl shadow-accent" src="./bjm.png" alt="barkati masjid" />
+                </div>
+
+                <div className="my-10 grid gap-8 md:grid-cols-3">
+                    {features.map((feature) => (
+                        <div key={feature.title} className="border-t-2 border-brass pt-4">
+                            <h3 className="font-display text-lg font-semibold text-ink">{feature.title}</h3>
+                            <p className="mt-2 font-body text-sm leading-relaxed text-ink-soft">{feature.body}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default About
