@@ -13,11 +13,11 @@ const Hero = () => {
                         <p className="mb-2">
                             PRAGATIPATH-2 . NARAYANGARH . CHITWAN
                             </p>
-                        <h1 className="text-4xl md:text-6xl font-heading font-bold text-secondary-foreground mb-6 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-secondary-foreground mb-6 leading-tight">
                             A place of worship, at the heart of the community
                         </h1>
                         <p className="text-xl text-secondary-foreground mb-12 font-body">
-                            Welcome to Al Jamiatul Barkatiya Jame Masjid, a place for worship, learning, service and community.
+                            Welcome to Al Jameatul Barkatiya Jame Masjid, a place for worship, learning, service and community.
                         </p>
                     </div>
                 </div>
