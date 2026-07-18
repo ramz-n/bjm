@@ -66,11 +66,11 @@ function minutesForPrayer(prayerKey: string, date: Date): number {
             const asrAltitudeRad = Math.atan(1 / (shadowMultiplier + Math.tan(Math.abs(latRad - declRad))));
             const asrAltitudeDeg = (asrAltitudeRad * 180) / Math.PI;
             const hourAngle = getHourAngle(asrAltitudeDeg);
-            return Math.round(solarNoon + hourAngle * 4);
+            return Math.round(solarNoon + hourAngle * 4) + 2;
         }
         case "magrib": {
             const hourAngle = getHourAngle(-HORIZON_BUFFER);
-            return Math.round(solarNoon + hourAngle * 4);
+            return Math.round(solarNoon + hourAngle * 4) + 2;
         }
         case "isha": {
             const hourAngle = getHourAngle(-ISHA_ANGLE);
