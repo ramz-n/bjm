@@ -1,7 +1,7 @@
 import type { DaySchedule, MonthSchedule, NextPrayer, Prayer, PrayerTimes } from "../types";
 
-const LATITUDE = 27.9951;
-const LONGITUDE = 84.6266;
+const LATITUDE = 27.69;
+const LONGITUDE = 84.43;
 const TIMEZONE_OFFSET = 5.75;
 
 const FAJR_ANGLE = 18.0;

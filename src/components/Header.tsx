@@ -67,7 +67,7 @@ const navLinkStyles = ({ isActive }: { isActive: boolean }) =>
                         </button>
                     </div>
                     
-                    <ul className="flex flex-1 flex-col items-center justify-center gap-8 bg-primary pb-20">
+                    <ul className="flex flex-1 flex-col items-center justify-center gap-8 bg-primary pb-20 z-10">
                         {links.map((l) => (
                             <li key={l.href}>
                                 <NavLink
