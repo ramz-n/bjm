@@ -55,9 +55,9 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         </div>
                     </div>
 
-                    <div className="rounded-2xl border border-line bg-accent/90 p-6 shadow-sm z-10 w-[300px]">
+                    <div className="hidden md:block rounded-2xl border border-line bg-accent/90 p-6 shadow-sm z-10 w-[300px]">
                         <div className="flex items-center justify-between border-b border-line pb-3">
-                            <h2 className="font-display text-lg font-semibold text-ink">Today's prayer times</h2>
+                            <h2 className="font-display text-sm md:text-xl font-semibold text-ink">Today's prayer times</h2>
                         </div>
                         <ul className="mt-3 divide-y divide-line">
                             {PRAYERS.map((prayer) => {
