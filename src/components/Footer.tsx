@@ -3,10 +3,7 @@ const Footer = () => {
         <footer className="bg-primary text-primary-dim bg-linear-to-r from-primary/50 via-primary/5 to-primary/90">
             <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
                 <div>
-                    <p className="font-display text-lg font-semibold">BJM</p>
-                    <p className="mt-3 max-w-xs font-body text-sm text-primary-dim/70">
-                        A community based and owned mosque/organization
-                    </p>
+                    <img src="./logo-white.png" alt="bjm" className="h-25" />
                 </div>
 
                 <div>

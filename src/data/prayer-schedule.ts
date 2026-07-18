@@ -1,28 +1,22 @@
 import type { DaySchedule, MonthSchedule, NextPrayer, Prayer, PrayerTimes } from "../types";
 
+const LATITUDE = 27.69;
+const LONGITUDE = 84.43;
+const TIMEZONE_OFFSET = 5.75;
+
+const FAJR_ANGLE = 18.0;
+const ISHA_ANGLE = 18.0;
+const ZUHR_BUFFER = 4;
+const HORIZON_BUFFER = 1.15;
+
 export const PRAYERS: Prayer[] = [
     { key: "fajr", label: "Fajr" },
+    { key: "sunrise", label: "Sunrise" },
     { key: "zuhr", label: "Zuhr" },
     { key: "asr", label: "Asr" },
     { key: "magrib", label: "Magrib" },
     { key: "isha", label: "Isha" }
 ];
-
-const BASE_MINUTES: Record<string, number> = {
-    fajr: 3 * 60 + 38,
-    zuhr: 11 * 60 + 51,
-    asr: 15 * 60 + 38,
-    magrib: 17 * 60 + 14,
-    isha: 18 * 60 + 35
-};
-
-const DIFFERENCE: Record<string, number> = {
-    fajr: 100,
-    zuhr: 30,
-    asr: 65,
-    magrib: 116,
-    isha: 125
-};
 
 function dayOfYear(date: Date): number {
     const start = new Date(date.getFullYear(), 0, 0);
@@ -32,9 +26,59 @@ function dayOfYear(date: Date): number {
 
 function minutesForPrayer(prayerKey: string, date: Date): number {
     const doy = dayOfYear(date);
-    const phase = ((doy - 80) / 365) * Math.PI * 2;
-    const swing = Math.sin(phase) * DIFFERENCE[prayerKey];
-    return Math.round(BASE_MINUTES[prayerKey] + swing);
+
+    const b = (360 / 365) * (doy - 81);
+    const bRad = (b * Math.PI) / 180;
+    const eot = 9.87 * Math.sin(2 * bRad) - 7.53 * Math.cos(bRad) - 1.5 * Math.sin(bRad);
+
+    const declination = 23.45 * Math.sin(((360 / 365) * (doy - 80) * Math.PI) / 180);
+    const declRad = (declination * Math.PI) / 180;
+    const latRad = (LATITUDE * Math.PI) / 180;
+
+    const standardMeridian = TIMEZONE_OFFSET * 15;
+    const longitudeCorrection = (standardMeridian - LONGITUDE) * 4;
+    const solarNoon = 12 * 60 + longitudeCorrection - eot;
+
+    const getHourAngle = (alphaDeg: number): number => {
+        const alphaRad = (alphaDeg * Math.PI) / 180;
+        const cosH = (Math.sin(alphaRad) - Math.sin(latRad) * Math.sin(declRad)) /
+            (Math.cos(latRad) * Math.cos(declRad));
+
+        if (cosH > 1) return 0;
+        if (cosH < -1) return 180;
+        return (Math.acos(cosH) * 180) / Math.PI;
+    };
+
+    switch (prayerKey) {
+        case "fajr": {
+            const hourAngle = getHourAngle(-FAJR_ANGLE);
+            return Math.round(solarNoon - hourAngle * 4);
+        }
+        case "sunrise": {
+            const hourAngle = getHourAngle(-HORIZON_BUFFER);
+            return Math.round(solarNoon - hourAngle * 4);
+        }
+        case "zuhr": {
+            return Math.round(solarNoon + ZUHR_BUFFER);
+        }
+        case "asr": {
+            const shadowMultiplier = 2;
+            const asrAltitudeRad = Math.atan(1 / (shadowMultiplier + Math.tan(Math.abs(latRad - declRad))));
+            const asrAltitudeDeg = (asrAltitudeRad * 180) / Math.PI;
+            const hourAngle = getHourAngle(asrAltitudeDeg);
+            return Math.round(solarNoon + hourAngle * 4);
+        }
+        case "magrib": {
+            const hourAngle = getHourAngle(-HORIZON_BUFFER);
+            return Math.round(solarNoon + hourAngle * 4);
+        }
+        case "isha": {
+            const hourAngle = getHourAngle(-ISHA_ANGLE);
+            return Math.round(solarNoon + hourAngle * 4);
+        }
+        default:
+            return 0;
+    }
 }
 
 function formatMinutes(total: number): string {
@@ -94,6 +138,9 @@ export function findNextPrayer(
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
     for (const prayer of PRAYERS) {
+
+        if (prayer.key === "sunrise") continue;
+
         const t = todayEntry.times[prayer.key];
         if (t.minutes >= nowMinutes) {
             return {
