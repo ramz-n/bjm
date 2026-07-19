@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import Home from "./pages/Home"
 import Footer from "./components/Footer"
 import PrayerTimes from "./pages/PrayerTimes"
+import KeyDates from "./pages/KeyDates"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/prayer-timetable" element={<PrayerTimes />} />
+          <Route path="/key-dates" element={<KeyDates />} />
         </Routes>
       </main>
       <Footer />

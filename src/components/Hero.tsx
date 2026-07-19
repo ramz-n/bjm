@@ -1,5 +1,7 @@
 import { findNextPrayer, formatCountdown, PRAYERS } from "../data/prayer-schedule";
 import type { DaySchedule } from "../types";
+import NepaliDate from 'nepali-date-converter'
+import { hijriFormatter } from "../utils";
 
 interface HeroProps {
     now: Date;
@@ -11,6 +13,9 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
     const next = findNextPrayer(now, todayEntry, tomorrowEntry);
     const timeLabel = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+    const engDateLabel = now.toLocaleDateString("en-Us", { day: "2-digit", month: "long", year: "numeric" })
+
+    const nepaliDateLabel = new NepaliDate(now)
 
     return (
         <section className="relative min-h-screen text-primary-dim px-3">
@@ -55,9 +60,17 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         </div>
                     </div>
 
-                    <div className="rounded-2xl border border-line bg-accent/90 p-4 md:p-6 shadow-sm z-10 w-[300px]">
-                        <div className="flex items-center justify-between border-b border-line pb-3">
-                            <h2 className="font-display text-sm md:text-xl font-semibold text-ink">Today's prayer times</h2>
+                    <div className="rounded-2xl border border-line bg-accent/90 p-4 md:p-5 shadow-sm z-10 w-[300px]">
+                        <div className="flex items-center justify-between border-b border-line pb-3 gap-3">
+                            <p className="font-mono text-xs font-medium">
+                                {engDateLabel}
+                            </p>
+                            <p className="font-mono text-xs font-medium">
+                                {nepaliDateLabel.format('ddd DD, MMMM YYYY', 'np')}
+                            </p>
+                            <p className="font-mono text-xs font-medium">
+                                {hijriFormatter("all").format()}
+                            </p>
                         </div>
                         <ul className="mt-3 divide-y divide-line">
                             {PRAYERS.map((prayer) => {

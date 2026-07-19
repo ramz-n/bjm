@@ -1,6 +1,8 @@
 import { useMemo, useRef } from 'react';
 import { getMonthSchedule, isoKeyFor, PRAYERS } from '../data/prayer-schedule';
 import useNow from '../hooks/useNow';
+import { hijriFormatter } from '../utils';
+import NepaliDate from 'nepali-date-converter'
 
 const PrayerTimes = () => {
 
@@ -15,6 +17,8 @@ const PrayerTimes = () => {
         [now.getFullYear(), now.getMonth(), now.getDate()],
     );
 
+    const nepaliMonth = new NepaliDate(now)
+
     const todayRowRef = useRef<HTMLTableRowElement | null>(null);
     const tableRef = useRef(null);
 
@@ -25,15 +29,23 @@ const PrayerTimes = () => {
                     <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Monthly schedule</p>
                     <h2 className="mt-2 font-display text-3xl font-semibold">{month.monthName} {month.year}</h2>
                 </div>
+                <div>
+                    <p className="font-bold text-md uppercase text-primary">{hijriFormatter("").format()}</p>
+                    <p className="font-bold text-xs uppercase text-primary">{nepaliMonth.format("MMMM, YYYY")} BS</p>
+                </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-line shadow-sm">
+            <div className="overflow-x-scroll rounded-2xl border border-line shadow-sm">
                 <div className="">
                     <table className="w-full border-collapse text-left" ref={tableRef}>
                         <thead className="sticky top-0 z-10 bg-primary-dim">
                             <tr className='border-b bg-secondary-green text-primary-dim'>
                                 <th scope="col" className="whitespace-nowrap px-4 py-3 font-body text-xs font-semibold uppercase tracking-wide">
                                     Date
+                                </th>
+
+                                <th scope="col" className="whitespace-nowrap px-4 py-3 font-body text-xs font-semibold uppercase tracking-wide">
+                                    Nepali
                                 </th>
 
                                 <th scope="col" className="whitespace-nowrap px-4 py-3 font-body text-xs font-semibold uppercase tracking-wide">
@@ -82,10 +94,23 @@ const PrayerTimes = () => {
                                             </span>
                                         </td>
 
+                                        <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
+                                            <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
+                                                {new NepaliDate(day.date).format("MMMM D").toString()}
+                                            </span>
+                                        </td>
+
+
+                                        <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
+                                            <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
+                                                {hijriFormatter("dayMonth").format(day.date)}
+                                            </span>
+                                        </td>
+
                                         {PRAYERS.map((prayer) => (
                                             <td
                                                 key={prayer.key}
-                                                className={`tabular whitespace-nowrap px-4 py-3 font-mono text-sm ${isToday ? "font-semibold text-verdigris" : "text-ink-soft"
+                                                className={`whitespace-nowrap px-4 py-3 font-mono text-sm ${isToday ? "font-semibold text-primary" : "text-primary/90"
                                                     }`}
                                             >
                                                 {day.times[prayer.key].label}
