@@ -36,6 +36,10 @@ const PrayerTimes = () => {
                                     Date
                                 </th>
 
+                                <th scope="col" className="whitespace-nowrap px-4 py-3 font-body text-xs font-semibold uppercase tracking-wide">
+                                    Hijri
+                                </th>
+
                                 {PRAYERS.map((prayer) => (
                                     <th
                                         key={prayer.key}
