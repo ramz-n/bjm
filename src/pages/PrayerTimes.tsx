@@ -31,11 +31,11 @@ const PrayerTimes = () => {
                 </div>
                 <div>
                     <p className="font-bold text-md uppercase text-primary">{hijriFormatter("").format()}</p>
-                    <p className="font-bold text-xs uppercase text-primary">{nepaliMonth.format("MMMM, YYYY")} BS</p>
+                    <p className="font-bold text-xs uppercase text-primary">{nepaliMonth.format("MMMM, YYYY", "np")} BS</p>
                 </div>
             </div>
 
-            <div className="overflow-x-scroll rounded-2xl border border-line shadow-sm">
+            <div className="overflow-x-scroll md:overflow-hidden rounded-2xl border border-line shadow-sm">
                 <div className="">
                     <table className="w-full border-collapse text-left" ref={tableRef}>
                         <thead className="sticky top-0 z-10 bg-primary-dim">
@@ -96,7 +96,7 @@ const PrayerTimes = () => {
 
                                         <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
                                             <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
-                                                {new NepaliDate(day.date).format("MMMM D").toString()}
+                                                {new NepaliDate(day.date).format("MMMM D", "np").toString()}
                                             </span>
                                         </td>
 
