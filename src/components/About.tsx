@@ -36,7 +36,7 @@ const About = () => {
                         </h2>
                     </div>
 
-                    <img className="rounded-2xl shadow-2xl shadow-accent" src="./bjm.png" alt="barkati masjid" />
+                    <img className="rounded-2xl shadow-2xl shadow-accent" src="./bjm.webp" alt="barkati masjid" />
                 </div>
 
                 <div className="mt-10 grid gap-8 md:grid-cols-3">

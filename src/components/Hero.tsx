@@ -63,7 +63,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
             <div className="h-screen flex flex-col items-start justify-center gap-8">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url("/home-bg.png")` }}
+                    style={{ backgroundImage: `url("/home-bg.webp")` }}
                 >
                     <div className="absolute inset-0 to-transparent"></div>
                 </div>

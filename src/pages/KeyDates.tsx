@@ -56,9 +56,10 @@ const KeyDates = () => {
         <section id="schedule" className="w-full">
             <div className="relative w-full h-[50vh] overflow-hidden">
                 <img
-                    src="/keydates-bg.jpg"
+                    src="/keydates-bg.webp"
                     alt="Key Dates"
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
                 />
 
                 {/* Optional dark overlay */}
@@ -68,7 +69,7 @@ const KeyDates = () => {
                 <div className="absolute bottom-8 left-18">
                     <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
                         <h1 className="text-4xl font-bold text-white">
-                        Key Dates
+                            Key Dates
                         </h1>
                     </div>
                 </div>
