@@ -54,7 +54,7 @@ const Learn = () => {
                     {error && <p className="text-red-500">{error}</p>}
                     {loading ?
                         <Loader className="animate-spin" size={30} /> :
-                        data?.results.map((r: any, idx: number) =>
+                        data?.results?.map((r: any, idx: number) =>
                             <div key={idx} className="bg-accent flex flex-col gap-3 text-primary-dim p-5 rounded-xl">
                                 <p className="font-bold">{r.surah_name} {r.surah_number}:{r.ayah}</p>
                                 <p className="text-secondary-dim">{r.arabic}</p>

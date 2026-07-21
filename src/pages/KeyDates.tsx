@@ -86,8 +86,8 @@ const KeyDates = () => {
 
                 <div className="overflow-hidden rounded-2xl">
                     <ul className="">
-                        {dates.map(date =>
-                            <li className="flex items-center md:gap-3 gap-1 mb-3">
+                        {dates.map((date, idx) =>
+                            <li key={idx} className="flex items-center md:gap-3 gap-1 mb-3">
                                 <Calendar size={50} className="" />
                                 <span className="text-sm md:text-xl md:font-bold bg-accent/90 rounded-lg px-3 text-primary-dim">{date.event}</span> |
                                 <span className="text-sm">{date.gregorianDate}</span> |

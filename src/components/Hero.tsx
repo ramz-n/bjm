@@ -44,7 +44,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
             if (next?.minutesUntil === 5 && granted) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time in ${next.minutesUntil} minutes!`);
             }
-            if (next?.minutesUntil === 0 && granted && audioRef.current) {
+            if (next.minutesUntil === 0 && granted && audioRef.current) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
                 audioRef.current.play()
             }
@@ -56,7 +56,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
     return (
         <section className="relative min-h-screen text-primary-dim px-3">
 
-            <audio id="player" ref={audioRef} autoPlay>
+            <audio id="player" ref={audioRef}>
                 <source src={azanMp3} type="audio/mp3" />
             </audio>
 
