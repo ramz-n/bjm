@@ -44,7 +44,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
             if (next?.minutesUntil === 5 && granted) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time in ${next.minutesUntil} minutes!`);
             }
-            if (next?.minutesUntil === 18 && granted && audioRef.current) {
+            if (next?.minutesUntil === 0 && granted && audioRef.current) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
                 audioRef.current.play()
             }
