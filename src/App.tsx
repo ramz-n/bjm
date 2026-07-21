@@ -4,6 +4,8 @@ import Home from "./pages/Home"
 import Footer from "./components/Footer"
 import PrayerTimes from "./pages/PrayerTimes"
 import KeyDates from "./pages/KeyDates"
+import Names from "./pages/99Names"
+import Learn from "./pages/Learn"
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/prayer-timetable" element={<PrayerTimes />} />
           <Route path="/key-dates" element={<KeyDates />} />
+          <Route path="/99-names" element={<Names />} />
+          <Route path="/learn" element={<Learn />} />
         </Routes>
       </main>
       <Footer />

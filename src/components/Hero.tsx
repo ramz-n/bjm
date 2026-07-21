@@ -1,7 +1,9 @@
 import { findNextPrayer, formatCountdown, PRAYERS } from "../data/prayer-schedule";
 import type { DaySchedule } from "../types";
 import NepaliDate from 'nepali-date-converter'
-import { hijriFormatter } from "../utils";
+import { hijriFormatter, requestNotificationPermission } from "../utils";
+import { useEffect, useRef } from "react";
+import azanMp3 from "../assets/azan.mp3"
 
 interface HeroProps {
     now: Date;
@@ -9,7 +11,16 @@ interface HeroProps {
     tomorrowEntry?: DaySchedule;
 }
 
+const showNotification = (title: string, body: string) => {
+    new Notification(title, {
+        body,
+        icon: "./logo.png",
+    });
+};
+
 const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
+
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const next = findNextPrayer(now, todayEntry, tomorrowEntry);
     const timeLabel = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
@@ -17,8 +28,38 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
     const nepaliDateLabel = new NepaliDate(now)
 
+    useEffect(() => {
+        audioRef.current = new Audio(azanMp3);
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const notify = async () => {
+            const granted = await requestNotificationPermission();
+            if (next?.minutesUntil === 5 && granted) {
+                showNotification(`Namaz Alert ⏰`, `${next.label} time in ${next.minutesUntil} minutes!`);
+            }
+            if (next?.minutesUntil === 0 && granted && audioRef.current) {
+                showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
+                audioRef.current.play()
+            }
+            return
+        }
+        notify()
+    }, [next?.minutesUntil])
+
     return (
         <section className="relative min-h-screen text-primary-dim px-3">
+
+            <audio id="player" ref={audioRef} autoPlay>
+                <source src={azanMp3} type="audio/mp3" />
+            </audio>
+
             <div className="h-screen flex flex-col items-start justify-center gap-8">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
