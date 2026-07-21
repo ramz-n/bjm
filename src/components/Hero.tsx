@@ -2,7 +2,7 @@ import { findNextPrayer, formatCountdown, PRAYERS } from "../data/prayer-schedul
 import type { DaySchedule } from "../types";
 import NepaliDate from 'nepali-date-converter'
 import { hijriFormatter, requestNotificationPermission } from "../utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import azanMp3 from "../assets/azan.mp3"
 
 interface HeroProps {
@@ -20,7 +20,7 @@ const showNotification = (title: string, body: string) => {
 
 const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
-    const audioRef = useRef(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const next = findNextPrayer(now, todayEntry, tomorrowEntry);
     const timeLabel = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
@@ -41,17 +41,17 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
     useEffect(() => {
         const notify = async () => {
             const granted = await requestNotificationPermission();
-            if (next.minutesUntil === 5 && granted) {
+            if (next?.minutesUntil === 5 && granted) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time in ${next.minutesUntil} minutes!`);
             }
-            if (next.minutesUntil === 18 && granted && audioRef.current) {
+            if (next?.minutesUntil === 18 && granted && audioRef.current) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
                 audioRef.current.play()
             }
             return
         }
         notify()
-    }, [next.minutesUntil])
+    }, [next?.minutesUntil])
 
     return (
         <section className="relative min-h-screen text-primary-dim px-3">
