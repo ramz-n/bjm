@@ -7,6 +7,7 @@ const links = [
     { href: "/prayer-timetable", label: "Prayer Timetable" },
     { href: "/key-dates", label: "Key Dates" },
     { href: "/99-names", label: "99 Names" },
+    { href: "/learn", label: "Learn" },
 ];
 
 const Header = () => {
