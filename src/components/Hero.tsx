@@ -3,7 +3,6 @@ import type { DaySchedule } from "../types";
 import NepaliDate from 'nepali-date-converter'
 import { hijriFormatter, requestNotificationPermission } from "../utils";
 import { useEffect, useRef } from "react";
-import azanMp3 from "../assets/azan.mp3"
 
 interface HeroProps {
     now: Date;
@@ -29,16 +28,6 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
     const nepaliDateLabel = new NepaliDate(now)
 
     useEffect(() => {
-        audioRef.current = new Audio(azanMp3);
-
-        return () => {
-            if (audioRef.current) {
-                audioRef.current.pause();
-            }
-        };
-    }, []);
-
-    useEffect(() => {
         const notify = async () => {
             const granted = await requestNotificationPermission();
             if (next?.minutesUntil === 5 && granted) {
@@ -46,7 +35,6 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
             }
             if (next?.minutesUntil === 0 && granted && audioRef.current) {
                 showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
-                audioRef.current.play()
             }
             return
         }
@@ -55,11 +43,6 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
     return (
         <section className="relative min-h-screen text-primary-dim px-3">
-
-            <audio id="player" ref={audioRef}>
-                <source src={azanMp3} type="audio/mp3" />
-            </audio>
-
             <div className="h-screen flex flex-col items-start justify-center gap-8">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
