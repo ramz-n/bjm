@@ -63,7 +63,7 @@ const KeyDates = () => {
                 />
 
                 {/* Optional dark overlay */}
-                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 bg-black/40" />
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
@@ -74,7 +74,7 @@ const KeyDates = () => {
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-6xl px-6 pt-24 pb-10">
+            <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center border-b pb-3">
                     <div>
                         <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Key Dates</p>
