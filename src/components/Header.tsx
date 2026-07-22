@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
 
@@ -12,6 +12,19 @@ const links = [
 
 const Header = () => {
     const [open, setOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 80);
+        };
+
+        handleScroll(); // Set initial state
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // Reusable classes for the navigation links with bottom underline behavior
     // Add the type definition for the destructured object parameter
@@ -25,12 +38,46 @@ const Header = () => {
             <nav className="mx-auto flex max-w-6xl items-center justify-between px-10 h-18">
 
                 {/* Logo wrapper using absolute placement on the image to offset it downwards */}
-                <Link to="/" className="relative z-40 block h-full transition-transform duration-200 hover:scale-105">
+                <Link
+                    to="/"
+                    className="relative z-40 block w-56 h-24 overflow-visible"
+                >
+                    {/* Large vertical logo */}
                     <img
                         src="/logo-white13.png"
                         alt="BJM Logo"
-                        className="absolute opacity-90 h-40 w-auto max-w-none object-contain"
+                        className={`
+                            absolute left-0 top-0
+                            h-40 w-auto
+                            object-contain
+                            origin-top-left
+                            transition-all duration-300 ease-in-out
+                            ${
+                                scrolled
+                                    ? "opacity-0 scale-50 translate-x-2 translate-y-2"
+                                    : "opacity-90 scale-100 translate-x-0 translate-y-0"
+                            }
+                        `}
                     />
+
+                    {/* Small horizontal logo */}
+                    <img
+                        src="/logo-scroll.png"
+                        alt="BJM Logo"
+                        className={`
+                            absolute left-0 top-3
+                            py-1
+                            pl-3
+                            h-18 w-auto
+                            object-contain
+                            transition-all duration-300 ease-out-in
+                            ${
+                                scrolled
+                                    ? "opacity-100 scale-100"
+                                    : "opacity-0 scale-75"
+                            }
+                        `}
+                    />  
                 </Link>
 
                 {/* Desktop Menu */}

@@ -5,6 +5,7 @@ import useNow from "../hooks/useNow";
 import { getMonthSchedule, isoKeyFor } from "../data/prayer-schedule";
 import About from "../components/About";
 
+
 const Home = () => {
 
     const now = useNow();
