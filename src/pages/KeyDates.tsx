@@ -56,9 +56,10 @@ const KeyDates = () => {
         <section id="schedule" className="w-full">
             <div className="relative w-full h-[50vh] overflow-hidden">
                 <img
-                    src="/keydates-bg.jpg"
+                    src="/keydates-bg.webp"
                     alt="Key Dates"
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
                 />
 
                 {/* Optional dark overlay */}
@@ -68,7 +69,7 @@ const KeyDates = () => {
                 <div className="absolute bottom-8 left-18">
                     <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
                         <h1 className="text-4xl font-bold text-white">
-                        Key Dates
+                            Key Dates
                         </h1>
                     </div>
                 </div>
@@ -85,8 +86,8 @@ const KeyDates = () => {
 
                 <div className="overflow-hidden rounded-2xl">
                     <ul className="">
-                        {dates.map(date =>
-                            <li className="flex items-center md:gap-3 gap-1 mb-3">
+                        {dates.map((date, idx) =>
+                            <li key={idx} className="flex items-center md:gap-3 gap-1 mb-3">
                                 <Calendar size={50} className="" />
                                 <span className="text-sm md:text-xl md:font-bold bg-accent/90 rounded-lg px-3 text-primary-dim">{date.event}</span> |
                                 <span className="text-sm">{date.gregorianDate}</span> |

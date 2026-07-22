@@ -5,9 +5,9 @@ import { Loader } from "lucide-react"
 const Learn = () => {
 
     const [searchString, setSearchString] = useState("")
-    const [data, setData] = useState(null)
+    const [data, setData] = useState<any>({})
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState<any>(null)
 
     const handleSearch = async () => {
         try {
@@ -15,7 +15,11 @@ const Learn = () => {
             const res = await seachQuran(searchString)
             setData(res.data)
         } catch (error) {
-            setError(error.message)
+            if (error instanceof Error) {
+                setError(error.message);
+            } else {
+                setError("An unexpected error occurred.");
+            }
         } finally {
             setLoading(false)
             setSearchString("")
@@ -50,7 +54,7 @@ const Learn = () => {
                     {error && <p className="text-red-500">{error}</p>}
                     {loading ?
                         <Loader className="animate-spin" size={30} /> :
-                        data?.results.map((r, idx) =>
+                        data?.results?.map((r: any, idx: number) =>
                             <div key={idx} className="bg-accent flex flex-col gap-3 text-primary-dim p-5 rounded-xl">
                                 <p className="font-bold">{r.surah_name} {r.surah_number}:{r.ayah}</p>
                                 <p className="text-secondary-dim">{r.arabic}</p>

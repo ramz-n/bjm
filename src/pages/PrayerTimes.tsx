@@ -26,7 +26,7 @@ const PrayerTimes = () => {
         <section id="schedule" className="w-full">
             <div className="relative w-full h-[50vh] overflow-hidden">
                 <img
-                    src="/timetable-bg.jpg"
+                    src="/timetable-bg.webp"
                     alt="Timetable"
                     className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -38,7 +38,7 @@ const PrayerTimes = () => {
                 <div className="absolute bottom-8 left-18">
                     <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
                         <h1 className="text-4xl font-bold text-white">
-                        Timetable
+                            Timetable
                         </h1>
                     </div>
                 </div>
