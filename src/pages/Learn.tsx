@@ -30,7 +30,7 @@ const Learn = () => {
         <section id="schedule" className="w-full">
             <div className="relative w-full h-[50vh] overflow-hidden">
                 <img
-                    src="/learn.png"
+                    src="/learn.webp"
                     alt="Key Dates"
                     className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
@@ -52,15 +52,15 @@ const Learn = () => {
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
                         <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Learn Quran</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">Search & Learn</h2>
+                        <h2 className="mt-2 font-display text-3xl font-semibold">Search a topic.</h2>
                     </div>
 
                 </div>
 
                 <div className="">
-                    <div className="grid grid-cols-[1fr_200px] gap-2">
+                    <div className="grid md:grid-cols-[1fr_200px] gap-2">
                         <input type="text" name="search" className="border-primary rounded-xl border-2 p-2" onChange={(e) => setSearchString(e.target.value)} />
-                        <button className="bg-primary text-primary-dim px-3 rounded-xl cursor-pointer hover:bg-accent"
+                        <button className="bg-primary text-primary-dim py-3 px-3 md:py-0 rounded-xl cursor-pointer hover:bg-accent"
                             disabled={searchString.length === 0}
                             onClick={handleSearch}
                         >

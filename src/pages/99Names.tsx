@@ -6,7 +6,7 @@ const Names = () => {
         <section id="schedule" className="w-full">
             <div className="relative w-full h-[50vh] overflow-hidden">
                 <img
-                    src="/99names.jpg"
+                    src="/99names.webp"
                     alt="Key Dates"
                     className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
