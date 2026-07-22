@@ -9,8 +9,9 @@ const Footer = () => {
                 <div>
                     <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">Visit</p>
                     <address className="mt-3 space-y-1 font-body text-sm not-italic text-primary-dim/80">
-                        <p>Lila Chowk</p>
-                        <p>Narayangarh, Chitwan</p>
+                        <p>Masjid Road</p>
+                        <p>Pragatipath-2,Narayangarh</p>
+                        <p>Chitwan, Nepal</p>
                         <p>Open daily, from 10am to 18pm</p>
                     </address>
                 </div>
@@ -24,7 +25,9 @@ const Footer = () => {
                 </div>
             </div>
             <div className="border-t border-primary/10 px-6 py-5 text-center font-body text-xs text-primary-dim/50">
-                © {new Date().getFullYear()} Al Jamiatul Barkatiya Jame Masjid.
+                © {new Date().getFullYear()} Al Jamiatul Barkatiya Jame Masjid. Designed and developed by <a href="https://www.qrcoders.site/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+                    QRCoders
+                </a>
             </div>
         </footer>
     )

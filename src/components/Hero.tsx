@@ -72,7 +72,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                     <div className="flex flex-col justify-center z-10 gap-3 md:gap-5">
                         <div className="md:max-w-3xl flex flex-col items-start gap-2 md:gap-5 justify-center bg-accent/90 p-5 md:p-8 rounded-2xl">
                             <p className="text-white text-sm md:text-xl">
-                                PRAGATIPATH-2 . NARAYANGARH . CHITWAN
+                                PRAGATIPATH-2 . NARAYANGARH . CHITWAN . NEPAL
                             </p>
                             <h1 className="text-xl md:text-5xl font-heading font-bold text-accent-dim">
                                 A place of worship, at the heart of the community
