@@ -35,8 +35,13 @@ const About = () => {
                             Barkati Jame Masjid is one of the oldest mosque located in Narayanghat, Chitwan. Established in 1955 AD, the mosque has been helping community actively.
                         </h2>
                     </div>
+                    <div>
+                        <img className="relative rounded-2xl " src="./bjm.webp" alt="barkati masjid" />
+                        {/* Optional dark overlay */}
+                        <div className="absolute inset-0 bg-black/30" />
 
-                    <img className="rounded-2xl shadow-2xl shadow-accent" src="./bjm.webp" alt="barkati masjid" />
+                    </div>
+                    
                 </div>
 
                 <div className="mt-10 grid gap-8 md:grid-cols-3">

@@ -31,8 +31,8 @@ const PrayerTimes = () => {
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                {/* Optional dark overlay */}
-                <div className="absolute inset-0 bg-black/30" />
+                    {/* Optional dark overlay */}
+                    <div className="absolute inset-0 bg-black/30" />
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
@@ -43,7 +43,7 @@ const PrayerTimes = () => {
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-6xl px-6 py-12">
+            <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
                         <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Monthly schedule</p>
