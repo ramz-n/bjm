@@ -93,7 +93,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                 {nepaliDateLabel.format('ddd DD, MMMM YYYY', 'np')}
                             </p>
                             <p className="font-mono text-xs font-medium">
-                                {hijriFormatter("all").format()}
+                                {hijriFormatter(now, "all")}
                             </p>
                         </div>
                         <ul className="mt-3 divide-y divide-line">
