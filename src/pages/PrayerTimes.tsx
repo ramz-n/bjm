@@ -3,8 +3,6 @@ import { getMonthSchedule, isoKeyFor, PRAYERS } from '../data/prayer-schedule';
 import useNow from '../hooks/useNow';
 import { hijriFormatter } from '../utils';
 import NepaliDate from 'nepali-date-converter'
-import { dates } from "../data/allkeydates"
-import { Calendar } from "lucide-react"
 
 const PrayerTimes = () => {
 
@@ -33,8 +31,8 @@ const PrayerTimes = () => {
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                    {/* Optional dark overlay */}
-                    <div className="absolute inset-0 bg-black/30" />
+                {/* Optional dark overlay */}
+                <div className="absolute inset-0 bg-black/30" />
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
@@ -52,7 +50,7 @@ const PrayerTimes = () => {
                         <h2 className="mt-2 font-display text-3xl font-semibold">{month.monthName} {month.year}</h2>
                     </div>
                     <div>
-                        <p className="font-bold text-md uppercase text-primary">{hijriFormatter("").format()}</p>
+                        <p className="font-bold text-md uppercase text-primary">{hijriFormatter(now, "")}</p>
                         <p className="font-bold text-xs uppercase text-primary">{nepaliMonth.format("MMMM, YYYY", "np")} BS</p>
                     </div>
                 </div>
@@ -125,7 +123,7 @@ const PrayerTimes = () => {
 
                                             <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
                                                 <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
-                                                    {hijriFormatter("dayMonth").format(day.date)}
+                                                    {hijriFormatter(day.date, "dayMonth")}
                                                 </span>
                                             </td>
 
@@ -143,30 +141,6 @@ const PrayerTimes = () => {
                                 })}
                             </tbody>
                         </table>
-                    </div>
-                </div>
-
-                <div className="mx-auto max-w-6xl px-6 pt-20">
-                    <div className="mb-5 flex justify-between gap-4 items-center border-b pb-3">
-                        <div>
-                            <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Key Dates</p>
-                            <span className="mt-2 font-display text-3xl font-semibold">2026 AD · </span>
-                            <span className="mt-2 font-display text-3xl font-semibold">2083 BS · </span>
-                            <span className="mt-2 font-display text-3xl font-semibold">1447 - 1448 AH</span>
-                        </div>
-                    </div>
-
-                    <div className="overflow-hidden rounded-2xl">
-                        <ul className="">
-                            {dates.map((date, idx) =>
-                                <li key={idx} className="flex items-center md:gap-3 gap-1 mb-3">
-                                    <Calendar size={50} className="" />
-                                    <span className="text-sm md:text-xl md:font-bold bg-accent/90 rounded-lg px-3 text-primary-dim">{date.event}</span> |
-                                    <span className="text-sm">{date.gregorianDate}</span> |
-                                    <span className="text-sm">{date.nepaliDate}</span> |
-                                    <span className="text-sm">{date.hijriDate}</span>
-                                </li>)}
-                        </ul>
                     </div>
                 </div>
             </div>
