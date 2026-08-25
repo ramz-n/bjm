@@ -1,21 +1,33 @@
-export const hijriFormatter = (formattype: string) => {
-    if (formattype === "all") {
+import { gregorianToHijri } from '@tabby_ai/hijri-converter'
+
+const HIJRI_MONTHS = [
+    "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani",
+    "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban",
+    "Ramadan", "Shawwal", "Dhu al-Qada", "Dhu al-Hijjah"
+];
+
+export const hijriFormatter = (date: Date, formattype: string): string => {
+    try {
+        const hijri = gregorianToHijri({ year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() });
+
+        const dayStr = String(hijri.day).padStart(2, '0');
+        const monthStr = HIJRI_MONTHS[hijri.month - 1];
+        const yearStr = String(hijri.year);
+
+        if (formattype === "all") {
+            return `${monthStr} ${dayStr}, ${yearStr}`;
+        }
+        if (formattype === "dayMonth") {
+            return `${monthStr} ${dayStr}`;
+        }
+        return `${monthStr} ${yearStr}`;
+    } catch (error) {
         return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
-            day: '2-digit',
+            day: formattype !== 'monthYear' ? '2-digit' : undefined,
             month: 'long',
-            year: 'numeric'
-        });
+            year: formattype !== 'dayMonth' ? 'numeric' : undefined
+        }).format(date);
     }
-    if (formattype === "dayMonth") {
-        return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
-            day: '2-digit',
-            month: 'long',
-        });
-    }
-    return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
-        month: 'long',
-        year: 'numeric'
-    });
 }
 
 export const requestNotificationPermission = async () => {
