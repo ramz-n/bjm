@@ -217,7 +217,7 @@ export function findNextPrayer(
     return null;
 }
 
-export function formatCountdown( totalMinutes: number, language: "en" | "np" = "en" ): string { const hours = Math.floor(totalMinutes / 60); const minutes = totalMinutes % 60; if (language === "np") { const nepaliHours = String(hours).replace( /\d/g, (digit) => "०१२३४५६७८९"[Number(digit)] ); const nepaliMinutes = String(minutes).replace( /\d/g, (digit) => "०१२३४५६७८९"[Number(digit)] ); if (hours > 0) { return `${nepaliHours} घण्टा ${nepaliMinutes} मिनेट`; } return `${nepaliMinutes} मिनेट`; } if (hours > 0) { return `${hours}h ${minutes}m`; } return `${minutes}m`; }
+export function formatCountdown( totalMinutes: number, language: "en" | "np" = "en" ): string { const hours = Math.floor(totalMinutes / 60); const minutes = totalMinutes % 60; if (language === "np") { const nepaliHours = String(hours).replace( /\d/g, (digit) => "०१२३४५६७८९"[Number(digit)] ); const nepaliMinutes = String(minutes).replace( /\d/g, (digit) => "०१२३४५६७८९"[Number(digit)] ); if (hours > 0) { return `${nepaliHours} घण्टा ${nepaliMinutes} मिनेटमा`; } return `${nepaliMinutes} मिनेटमा`; } if (hours > 0) { return `in ${hours} hr ${minutes} mins`; } return `in ${minutes} mins`; }
 
 
 export function formatCurrentTime(

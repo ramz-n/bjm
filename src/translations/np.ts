@@ -21,7 +21,7 @@ const np = {
 
     localTime:"स्थानीय समय",
     nextPrayer: "अबको नमाज",
-    tomorrow: "भोलि",
+    tomorrow: "भोलिको नमाज",
     dailySchedule: "दैनिक समय तालिका",
     prayerTimes: "नमाजको समय",
     gregorian: "ग्रेगोरियन",

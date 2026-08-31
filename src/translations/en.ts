@@ -20,8 +20,8 @@ const en = {
       "Welcome to Al Jamiatul Barkatiya Jame Masjid, a place for worship, learning, service and community.",
 
     localTime:"Local Time",
-    nextPrayer: "Next",
-    tomorrow: "tomorrow",
+    nextPrayer: "Up next",
+    tomorrow: "Next tomorrow",
     dailySchedule: "Daily Schedule",
     prayerTimes: "Prayer Times",
     gregorian: "Gregorian",

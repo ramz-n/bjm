@@ -40,13 +40,26 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
     const timeLabel = formatCurrentTime(now, language);
 
     const nepaliDateLabel = new NepaliDate(now);
-
+    /*
+        useEffect(() => {
+            const notify = async () => {
+                const granted = await requestNotificationPermission(t.notifications.unsupported);
+                if (next?.minutesUntil === 5 && granted) {
+                    showNotification(`Namaz Alert ⏰`, `${next.label} time in ${next.minutesUntil} minutes!`);
+                }
+                if (next?.minutesUntil === 0 && granted && audioRef.current) {
+                    showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
+                }
+                return
+            }
+            notify()
+        }, [next?.minutesUntil]);*/
 
     useEffect(() => { const notify = async () => { const granted = await requestNotificationPermission(t.notifications.unsupported); if (!granted || !next) return; if (next.minutesUntil === 5 || next.minutesUntil === 0) { const prayerName = language === "np" ? t.prayer[next.key as keyof typeof t.prayer] : next.label; const countdown = formatCountdown(next.minutesUntil, language); if (next.minutesUntil === 0) { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय सुरु भएको छ!` : `${prayerName} time has started!`); } else { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय ${countdown} मा सुरु हुनेछ।` : `${prayerName} time in ${countdown}!`); } } }; notify(); }, [next?.minutesUntil, language, t]);
 
     return (
         <section className="relative min-h-screen text-primary-dim px-3">
-            <div className="h-screen flex flex-col items-start justify-center gap-8">
+            <div className="h-screen flex flex-col items-start justify-center gap-7">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url("/home-bg.webp")` }}
@@ -56,9 +69,9 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                 {/* Hero Content */}
 
-                <div className="container mt-10 mx-auto z-10 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_380px] gap-5 items-center justify-between">
+                <div className="container mx-auto z-10 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_380px] gap-5 items-center justify-between">
                     <div className="flex flex-col justify-center z-10 gap-3 md:gap-5">
-                        <div className="md:max-w-3xl flex flex-col items-start gap-2 md:gap-5 justify-center bg-accent/90 p-5 backdrop-blur-xs md:p-8 rounded-2xl">
+                        <div className="md:max-w-2xl flex flex-col items-start gap-2 md:gap-5 justify-center bg-accent/90 border-accent-dim p-5 md:p-8 rounded-2xl">
                             {/* Location */}
                             <div className="flex items-center gap-3">
 
@@ -70,7 +83,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </div>
                             {/* Heading */}
-                            <h1 className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+                            <h1 className="max-w-3xl text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
 
                                 {t.hero.title.titleFront}
 
@@ -84,19 +97,19 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </h1>
                             {/* Description */}
-                            <p className="max-w-xl text-sm leading-7 text-soft-yellow/95 sm:text-base md:text-lg md:leading-8">
+                            <p className="max-w-xl text-sm leading-7 text-primary-dim/95 sm:text-base md:text-lg md:leading-8">
                                 {t.hero.description}
                             </p>
 
 
-                            {/* Gold divider */}
-                            <div className="h-px w-24 bg-islamic-gold/70" />
+                            {/* Gold divider 
+                            <div className="h-px w-24 bg-islamic-gold/70" />*/}
                         </div>
 
                         {/* =================================================
                             TIME + NEXT PRAYER
                         ================================================== */}
-                        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <div className="mt-3 flex flex-col gap-3 sm:flex-row">
 
                             {/* Current time */}
                             <div className="flex items-center gap-4 rounded-xl border border-white/15 bg-accent/25 px-5 py-3 backdrop-blur-md">
@@ -116,7 +129,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             {/* Next prayer */}
                             {next && (
-                                <div className="flex items-center gap-4 rounded-xl border border-islamic-gold/30 bg-accent/70 px-5 py-3 backdrop-blur-md">
+                                <div className="flex items-center gap-4 rounded-xl border border-islamic-gold/30 bg-accent/70 md:px-5 py-2 md:py-4 backdrop-blur-md">
 
                                     <div>
                                         <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-islamic-gold">
@@ -143,7 +156,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         PRAYER CARD
                     ================================================== */}
 
-                    <div className="w-full lg:max-w-[400px]">
+                    <div className="w-full md:-mt-15 lg:max-w-[400px]">
 
                         <div className="overflow-hidden scroll-pt-2 rounded-3xl bg-[#F5F1E7] shadow-[0_25px_80px_rgba(0,0,0,0.35)]">
 
@@ -169,7 +182,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
 
                                 {/* Dates */}
-                                <div className="mt-5 grid grid-cols-3 divide-x divide-[#063D2E]/10 rounded-xl bg-[#063D2E]/5 py-3">
+                                <div className="mt-3 grid grid-cols-3 divide-x divide-[#063D2E]/10 rounded-xl bg-[#063D2E]/5 py-3">
 
                                     <div className="px-2 text-center">
 
@@ -177,7 +190,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                             {t.hero.gregorian}
                                         </p>
 
-                                        <p className="mt-1 text-[10px] font-medium text-[#063D2E]">
+                                        <p className="mt-1 text-[10px] font-medium text-primary">
                                             {formatGregorianDate(now, language)}
                                         </p>
 
@@ -190,7 +203,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                             {t.hero.nepali}
                                         </p>
 
-                                        <p className="mt-1 text-[10px] font-medium text-[#063D2E]">
+                                        <p className="mt-1 text-[10px] font-medium text-primary">
                                             {nepaliDateLabel.format(
                                                 "ddd DD, MMMM YYYY",
                                                 "np"
@@ -206,7 +219,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                             {t.hero.hijri}
                                         </p>
 
-                                        <p className="mt-1 text-[10px] font-medium text-[#063D2E]">
+                                        <p className="mt-1 text-[10px] font-medium text-primary">
                                             {hijriFormatter(now, language)}
                                         </p>
 
@@ -297,9 +310,6 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </ul>
 
-
-                            {/* Card footer */}
-                            <div className="border-t border-[#063D2E]/10 py-2" />
 
 
                         </div>
