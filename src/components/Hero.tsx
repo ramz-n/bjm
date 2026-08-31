@@ -64,14 +64,19 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url("/home-bg.webp")` }}
                 >
-                    <div className="absolute inset-0 to-transparent"></div>
+                    {/* Bottom fade */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
+
+                    {/* Warm subtle glow */}
+                    <div className="absolute -right-32 top-1/4 h-[500px] w-[500px] rounded-full bg-islamic-gold/10 blur-[120px]" />
+
                 </div>
 
                 {/* Hero Content */}
 
                 <div className="container mx-auto z-10 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_380px] gap-5 items-center justify-between">
                     <div className="flex flex-col justify-center z-10 gap-3 md:gap-5">
-                        <div className="md:max-w-2xl flex flex-col items-start gap-2 md:gap-5 justify-center bg-accent/90 border-accent-dim p-5 md:p-8 rounded-2xl">
+                        <div className="md:max-w-2xl flex flex-col items-start gap-3 md:gap-5 justify-center bg-accent/90 border-accent-dim p-5 md:p-8 rounded-2xl">
                             {/* Location */}
                             <div className="flex items-center gap-3">
 
@@ -83,7 +88,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </div>
                             {/* Heading */}
-                            <h1 className="max-w-3xl text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+                            <h1 className="max-w-2xl text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
 
                                 {t.hero.title.titleFront}
 
@@ -97,7 +102,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </h1>
                             {/* Description */}
-                            <p className="max-w-xl text-sm leading-7 text-primary-dim/95 sm:text-base md:text-lg md:leading-8">
+                            <p className="max-w-xl tracking-wide text-sm leading-7 text-primary-dim/95 sm:text-base md:text-lg md:leading-8">
                                 {t.hero.description}
                             </p>
 
@@ -112,7 +117,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
 
                             {/* Current time */}
-                            <div className="flex items-center gap-4 rounded-xl border border-white/15 bg-accent/25 px-5 py-3 backdrop-blur-md">
+                            <div className="flex items-center gap-4 rounded-xl border border-accent-gray/15 bg-accent/25 px-5 py-3 backdrop-blur-md">
 
                                 <div>
                                     <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/55">
@@ -129,10 +134,10 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             {/* Next prayer */}
                             {next && (
-                                <div className="flex items-center gap-4 rounded-xl border border-islamic-gold/30 bg-accent/70 md:px-5 py-2 md:py-4 backdrop-blur-md">
+                                <div className="flex items-center gap-4 rounded-xl border border-accent-gray/30 bg-accent/25 md:px-5 py-2 md:py-4 backdrop-blur-md">
 
                                     <div>
-                                        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-islamic-gold">
+                                        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-soft-yellow">
                                             {next.isTomorrow
                                                 ? t.hero.tomorrow
                                                 : t.hero.nextPrayer}
@@ -141,7 +146,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                         <p className="mt-1 text-sm font-semibold text-white"> {/* Translated prayer name */} {t.prayer[next.key as keyof typeof t.prayer]} <span className="mx-2 text-white/30"> · </span> {/* Translated prayer time */} {formatPrayerTime(next.minutes, language)} </p>
                                     </div>
 
-                                    <span className="rounded-full bg-islamic-gold px-3 py-2 text-[12px] font-bold text-primary">
+                                    <span className="rounded-full bg-soft-yellow px-3 py-2 text-[12px] font-bold text-primary">
                                         {formatCountdown(next.minutesUntil, language)}
                                     </span>
 
@@ -158,7 +163,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                     <div className="w-full md:-mt-15 lg:max-w-[400px]">
 
-                        <div className="overflow-hidden scroll-pt-2 rounded-3xl bg-[#F5F1E7] shadow-[0_25px_80px_rgba(0,0,0,0.35)]">
+                        <div className="overflow-hidden scroll-pt-2 rounded-3xl bg-accent-gray shadow-[0_25px_80px_rgba(0,0,0,0.35)]">
 
 
                             {/* Card header */}
@@ -168,7 +173,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                                     <div>
 
-                                        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#C9A227]">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-islamic-gold">
                                             {t.hero.dailySchedule}
                                         </p>
 
@@ -256,7 +261,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                 px-4
                                                 py-3
                                                 ${isNext
-                                                    ? "bg-[#063D2E]"
+                                                    ? "bg-primary"
                                                     : "hover:bg-[#063D2E]/5"
                                                 }
                                             `}
@@ -270,7 +275,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                         w-2
                                                         rounded-full
                                                         ${isNext
-                                                            ? "bg-[#F1D36A]"
+                                                            ? "bg-soft-yellow"
                                                             : "bg-[#3F6459]/30"
                                                         }
                                                     `}
@@ -281,7 +286,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                         text-sm
                                                         ${isNext
                                                             ? "font-bold text-white"
-                                                            : "font-medium text-[#3F6459]"
+                                                            : "font-medium text-primary"
                                                         }
                                                     `}
                                                 >
@@ -296,8 +301,8 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                     font-mono
                                                     text-sm
                                                     ${isNext
-                                                        ? "font-bold text-[#F1D36A]"
-                                                        : "font-medium text-[#063D2E]"
+                                                        ? "font-bold text-soft-yellow"
+                                                        : "font-medium text-primary"
                                                     }
                                                 `}
                                             >
@@ -316,6 +321,18 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                     </div>
                 </div>
+
+            </div>
+            {/* =====================================================
+                SCROLL INDICATOR
+            ====================================================== */}
+            <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
+
+                <span className="text-[9px] uppercase tracking-[0.3em] text-soft-yellow/50">
+                    Explore
+                </span>
+
+                <div className="h-8 w-px bg-gradient-to-b from-islamic-gold to-transparent" />
 
             </div>
         </section>

@@ -8,9 +8,10 @@
   --color-secondary: #94fed9;
   --color-accent: #3f6459;
   --color-accent-dim: #e5e1d4;
+  --color-accent-gray: #F2F2F2;
   --color-islamic-gold: #C9A227;
   --color-secondary-green: #0B5C45;
-  --color-soft-yellow: #F1D36A;
+  --color-soft-yellow: #FED24F;
 }
 
 :root {

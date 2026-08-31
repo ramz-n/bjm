@@ -41,35 +41,45 @@ const en = {
   about: {
     eyebrow: "About Al Jamiatul Barkatiya Jame Masjid",
 
-    title:
-      "Barkati Jame Masjid is one of the oldest mosques located in Narayanghat, Chitwan.",
+    title: {
+      start: "Together Upon the Path of ",
+      end: "Islam",
+    },
 
     paragraph1:
-      "Established in 1955 AD, the mosque has been actively serving the community.",
-
-    paragraph2:
       "Al Jamiatul Barkatiya Jame Masjid has served the Muslim community of Narayanghat for decades by providing a place for worship, Islamic education, charity, and social gatherings. It continues to welcome everyone with a spirit of unity, compassion, and service.",
 
-    established: "Since 1955",
+    paragraph2:
+      "It continues to welcome everyone with a spirit of unity, compassion, and service.",
 
-    mosqueName: "Barkati Jame Masjid",
+    heritage: {
+      year: "70",
+      title: "Years of service",
+      description: "Serving the community since 1955",
+    },
+
+    established: "Established",
+
+    establishedYear: "1955",
+
+    mosqueName: "Al Jamiatul Barkati Jame Masjid",
 
     communityOwned: {
       title: "Community Owned",
       description:
-        "BJM is a registered mosque owned by the community in Chitwan.",
+        "Al Jameatul Barkati Jame Masjid is a registered mosque owned by the community in Chitwan. Come build your house in Jannah!",
     },
 
     events: {
       title: "Events & Congregation",
       description:
-        "The mosque conducts various events and congregational prayers.",
+        "The mosque conducts various events and congregational prayers. Check our Facebook page or contact us for more details.",
     },
 
     charity: {
       title: "Charity Program",
       description:
-        "The mosque helps the poor and needy through its charity programs.",
+        "The mosque helps the poor and needy through its charity program. Donate using mobile, bank, or cash in hand. Let's join hands to help.",
     },
   },
 
