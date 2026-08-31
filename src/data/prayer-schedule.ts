@@ -1,5 +1,6 @@
 import type { DaySchedule, MonthSchedule, NextPrayer, Prayer, PrayerTimes } from "../types";
 
+
 const LATITUDE = 27.69918854;
 const LONGITUDE = 84.42748409;
 const TIMEZONE_OFFSET = 5.75;
@@ -17,6 +18,58 @@ export const PRAYERS: Prayer[] = [
     { key: "magrib", label: "Magrib" },
     { key: "isha", label: "Isha" }
 ];
+
+const GREGORIAN_MONTHS_EN = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
+
+const GREGORIAN_MONTHS_NP = [
+    "जनवरी",
+    "फेब्रुअरी",
+    "मार्च",
+    "अप्रिल",
+    "मे",
+    "जुन",
+    "जुलाई",
+    "अगस्ट",
+    "सेप्टेम्बर",
+    "अक्टोबर",
+    "नोभेम्बर",
+    "डिसेम्बर",
+];
+
+const WEEKDAYS_EN = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+];
+
+const WEEKDAYS_NP = [
+    "आइतबार",
+    "सोमबार",
+    "मंगलबार",
+    "बुधबार",
+    "बिहिबार",
+    "शुक्रबार",
+    "शनिबार",
+];
+
+const NEPALI_DIGITS = "०१२३४५६७८९";
 
 function dayOfYear(date: Date): number {
     const start = new Date(date.getFullYear(), 0, 0);
@@ -81,13 +134,7 @@ function minutesForPrayer(prayerKey: string, date: Date): number {
     }
 }
 
-function formatMinutes(total: number): string {
-    const h24 = Math.floor(total / 60) % 24;
-    const m = total % 60;
-    const period = h24 >= 12 ? "PM" : "AM";
-    const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
-    return `${h12}:${String(m).padStart(2, "0")} ${period}`;
-}
+function formatMinutes(total: number): string { const h24 = Math.floor(total / 60) % 24; const m = total % 60; const period = h24 >= 12 ? "PM" : "AM"; const h12 = h24 % 12 === 0 ? 12 : h24 % 12; return `${h12}:${String(m).padStart(2, "0")} ${period}`; }
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -144,8 +191,10 @@ export function findNextPrayer(
         const t = todayEntry.times[prayer.key];
         if (t.minutes >= nowMinutes) {
             return {
+                key: prayer.key,
                 label: prayer.label,
                 time: t.label,
+                minutes: t.minutes,
                 minutesUntil: t.minutes - nowMinutes,
                 isTomorrow: false,
             };
@@ -156,8 +205,10 @@ export function findNextPrayer(
         const t = tomorrowFirstEntry.times[PRAYERS[0].key];
         const minutesUntil = 24 * 60 - nowMinutes + t.minutes;
         return {
+            key: PRAYERS[0].key,
             label: PRAYERS[0].label,
             time: t.label,
+            minutes: t.minutes,
             minutesUntil,
             isTomorrow: true,
         };
@@ -166,11 +217,152 @@ export function findNextPrayer(
     return null;
 }
 
+export function formatCountdown( totalMinutes: number, language: "en" | "np" = "en" ): string { const hours = Math.floor(totalMinutes / 60); const minutes = totalMinutes % 60; if (language === "np") { const nepaliHours = String(hours).replace( /\d/g, (digit) => "०१२३४५६७८९"[Number(digit)] ); const nepaliMinutes = String(minutes).replace( /\d/g, (digit) => "०१२३४५६७८९"[Number(digit)] ); if (hours > 0) { return `${nepaliHours} घण्टा ${nepaliMinutes} मिनेट`; } return `${nepaliMinutes} मिनेट`; } if (hours > 0) { return `${hours}h ${minutes}m`; } return `${minutes}m`; }
 
-export function formatCountdown(minutesUntil: number): string {
-    const h = Math.floor(minutesUntil / 60);
-    const m = minutesUntil % 60;
-    if (h <= 0) return `${m} min`;
-    if (m === 0) return `${h} hr`;
-    return `${h} hr ${m} min`;
+
+export function formatCurrentTime(
+    date: Date,
+    language: "en" | "np" = "en"
+): string {
+    const hours24 = date.getHours();
+    const minutes = date.getMinutes();
+
+    const hours12 = hours24 % 12 === 0 ? 12 : hours24 % 12;
+
+    if (language === "en") {
+        return `${hours12}:${String(minutes).padStart(2, "0")} ${
+            hours24 >= 12 ? "PM" : "AM"
+        }`;
+    }
+
+    const nepaliDigits = "०१२३४५६७८९";
+
+    const toNepaliDigits = (value: string) =>
+        value.replace(/\d/g, (digit) => nepaliDigits[Number(digit)]);
+
+    const h = toNepaliDigits(String(hours12));
+    const m = toNepaliDigits(String(minutes).padStart(2, "0"));
+
+    let period = "";
+
+    if (hours24 >= 4 && hours24 < 12) {
+        period = "बिहान";
+    } else if (hours24 >= 12 && hours24 < 16) {
+        period = "दिउँसो";
+    } else if (hours24 >= 16 && hours24 < 19) {
+        period = "बेलुका";
+    } else {
+        period = "राति";
+    }
+
+    return `${h}:${m} ${period}`;
+}
+
+
+
+export function toNepaliDigits(value: string | number): string {
+    return String(value).replace(
+        /\d/g,
+        (digit) => NEPALI_DIGITS[Number(digit)]
+    );
+}
+
+
+// ------------------------------------
+// Prayer time formatter
+// ------------------------------------
+
+export function formatPrayerTime(
+    totalMinutes: number,
+    language: "en" | "np" = "en"
+): string {
+    const h24 = Math.floor(totalMinutes / 60) % 24;
+    const minutes = totalMinutes % 60;
+
+    const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+
+    const minuteText = String(minutes).padStart(2, "0");
+
+    if (language === "en") {
+        const period = h24 >= 12 ? "PM" : "AM";
+
+        return `${h12}:${minuteText} ${period}`;
+    }
+
+    const h = toNepaliDigits(h12);
+    const m = toNepaliDigits(minuteText);
+
+    let period: string;
+
+    if (h24 >= 4 && h24 < 12) {
+        period = "बिहान";
+    } else if (h24 >= 12 && h24 < 16) {
+        period = "दिउँसो";
+    } else if (h24 >= 16 && h24 < 19) {
+        period = "बेलुका";
+    } else {
+        period = "राति";
+    }
+
+    return `${h}:${m} ${period}`;
+}
+
+
+// ------------------------------------
+// Prayer name formatter
+// ------------------------------------
+
+export function formatPrayerName(
+    prayerKey: string,
+    language: "en" | "np" = "en"
+): string {
+    if (language === "en") {
+        const englishNames: Record<string, string> = {
+            fajr: "Fajr",
+            sunrise: "Sunrise",
+            zuhr: "Zuhr",
+            asr: "Asr",
+            magrib: "Magrib",
+            isha: "Isha",
+        };
+
+        return englishNames[prayerKey] ?? prayerKey;
+    }
+
+    const nepaliNames: Record<string, string> = {
+        fajr: "फज्र",
+        sunrise: "सूर्योदय",
+        zuhr: "जुहर",
+        asr: "असर",
+        magrib: "मगरिब",
+        isha: "इशा",
+    };
+
+    return nepaliNames[prayerKey] ?? prayerKey;
+}
+
+
+// ------------------------------------
+// Gregorian date formatter
+// ------------------------------------
+
+
+export function formatGregorianDate(
+    date: Date,
+    language: "en" | "np" = "en"
+): string {
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const weekday = date.getDay();
+
+    if (language === "np") {
+        return `${WEEKDAYS_NP[weekday]}, ${
+            GREGORIAN_MONTHS_NP[month]
+        } ${toNepaliDigits(day)}, ${toNepaliDigits(year)}`;
+    }
+
+    return `${WEEKDAYS_EN[weekday]}, ${
+        GREGORIAN_MONTHS_EN[month]
+    } ${day}, ${year}`;
 }
