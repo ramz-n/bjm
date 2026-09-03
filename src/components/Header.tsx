@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { NavLink, Link } from "react-router-dom";
-
-const links = [
-    { href: "/", label: "Home" },
-    { href: "/prayer-timetable", label: "Prayer Timetable" },
-    { href: "/key-dates", label: "Key Dates" },
-    { href: "/99-names", label: "99 Names" },
-    { href: "/learn", label: "Learn" },
-];
+import { Link } from "react-router-dom";
+import { links } from "../data/links";
+import { NavItem } from "./NavItem";
 
 const Header = () => {
     const [open, setOpen] = useState(false);
@@ -25,13 +19,6 @@ const Header = () => {
 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    // Reusable classes for the navigation links with bottom underline behavior
-    // Add the type definition for the destructured object parameter
-    const navLinkStyles = ({ isActive }: { isActive: boolean }) =>
-        `relative text-sm font-bold text-primary-dim transition-colors duration-200 hover:text-white py-2
-     after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:transition-transform after:duration-200
-     ${isActive ? 'after:scale-x-100 text-white' : 'after:scale-x-0 hover:after:scale-x-100'}`;
 
     return (
         <header className="sticky top-0 z-30 border-b border-line bg-primary backdrop-blur">
@@ -52,10 +39,9 @@ const Header = () => {
                             object-contain
                             origin-top-left
                             transition-all duration-300 ease-in-out
-                            ${
-                                scrolled
-                                    ? "opacity-0 scale-50 translate-x-2 translate-y-2"
-                                    : "opacity-90 scale-100 translate-x-0 translate-y-0"
+                            ${scrolled
+                                ? "opacity-0 scale-50 translate-x-2 translate-y-2"
+                                : "opacity-90 scale-100 translate-x-0 translate-y-0"
                             }
                         `}
                     />
@@ -71,23 +57,18 @@ const Header = () => {
                             h-18 w-auto
                             object-contain
                             transition-all duration-300 ease-out-in
-                            ${
-                                scrolled
-                                    ? "opacity-100 scale-100"
-                                    : "opacity-0 scale-75"
+                            ${scrolled
+                                ? "opacity-100 scale-100"
+                                : "opacity-0 scale-75"
                             }
                         `}
-                    />  
+                    />
                 </Link>
 
                 {/* Desktop Menu */}
                 <ul className="hidden items-center gap-9 md:flex">
                     {links.map((l, idx) => (
-                        <li key={idx}>
-                            <NavLink to={l.href} className={navLinkStyles}>
-                                {l.label}
-                            </NavLink>
-                        </li>
+                        <NavItem key={idx} item={l} />
                     ))}
                 </ul>
 
@@ -116,20 +97,8 @@ const Header = () => {
                     </div>
 
                     <ul className="flex flex-1 flex-col items-center justify-center gap-8 bg-primary pb-20 z-10">
-                        {links.map((l) => (
-                            <li key={l.href}>
-                                <NavLink
-                                    onClick={() => setOpen(false)}
-                                    to={l.href}
-                                    className={({ isActive }: { isActive: boolean }) =>
-                                        `relative text-2xl font-medium transition-colors duration-200 py-2 block
-                                        after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-12 after:bg-white after:transition-transform
-                                        ${isActive ? 'text-white after:scale-x-100' : 'text-primary-dim hover:text-white after:scale-x-0 hover:after:scale-x-100'}`
-                                    }
-                                >
-                                    {l.label}
-                                </NavLink>
-                            </li>
+                        {links.map((l, idx) => (
+                            <NavItem key={idx} item={l} />
                         ))}
                     </ul>
                 </div>
