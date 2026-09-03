@@ -6,6 +6,8 @@ import PrayerTimes from "./pages/PrayerTimes"
 import KeyDates from "./pages/KeyDates"
 import Names from "./pages/99Names"
 import Learn from "./pages/Learn"
+import AboutUs from "./pages/AboutUs"
+import Committee from "./pages/Committee"
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/committee-members" element={<Committee />} />
           <Route path="/prayer-timetable" element={<PrayerTimes />} />
           <Route path="/key-dates" element={<KeyDates />} />
           <Route path="/99-names" element={<Names />} />
