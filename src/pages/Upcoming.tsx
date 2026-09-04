@@ -1,5 +1,3 @@
-import { Landmark } from "lucide-react"
-
 const Upcoming = () => {
     return (
         <section id="schedule" className="w-full">
