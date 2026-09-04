@@ -15,11 +15,7 @@ import Domate from "./pages/Donate"
 function App() {
 
   return (
-<<<<<<< HEAD
     <div className="min-h-screen bg-white">
-=======
-    <div className="min-h-screen">
->>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
       <Header />
       <main>
         <Routes>

@@ -28,7 +28,6 @@ const About = () => {
         },
     ];
     return (
-<<<<<<< HEAD
         <section className="relative overflow-hidden bg-white py-20 md:py-25">
             {/* Decorative background element */}
             <div
@@ -42,26 +41,6 @@ const About = () => {
                     overflow-hidden
                 "
             />
-=======
-        <section className="border-y">
-            <div className="mx-auto container px-5 py-16 flex flex-col items-center gap-5">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-6">
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">About Al Jamiatul Barkatiya Jame Masjid</p>
-                        <h2 className="mt-2 max-w-xl font-display text-xl md:text-3xl font-semibold">
-                            Barkati Jame Masjid is one of the oldest mosque located in Narayanghat, Chitwan. Established in 1955 AD, the mosque has been helping community actively.
-                        </h2>
-                        <p className="text-muted-foreground leading-8">
-                            Al Jamiatul Barkatiya Jame Masjid has served the Muslim community of
-                            Narayanghat for decades by providing a place for worship, Islamic
-                            education, charity, and social gatherings. It continues to welcome
-                            everyone with a spirit of unity, compassion, and service.
-                        </p>
-                    </div>
-                    <div className="relative group overflow-hidden rounded-3xl shadow-2xl">
-                        <div className="relative">
-                            <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl"></div>
->>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
 
             <div
                 className="

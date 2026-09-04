@@ -17,7 +17,7 @@ const en = {
     },
 
     description:
-      "Welcome to Al Jamiatul Barkatiya Jame Masjid, a place for worship, learning, service and community.",
+      "Welcome to Al Jameatul Barkatiya Jame Masjid, a place for worship, learning, service and community.",
 
     localTime:"Local Time",
     nextPrayer: "Up next",
@@ -39,7 +39,7 @@ const en = {
   },
 
   about: {
-    eyebrow: "About Al Jamiatul Barkatiya Jame Masjid",
+    eyebrow: "About Al Jameatul Barkatiya Jame Masjid",
 
     title: {
       start: "Together Upon the Path of ",
@@ -47,7 +47,7 @@ const en = {
     },
 
     paragraph1:
-      "Al Jamiatul Barkatiya Jame Masjid has served the Muslim community of Narayanghat for decades by providing a place for worship, Islamic education, charity, and social gatherings. It continues to welcome everyone with a spirit of unity, compassion, and service.",
+      "Al Jameatul Barkatiya Jame Masjid has served the Muslim community of Narayanghat for decades by providing a place for worship, Islamic education, charity, and social gatherings. It continues to welcome everyone with a spirit of unity, compassion, and service.",
 
     paragraph2:
       "It continues to welcome everyone with a spirit of unity, compassion, and service.",
@@ -62,7 +62,7 @@ const en = {
 
     establishedYear: "1955",
 
-    mosqueName: "Al Jamiatul Barkati Jame Masjid",
+    mosqueName: "Al Jameatul Barkati Jame Masjid",
 
     communityOwned: {
       title: "Community Owned",
@@ -83,14 +83,17 @@ const en = {
     },
   },
 
-  footer: {
+  whatWeDo: {
     title: "Al-Jamaetul Barkatiya Jame Masjid",
 
     tagline: "Prayer. Learning. Giving.",
 
     description:
       "Our doors are open to worshippers and visitors alike. Come and share in a community rooted in faith and compassion.",
+  },
 
+  footer: {
+    
     visit: "Visit",
 
     address: {
