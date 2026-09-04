@@ -4,7 +4,8 @@ import WhatWeDo from "../components/WhatWeDo"
 import useNow from "../hooks/useNow";
 import { getMonthSchedule, isoKeyFor } from "../data/prayer-schedule";
 import About from "../components/About";
-
+import KeyDate from "../components/KeyDate";
+import MasjidMap from "../components/MasjidMap";;
 
 const Home = () => {
 
@@ -32,6 +33,8 @@ const Home = () => {
             <Hero now={now} todayEntry={todayEntry} tomorrowEntry={tomorrowEntry} />
             <About />
             <WhatWeDo />
+            <KeyDate />
+            <MasjidMap />
         </div>
     )
 }

@@ -58,7 +58,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
     useEffect(() => { const notify = async () => { const granted = await requestNotificationPermission(t.notifications.unsupported); if (!granted || !next) return; if (next.minutesUntil === 5 || next.minutesUntil === 0) { const prayerName = language === "np" ? t.prayer[next.key as keyof typeof t.prayer] : next.label; const countdown = formatCountdown(next.minutesUntil, language); if (next.minutesUntil === 0) { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय सुरु भएको छ!` : `${prayerName} time has started!`); } else { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय ${countdown} मा सुरु हुनेछ।` : `${prayerName} time in ${countdown}!`); } } }; notify(); }, [next?.minutesUntil, language, t]);
 
     return (
-        <section className="relative min-h-screen text-primary-dim px-3">
+        <section className="relative min-h-screen text-primary-dim px-3 overflow-hidden">
             <div className="h-screen flex flex-col items-start justify-center gap-7">
                 <div
                     className="absolute inset-0 bg-cover bg-center"

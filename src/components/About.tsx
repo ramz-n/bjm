@@ -38,6 +38,7 @@ const About = () => {
                     rounded-full
                     bg-islamic-gold/5
                     blur-3xl
+                    overflow-hidden
                 "
             />
 

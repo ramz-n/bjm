@@ -10,7 +10,7 @@ import Learn from "./pages/Learn"
 function App() {
 
   return (
-    <div className="min-h-screen bg-primary-dim">
+    <div className="min-h-screen bg-white">
       <Header />
       <main>
         <Routes>

@@ -76,13 +76,11 @@ const Header = () => {
 
     return (
         <header className="sticky top-0 z-30 border-b border-line bg-primary backdrop-blur">
-            <nav className={`mx-auto flex max-w-6xl items-center justify-between px-10 py-10
-                ${scrolled
-                    ? "h-16"
-                    : "h-18"
-                }
-                `}>
-
+            <nav
+                className={`mx-auto flex max-w-6xl items-center justify-between px-10
+                    ${scrolled ? "h-20" : "h-22"}
+                    transition-all duration-300`}
+            >
                 {/* Logo */}
                 <Link
                     to="/"
@@ -111,7 +109,7 @@ const Header = () => {
                         alt="BJM Logo"
                         className={`
                             absolute left-0 top-3
-                            h-20 w-auto
+                            h-18 w-auto
                             py-1.5
                             object-contain
                             transition-all duration-300 ease-out

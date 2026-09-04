@@ -3,7 +3,7 @@ const Footer = () => {
         <footer className="bg-primary text-primary-dim bg-linear-to-r from-primary/50 via-primary/5 to-primary/90">
             <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
                 <div>
-                    <img src="./logo-white.png" alt="bjm" className="h-25" />
+                    <img src="./logo-white.webp" alt="bjm" className="h-25" />
                 </div>
 
                 <div>
