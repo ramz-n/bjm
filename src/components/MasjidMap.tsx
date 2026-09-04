@@ -2,7 +2,7 @@ const MasjidMap = () => {
     return (
         <section>
             <div>
-                <h1 className="mb-5 text-center justify-center text-3xl font-bold text-primary">Masjid Location</h1>
+                <h1 className="mb-5 text-center text-3xl font-bold text-primary">Masjid Location</h1>
                 {/* Directions */}
                 <a
                     href="https://www.google.com/maps/search/?api=1&query=Al-jame+Atul+Barkatiya+Barkati+Jame+Masid"

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+<<<<<<< HEAD
 import { NavLink, Link } from "react-router-dom";
 
 import { useLanguage } from "../context/LanguageContext";
@@ -14,6 +15,11 @@ const langOptions = [
         value: "np",
     },
 ];
+=======
+import { Link } from "react-router-dom";
+import { links } from "../data/links";
+import { NavItem } from "./NavItem";
+>>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
 
 const Header = () => {
 
@@ -37,6 +43,7 @@ const Header = () => {
         };
     }, []);
 
+<<<<<<< HEAD
     // Navigation links
     const links = [
         {
@@ -74,6 +81,8 @@ const Header = () => {
             : "after:scale-x-0 hover:after:scale-x-100"
         }`;
 
+=======
+>>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
     return (
         <header className="sticky top-0 z-30 border-b border-line bg-primary backdrop-blur">
             <nav
@@ -91,6 +100,7 @@ const Header = () => {
                         src="/logo-white13.webp"
                         alt="BJM Logo"
                         className={`
+<<<<<<< HEAD
                                 absolute left-0 top-0
                                 h-35 w-auto
                                 object-contain
@@ -99,6 +109,16 @@ const Header = () => {
                                 ${scrolled
                                 ? "translate-x-2 translate-y-2 scale-50 opacity-0"
                                 : "translate-x-0 translate-y-0 scale-100 opacity-90"
+=======
+                            absolute left-0 top-0
+                            h-40 w-auto
+                            object-contain
+                            origin-top-left
+                            transition-all duration-300 ease-in-out
+                            ${scrolled
+                                ? "opacity-0 scale-50 translate-x-2 translate-y-2"
+                                : "opacity-90 scale-100 translate-x-0 translate-y-0"
+>>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
                             }
                     `}
                     />
@@ -112,16 +132,24 @@ const Header = () => {
                             h-18 w-auto
                             py-1.5
                             object-contain
+<<<<<<< HEAD
                             transition-all duration-300 ease-out
                             ${scrolled
                                 ? "scale-100 opacity-100"
                                 : "scale-75 opacity-0"
+=======
+                            transition-all duration-300 ease-out-in
+                            ${scrolled
+                                ? "opacity-100 scale-100"
+                                : "opacity-0 scale-75"
+>>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
                             }
                         `}
                     />
                 </Link>
 
                 {/* Desktop Menu */}
+<<<<<<< HEAD
                 <div className="hidden items-center gap-7 md:flex">
                     <ul className="flex items-center gap-9">
                         {links.map((link) => (
@@ -293,6 +321,13 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+=======
+                <ul className="hidden items-center gap-9 md:flex">
+                    {links.map((l, idx) => (
+                        <NavItem key={idx} item={l} />
+                    ))}
+                </ul>
+>>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
 
                 {/* Mobile Trigger */}
                 <button
@@ -330,6 +365,7 @@ const Header = () => {
                         </button>
                     </div>
 
+<<<<<<< HEAD
                     <div className="z-10 flex flex-1 flex-col items-center justify-center bg-primary pb-20">
 
                         {/* Mobile Navigation */}
@@ -403,6 +439,13 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
+=======
+                    <ul className="flex flex-1 flex-col items-center justify-center gap-8 bg-primary pb-20 z-10">
+                        {links.map((l, idx) => (
+                            <NavItem key={idx} item={l} />
+                        ))}
+                    </ul>
+>>>>>>> a21e0f5f0c7d74d42f685bb09cd030060507bc12
                 </div>
             )}
         </header>

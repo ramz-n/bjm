@@ -3,6 +3,9 @@ import { getMonthSchedule, isoKeyFor, PRAYERS } from '../data/prayer-schedule';
 import useNow from '../hooks/useNow';
 import { hijriFormatter } from '../utils';
 import NepaliDate from 'nepali-date-converter'
+import { FileDown } from 'lucide-react';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 const PrayerTimes = () => {
 
@@ -21,6 +24,67 @@ const PrayerTimes = () => {
 
     const todayRowRef = useRef<HTMLTableRowElement | null>(null);
     const tableRef = useRef(null);
+
+    const downloadPDF = async () => {
+        const element = tableRef.current;
+        if (!element) return;
+
+        try {
+            const canvas = await html2canvas(element, {
+                scale: 1,
+                useCORS: true,
+                onclone: (clonedDoc) => {
+                    const clonedTable = clonedDoc.querySelector("table");
+                    if (!clonedTable) return;
+                    const allElements = clonedTable.querySelectorAll("*");
+
+                    allElements.forEach((el) => {
+                        const element = el as HTMLElement;
+                        const computedStyle = window.getComputedStyle(element);
+
+                        if (computedStyle.backgroundColor.includes("oklab") || computedStyle.backgroundColor.includes("oklch")) {
+                            if (element.closest('thead')) {
+                                element.style.backgroundColor = "#0B5C45";
+                            } else if (element.classList.contains('bg-accent/20')) {
+                                element.style.backgroundColor = "#f0fdf4";
+                            } else {
+                                element.style.backgroundColor = "#ffffff";
+                            }
+                        }
+
+                        if (computedStyle.color.includes("oklab") || computedStyle.color.includes("oklch")) {
+                            if (element.closest('thead') || element.closest('tr')?.classList.contains('text-white')) {
+                                element.style.color = "#ffffff";
+                            } else {
+                                element.style.color = "#1f2937";
+                            }
+                        }
+
+                        if (computedStyle.borderColor.includes("oklab") || computedStyle.borderColor.includes("oklch")) {
+                            element.style.borderColor = "#e5e7eb"; 
+                        }
+                    });
+                }
+            });
+
+            const imgData = canvas.toDataURL("image/png");
+
+            const margin = 10;
+            const pageWidth = 210;
+            const usableWidth = pageWidth - (margin * 2);
+
+            const imgHeight = (canvas.height * usableWidth) / canvas.width;
+            const totalPageHeight = imgHeight + (margin * 2);
+
+            const pdf = new jsPDF("p", "mm", [pageWidth, totalPageHeight]);
+
+            pdf.addImage(imgData, "PNG", margin, margin, usableWidth, imgHeight);
+
+            pdf.save(`PrayerTimetable_${month.monthName}.pdf`);
+        } catch (error) {
+            console.error("Error generating PDF document layout:", error);
+        }
+    };
 
     return (
         <section id="schedule" className="w-full">
@@ -46,8 +110,14 @@ const PrayerTimes = () => {
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Monthly schedule</p>
+                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">Monthly schedule</p>
                         <h2 className="mt-2 font-display text-3xl font-semibold">{month.monthName} {month.year}</h2>
+                    </div>
+                    <div>
+                        <button onClick={downloadPDF} className='flex gap-1 hover:text-islamic-gold cursor-pointer'>
+                            <FileDown />
+                            Download
+                        </button>
                     </div>
                     <div>
                         <p className="font-bold text-md uppercase text-primary">{hijriFormatter(now, "")}</p>
@@ -59,7 +129,7 @@ const PrayerTimes = () => {
                     <div className="">
                         <table className="w-full border-collapse text-left" ref={tableRef}>
                             <thead className="sticky top-0 z-10 bg-primary-dim">
-                                <tr className='border-b bg-secondary-green text-primary-dim'>
+                                <tr className='border-b bg-secondary-green print:bg-[#0B5C45] text-white'>
                                     <th scope="col" className="whitespace-nowrap px-4 py-3 font-body text-xs font-semibold uppercase tracking-wide">
                                         Date
                                     </th>
@@ -95,19 +165,19 @@ const PrayerTimes = () => {
                                                     ? "relative border-2"
                                                     : day.isFriday
                                                         ? "bg-accent/20"
-                                                        : "bg-accent-dim"
+                                                        : "bg-white"
                                             }
                                         >
                                             <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
                                                 <span className="flex items-center gap-2">
                                                     {isToday && (
-                                                        <span className="animate-pulse inline-block h-2 w-2 rounded-full bg-accent" />
+                                                        <span className="animate-pulse inline-block h-2 w-2 rounded-full bg-islamic-gold" />
                                                     )}
                                                     <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
                                                         {day.dayNum} {day.weekday}
                                                     </span>
                                                     {isToday && (
-                                                        <span className="rounded-full bg-accent px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary-dim">
+                                                        <span className="rounded-full bg-islamic-gold px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-white">
                                                             Today
                                                         </span>
                                                     )}
