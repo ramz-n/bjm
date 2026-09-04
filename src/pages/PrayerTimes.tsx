@@ -46,7 +46,7 @@ const PrayerTimes = () => {
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Monthly schedule</p>
+                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">Monthly schedule</p>
                         <h2 className="mt-2 font-display text-3xl font-semibold">{month.monthName} {month.year}</h2>
                     </div>
                     <div>
@@ -59,7 +59,7 @@ const PrayerTimes = () => {
                     <div className="">
                         <table className="w-full border-collapse text-left" ref={tableRef}>
                             <thead className="sticky top-0 z-10 bg-primary-dim">
-                                <tr className='border-b bg-secondary-green text-primary-dim'>
+                                <tr className='border-b bg-secondary-green text-white'>
                                     <th scope="col" className="whitespace-nowrap px-4 py-3 font-body text-xs font-semibold uppercase tracking-wide">
                                         Date
                                     </th>
@@ -95,19 +95,19 @@ const PrayerTimes = () => {
                                                     ? "relative border-2"
                                                     : day.isFriday
                                                         ? "bg-accent/20"
-                                                        : "bg-accent-dim"
+                                                        : "bg-white"
                                             }
                                         >
                                             <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
                                                 <span className="flex items-center gap-2">
                                                     {isToday && (
-                                                        <span className="animate-pulse inline-block h-2 w-2 rounded-full bg-accent" />
+                                                        <span className="animate-pulse inline-block h-2 w-2 rounded-full bg-islamic-gold" />
                                                     )}
                                                     <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
                                                         {day.dayNum} {day.weekday}
                                                     </span>
                                                     {isToday && (
-                                                        <span className="rounded-full bg-accent px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-primary-dim">
+                                                        <span className="rounded-full bg-islamic-gold px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-white">
                                                             Today
                                                         </span>
                                                     )}

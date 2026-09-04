@@ -25,7 +25,7 @@ const Committee = () => {
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
                         <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Active committee members</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">Our respected Committee Members</h2>
+                        <h2 className="mt-2 font-display text-3xl font-semibold">Our Respected Committee Members</h2>
 
                         <div className="mt-6 flex flex-col gap-3">
                             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

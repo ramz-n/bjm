@@ -30,7 +30,7 @@ const About = () => {
             <div className="mx-auto container px-5 py-16 flex flex-col items-center gap-5">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-6">
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary/90">About Al Jamiatul Barkatiya Jame Masjid</p>
+                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">About Al Jamiatul Barkatiya Jame Masjid</p>
                         <h2 className="mt-2 max-w-xl font-display text-xl md:text-3xl font-semibold">
                             Barkati Jame Masjid is one of the oldest mosque located in Narayanghat, Chitwan. Established in 1955 AD, the mosque has been helping community actively.
                         </h2>

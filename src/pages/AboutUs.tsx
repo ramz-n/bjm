@@ -26,8 +26,8 @@ const AboutUs = () => {
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">The Oldest mosques in Chitwan</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">About Barkati Masjid</h2>
+                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">The Oldest mosques in Chitwan</p>
+                        <h2 className="mt-2 font-display text-3xl font-semibold">Al Jamiatul Barkatiya Jame Masjid</h2>
 
                         <div className="mt-6 flex flex-col gap-3">
                             <p>
