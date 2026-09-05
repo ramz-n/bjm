@@ -27,8 +27,10 @@ export interface MonthSchedule {
 }
 
 export interface NextPrayer {
+    key: string;
     label: string;
     time: string;
+    minutes: number;
     minutesUntil: number;
     isTomorrow: boolean;
 }

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
 @theme {
@@ -6,8 +8,14 @@
   --color-secondary: #94fed9;
   --color-accent: #3f6459;
   --color-accent-dim: #e5e1d4;
+  --color-accent-gray: #F2F2F2;
   --color-islamic-gold: #C9A227;
   --color-secondary-green: #0B5C45;
+  --color-soft-yellow: #FED24F;
+}
+
+:root {
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 html {
@@ -17,4 +25,8 @@ html {
 body {
   color: var(--color-accent);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.font-nepali {
+  font-family: "Noto Sans Devanagari", sans-serif;
 }

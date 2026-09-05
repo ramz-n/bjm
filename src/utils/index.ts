@@ -1,44 +1,156 @@
-import { gregorianToHijri } from '@tabby_ai/hijri-converter'
 
-const HIJRI_MONTHS = [
-    "Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani",
-    "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban",
-    "Ramadan", "Shawwal", "Dhu al-Qada", "Dhu al-Hijjah"
+import { gregorianToHijri } from "@tabby_ai/hijri-converter";
+
+const HIJRI_MONTHS_EN = [
+    "Muharram",
+    "Safar",
+    "Rabi' al-Awwal",
+    "Rabi' al-Thani",
+    "Jumada al-Awwal",
+    "Jumada al-Thani",
+    "Rajab",
+    "Sha'ban",
+    "Ramadan",
+    "Shawwal",
+    "Dhu al-Qada",
+    "Dhu al-Hijjah",
 ];
 
-export const hijriFormatter = (date: Date, formattype: string): string => {
+const HIJRI_MONTHS_NP = [
+    "मुहर्रम",
+    "सफर",
+    "रबीउल अव्वल",
+    "रबीउल आखिर",
+    "जमादिउल अव्वल",
+    "जमादिउल आखिर",
+    "रजब",
+    "शाबान",
+    "रमजान",
+    "शव्वाल",
+    "जुलकादा",
+    "जुलहिज्जा",
+];
+
+const NEPALI_DIGITS = "०१२३४५६७८९";
+
+const toNepaliDigits = (value: string | number): string => {
+    return String(value).replace(
+        /\d/g,
+        (digit) => NEPALI_DIGITS[Number(digit)]
+    );
+};
+
+export const hijriFormatter = (
+    date: Date,
+    language: "en" | "np" = "en",
+    formatType: "all" | "dayMonth" | "monthYear" = "all"
+): string => {
     try {
-        const hijri = gregorianToHijri({ year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() });
+        const hijri = gregorianToHijri({
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate(),
+        });
 
-        const dayStr = String(hijri.day).padStart(2, '0');
-        const monthStr = HIJRI_MONTHS[hijri.month - 1];
-        const yearStr = String(hijri.year);
+        const months =
+            language === "np"
+                ? HIJRI_MONTHS_NP
+                : HIJRI_MONTHS_EN;
 
-        if (formattype === "all") {
-            return `${monthStr} ${dayStr}, ${yearStr}`;
+        const month = months[hijri.month - 1];
+
+        const day =
+            language === "np"
+                ? toNepaliDigits(
+                      String(hijri.day).padStart(2, "0")
+                  )
+                : String(hijri.day).padStart(2, "0");
+
+        const year =
+            language === "np"
+                ? toNepaliDigits(hijri.year)
+                : String(hijri.year);
+
+        if (formatType === "all") {
+            return language === "np"
+                ? `${month} ${day}, ${year} हिजरी`
+                : `${month} ${day}, ${year} AH`;
         }
-        if (formattype === "dayMonth") {
-            return `${monthStr} ${dayStr}`;
+
+        if (formatType === "dayMonth") {
+            return `${month} ${day}`;
         }
-        return `${monthStr} ${yearStr}`;
+
+        return language === "np"
+            ? `${month} ${year} हिजरी`
+            : `${month} ${year} AH`;
+
     } catch (error) {
-        return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
-            day: formattype !== 'monthYear' ? '2-digit' : undefined,
-            month: 'long',
-            year: formattype !== 'dayMonth' ? 'numeric' : undefined
-        }).format(date);
-    }
-}
+        console.error("Hijri date conversion failed:", error);
 
-export const requestNotificationPermission = async () => {
+        // Locale-based fallback
+        return new Intl.DateTimeFormat(
+            language === "np"
+                ? "ne-NP-u-ca-islamic"
+                : "en-US-u-ca-islamic",
+            {
+                day: formatType !== "monthYear"
+                    ? "2-digit"
+                    : undefined,
+                month: "long",
+                year: formatType !== "dayMonth"
+                    ? "numeric"
+                    : undefined,
+            }
+        ).format(date);
+    }
+};
+
+export const formatHijriDate = (
+    year: number,
+    month: number,
+    day: number,
+    language: "en" | "np" = "en"
+): string => {
+    const months =
+        language === "np"
+            ? HIJRI_MONTHS_NP
+            : HIJRI_MONTHS_EN;
+
+    const monthName = months[month - 1];
+
+    const formattedDay =
+        language === "np"
+            ? toNepaliDigits(day)
+            : String(day);
+
+    const formattedYear =
+        language === "np"
+            ? toNepaliDigits(year)
+            : String(year);
+
+    return language === "np"
+        ? `${monthName} ${formattedDay}, ${formattedYear} हिजरी`
+        : `${monthName} ${formattedDay}, ${formattedYear} AH`;
+};
+
+
+export const requestNotificationPermission = async (
+    unsupportedMessage: string
+): Promise<boolean> => {
     if (!("Notification" in window)) {
-        alert("This browser does not support notifications.");
+        alert(unsupportedMessage);
         return false;
     }
-    if (Notification.permission === "granted") return true;
+
+    if (Notification.permission === "granted") {
+        return true;
+    }
+
     if (Notification.permission !== "denied") {
         const permission = await Notification.requestPermission();
         return permission === "granted";
     }
+
     return false;
 };
