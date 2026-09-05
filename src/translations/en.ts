@@ -92,6 +92,54 @@ const en = {
       "Our doors are open to worshippers and visitors alike. Come and share in a community rooted in faith and compassion.",
   },
 
+  keyDates: {
+    title: "Key Islamic Dates",
+    subtitle: "Important dates in the Islamic calendar",
+
+    labels: {
+        hijri: "Hijri",
+        gregorian: "Gregorian",
+        nepali: "Nepali",
+    },
+
+    events: {
+        israMiraj: "Isra and Mi'raj",
+        shabEBarat: "Shab-e-Barat",
+
+        ramadanStart: "Beginning of Ramadan",
+        lastTenNights: "Beginning of the Last Ten Nights of Ramadan",
+
+        laylatulQadr21: "Laylat al-Qadr — 21st Night",
+        laylatulQadr23: "Laylat al-Qadr — 23rd Night",
+        laylatulQadr25: "Laylat al-Qadr — 25th Night",
+        laylatulQadr27: "Laylat al-Qadr — 27th Night",
+        laylatulQadr29: "Laylat al-Qadr — 29th Night",
+
+        eidFitr: "Eid al-Fitr",
+
+        dhulHijjahStart: "Beginning of Dhul Hijjah",
+        hajjBegins: "Hajj Begins",
+        dayOfArafah: "Day of Arafah",
+        eidAdha: "Eid al-Adha",
+
+        islamicNewYear: "Islamic New Year",
+        ashura: "Day of Ashura",
+
+        mawlid: "Mawlid — Birth of Prophet Muhammad ﷺ",
+    },
+  },
+
+  location: {
+    visitUs: "Visit Us",
+    title: "Masjid Location",
+    description:
+        "We welcome you to visit our masjid for prayer, learning, and community.",
+    ourLocation: "Our Location",
+    address: "Pragati Path-2, Narayangarh",
+    country: "Chitwan, Nepal",
+    getDirections: "Get Directions",
+  },
+
   footer: {
     
     visit: "Visit",
@@ -105,11 +153,18 @@ const en = {
     openingHours: "Open daily, from 10 AM to 6 PM",
 
     contact: "Contact",
+    
+    phone:"+977 56-522732",
+
+    title: "Al-Jamaetul Barkatiya Jame Masjid",
 
     designedBy: "Designed and developed by",
   },
 
-  notifications: { unsupported: "This browser does not support notifications.", permissionDenied: "Notification permission was denied.", namazAlert: "Namaz Alert ⏰", timeIn: (prayer: string, minutes: string) => `${prayer} time in ${minutes}!`, timeStarted: (prayer: string) => `${prayer} time has started!`, },
+  notifications: { 
+    unsupported: "This browser does not support notifications.", 
+    permissionDenied: "Notification permission was denied.", 
+    namazAlert: "Namaz Alert ⏰", timeIn: (prayer: string, minutes: string) => `${prayer} time in ${minutes}!`, timeStarted: (prayer: string) => `${prayer} time has started!`, },
 };
 
 export default en;

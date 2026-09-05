@@ -1,31 +1,34 @@
+import { useLanguage } from "../context/LanguageContext"
+
 const Footer = () => {
+    const { t } = useLanguage();
     return (
         <footer className="bg-primary text-primary-dim bg-linear-to-r from-primary/50 via-primary/5 to-primary/90">
-            <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
+            <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-20 pb-14 md:grid-cols-3">
                 <div>
                     <img src="./logo-white.webp" alt="bjm" className="h-25" />
                 </div>
 
                 <div>
-                    <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">Visit</p>
+                    <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">{t.footer.visit}</p>
                     <address className="mt-3 space-y-1 font-body text-sm not-italic text-primary-dim/80">
-                        <p>Masjid Road</p>
-                        <p>Pragatipath-2,Narayangarh</p>
-                        <p>Chitwan, Nepal</p>
-                        <p>Open daily, from 10am to 18pm</p>
+                        <p>{t.footer.address.road}</p>
+                        <p>{t.footer.address.location}</p>
+                        <p>{t.footer.address.country}</p>
+                        <p>{t.footer.openingHours}</p>
                     </address>
                 </div>
 
                 <div>
-                    <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">Contact</p>
+                    <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">{t.footer.contact}</p>
                     <ul className="mt-3 space-y-1 font-body text-sm text-primary-dim/80">
                         <li>info@bjm.com.np</li>
-                        <li>+977 56-522732</li>
+                        <li>{t.footer.phone}</li>
                     </ul>
                 </div>
             </div>
             <div className="border-t border-primary/10 px-6 py-5 text-center font-body text-xs text-primary-dim/50">
-                © {new Date().getFullYear()} Al Jamiatul Barkatiya Jame Masjid. Designed and developed by <a href="https://www.qrcoders.site/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+                © {new Date().getFullYear()} {t.footer.title}. {t.footer.designedBy} <a href="https://www.qrcoders.site/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                     QRCoders
                 </a>
             </div>

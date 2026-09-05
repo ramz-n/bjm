@@ -106,6 +106,34 @@ export const hijriFormatter = (
     }
 };
 
+export const formatHijriDate = (
+    year: number,
+    month: number,
+    day: number,
+    language: "en" | "np" = "en"
+): string => {
+    const months =
+        language === "np"
+            ? HIJRI_MONTHS_NP
+            : HIJRI_MONTHS_EN;
+
+    const monthName = months[month - 1];
+
+    const formattedDay =
+        language === "np"
+            ? toNepaliDigits(day)
+            : String(day);
+
+    const formattedYear =
+        language === "np"
+            ? toNepaliDigits(year)
+            : String(year);
+
+    return language === "np"
+        ? `${monthName} ${formattedDay}, ${formattedYear} हिजरी`
+        : `${monthName} ${formattedDay}, ${formattedYear} AH`;
+};
+
 
 export const requestNotificationPermission = async (
     unsupportedMessage: string
