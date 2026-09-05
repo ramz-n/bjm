@@ -52,7 +52,7 @@ export const LanguageProvider = ({
             value={{
                 language,
                 setLanguage,
-                t,
+                t
             }}
         >
             {children}

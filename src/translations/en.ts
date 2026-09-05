@@ -1,25 +1,33 @@
 const en = {
   nav: {
     home: "Home",
+    about: "About",
+    aboutUs: "About Us",
+    committeMember: "Committee Members",
     prayerTimetable: "Prayer Timetable",
+    keyDatesAndEvents: "Key Dates & Events",
     keyDates: "Key Dates",
-    names99: "99 Names",
+    upCommingEvents: "Upcoming Events",
+    allEvents: "All Events",
     learn: "Learn",
+    names99: "99 Names of Allah",
+    learnQuran: "Learn Quran",
+    donate: "Donate"
   },
 
   hero: {
     location: "PRAGATIPATH-2 · NARAYANGARH · CHITWAN · NEPAL",
 
-    title:{
+    title: {
       titleFront: "A place of ",
-      titleMiddle:"Worship, ",
-      titleEnd:"learning & community.",
+      titleMiddle: "Worship, ",
+      titleEnd: "learning & community.",
     },
 
     description:
       "Welcome to Al Jameatul Barkatiya Jame Masjid, a place for worship, learning, service and community.",
 
-    localTime:"Local Time",
+    localTime: "Local Time",
     nextPrayer: "Up next",
     tomorrow: "Next tomorrow",
     dailySchedule: "Daily Schedule",
@@ -34,7 +42,7 @@ const en = {
     sunrise: "Sunrise",
     zuhr: "Zuhr",
     asr: "Asr",
-    maghrib: "Magrib",
+    magrib: "Magrib",
     isha: "Isha",
   },
 
@@ -97,35 +105,35 @@ const en = {
     subtitle: "Important dates in the Islamic calendar",
 
     labels: {
-        hijri: "Hijri",
-        gregorian: "Gregorian",
-        nepali: "Nepali",
+      hijri: "Hijri",
+      gregorian: "Gregorian",
+      nepali: "Nepali",
     },
 
     events: {
-        israMiraj: "Isra and Mi'raj",
-        shabEBarat: "Shab-e-Barat",
+      israMiraj: "Isra and Mi'raj",
+      shabEBarat: "Shab-e-Barat",
 
-        ramadanStart: "Beginning of Ramadan",
-        lastTenNights: "Beginning of the Last Ten Nights of Ramadan",
+      ramadanStart: "Beginning of Ramadan",
+      lastTenNights: "Beginning of the Last Ten Nights of Ramadan",
 
-        laylatulQadr21: "Laylat al-Qadr — 21st Night",
-        laylatulQadr23: "Laylat al-Qadr — 23rd Night",
-        laylatulQadr25: "Laylat al-Qadr — 25th Night",
-        laylatulQadr27: "Laylat al-Qadr — 27th Night",
-        laylatulQadr29: "Laylat al-Qadr — 29th Night",
+      laylatulQadr21: "Laylat al-Qadr — 21st Night",
+      laylatulQadr23: "Laylat al-Qadr — 23rd Night",
+      laylatulQadr25: "Laylat al-Qadr — 25th Night",
+      laylatulQadr27: "Laylat al-Qadr — 27th Night",
+      laylatulQadr29: "Laylat al-Qadr — 29th Night",
 
-        eidFitr: "Eid al-Fitr",
+      eidFitr: "Eid al-Fitr",
 
-        dhulHijjahStart: "Beginning of Dhul Hijjah",
-        hajjBegins: "Hajj Begins",
-        dayOfArafah: "Day of Arafah",
-        eidAdha: "Eid al-Adha",
+      dhulHijjahStart: "Beginning of Dhul Hijjah",
+      hajjBegins: "Hajj Begins",
+      dayOfArafah: "Day of Arafah",
+      eidAdha: "Eid al-Adha",
 
-        islamicNewYear: "Islamic New Year",
-        ashura: "Day of Ashura",
+      islamicNewYear: "Islamic New Year",
+      ashura: "Day of Ashura",
 
-        mawlid: "Mawlid — Birth of Prophet Muhammad ﷺ",
+      mawlid: "Mawlid — Birth of Prophet Muhammad ﷺ",
     },
   },
 
@@ -133,7 +141,7 @@ const en = {
     visitUs: "Visit Us",
     title: "Masjid Location",
     description:
-        "We welcome you to visit our masjid for prayer, learning, and community.",
+      "We welcome you to visit our masjid for prayer, learning, and community.",
     ourLocation: "Our Location",
     address: "Pragati Path-2, Narayangarh",
     country: "Chitwan, Nepal",
@@ -141,7 +149,7 @@ const en = {
   },
 
   footer: {
-    
+
     visit: "Visit",
 
     address: {
@@ -153,18 +161,19 @@ const en = {
     openingHours: "Open daily, from 10 AM to 6 PM",
 
     contact: "Contact",
-    
-    phone:"+977 56-522732",
+
+    phone: "+977 56-522732",
 
     title: "Al-Jamaetul Barkatiya Jame Masjid",
 
     designedBy: "Designed and developed by",
   },
 
-  notifications: { 
-    unsupported: "This browser does not support notifications.", 
-    permissionDenied: "Notification permission was denied.", 
-    namazAlert: "Namaz Alert ⏰", timeIn: (prayer: string, minutes: string) => `${prayer} time in ${minutes}!`, timeStarted: (prayer: string) => `${prayer} time has started!`, },
+  notifications: {
+    unsupported: "This browser does not support notifications.",
+    permissionDenied: "Notification permission was denied.",
+    namazAlert: "Namaz Alert ⏰", timeIn: (prayer: string, minutes: string) => `${prayer} time in ${minutes}!`, timeStarted: (prayer: string) => `${prayer} time has started!`,
+  },
 };
 
 export default en;

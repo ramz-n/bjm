@@ -120,7 +120,7 @@ const PrayerTimes = () => {
                         </button>
                     </div>
                     <div>
-                        <p className="font-bold text-md uppercase text-primary">{hijriFormatter(now, "")}</p>
+                        <p className="font-bold text-md uppercase text-primary">{hijriFormatter(now)}</p>
                         <p className="font-bold text-xs uppercase text-primary">{nepaliMonth.format("MMMM, YYYY", "np")} BS</p>
                     </div>
                 </div>
@@ -193,7 +193,7 @@ const PrayerTimes = () => {
 
                                             <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
                                                 <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
-                                                    {hijriFormatter(day.date, "dayMonth")}
+                                                    {hijriFormatter(day.date, "en", "dayMonth" )}
                                                 </span>
                                             </td>
 

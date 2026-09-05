@@ -10,7 +10,7 @@ import {
 import type { DaySchedule } from "../types";
 import NepaliDate from 'nepali-date-converter'
 import { hijriFormatter, requestNotificationPermission } from "../utils";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 interface HeroProps {
@@ -34,26 +34,10 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
     const { language, t } = useLanguage();
 
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-
     const next = findNextPrayer(now, todayEntry, tomorrowEntry);
     const timeLabel = formatCurrentTime(now, language);
 
     const nepaliDateLabel = new NepaliDate(now);
-    /*
-        useEffect(() => {
-            const notify = async () => {
-                const granted = await requestNotificationPermission(t.notifications.unsupported);
-                if (next?.minutesUntil === 5 && granted) {
-                    showNotification(`Namaz Alert ⏰`, `${next.label} time in ${next.minutesUntil} minutes!`);
-                }
-                if (next?.minutesUntil === 0 && granted && audioRef.current) {
-                    showNotification(`Namaz Alert ⏰`, `${next.label} time has started!`);
-                }
-                return
-            }
-            notify()
-        }, [next?.minutesUntil]);*/
 
     useEffect(() => { const notify = async () => { const granted = await requestNotificationPermission(t.notifications.unsupported); if (!granted || !next) return; if (next.minutesUntil === 5 || next.minutesUntil === 0) { const prayerName = language === "np" ? t.prayer[next.key as keyof typeof t.prayer] : next.label; const countdown = formatCountdown(next.minutesUntil, language); if (next.minutesUntil === 0) { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय सुरु भएको छ!` : `${prayerName} time has started!`); } else { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय ${countdown} मा सुरु हुनेछ।` : `${prayerName} time in ${countdown}!`); } } }; notify(); }, [next?.minutesUntil, language, t]);
 

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import type { LinkItem } from "../data/links";
+import type { LinkItem } from "../types";
 
 export function NavItem({ item }: { item: LinkItem }) {
     const [isOpen, setIsOpen] = useState(false);

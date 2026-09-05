@@ -4,7 +4,7 @@ import WhatWeDo from "../components/WhatWeDo"
 import useNow from "../hooks/useNow";
 import { getMonthSchedule, isoKeyFor } from "../data/prayer-schedule";
 import About from "../components/About";
-import HomeKeyDates from "../components/homeKeyDates";
+import HomeKeyDates from "../components/HomeKeyDates";
 import MasjidMap from "../components/MasjidMap";;
 
 const Home = () => {

@@ -34,3 +34,9 @@ export interface NextPrayer {
     minutesUntil: number;
     isTomorrow: boolean;
 }
+
+export interface LinkItem {
+    title: string;
+    path?: string;
+    submenu?: LinkItem[];
+}

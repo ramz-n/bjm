@@ -1,10 +1,18 @@
 const np = {
   nav: {
     home: "गृहपृष्ठ",
+    about: "About",
+    aboutUs: "About Us",
+    committeMember: "Committee Members",
     prayerTimetable: "नमाज समय तालिका",
+    keyDatesAndEvents: "Key Dates & Events",
     keyDates: "महत्त्वपूर्ण मितिहरू",
-    names99: "९९ नामहरू",
+    upCommingEvents: "Upcoming Events",
+    allEvents: "All Events",
     learn: "सिक्नुहोस्",
+    names99: "९९ नामहरू",
+    learnQuran: "Learn Quran",
+    donate: "Donate"
   },
 
   hero: {

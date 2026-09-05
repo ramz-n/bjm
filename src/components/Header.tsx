@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { NavLink, Link } from "react-router-dom";
+import { NavItem } from "./NavItem";
 
 import { useLanguage } from "../context/LanguageContext";
+import { Link } from "react-router-dom";
 
 const langOptions = [
     {
@@ -37,42 +38,37 @@ const Header = () => {
         };
     }, []);
 
-    // Navigation links
     const links = [
         {
-            href: "/",
-            label: t.nav.home,
+            title: t.nav.home, path: "/"
         },
         {
-            href: "/prayer-timetable",
-            label: t.nav.prayerTimetable,
+            title: t.nav.about,
+            submenu: [
+                { title: t.nav.aboutUs, path: "/about-us" },
+                { title: t.nav.committeMember, path: "/committee-members" },
+            ],
         },
         {
-            href: "/key-dates",
-            label: t.nav.keyDates,
+            title: t.nav.prayerTimetable, path: "/prayer-timetable",
         },
         {
-            href: "/99-names",
-            label: t.nav.names99,
+            title: t.nav.keyDatesAndEvents,
+            submenu: [
+                { title: t.nav.keyDates, path: "/key-dates" },
+                { title: t.nav.upCommingEvents, path: "/upcoming-events" },
+                { title: t.nav.allEvents, path: "/all-events" }
+            ]
         },
         {
-            href: "/learn",
-            label: t.nav.learn,
+            title: t.nav.learn,
+            submenu: [
+                { title: t.nav.names99, path: "/99-names" },
+                { title: t.nav.learnQuran, path: "/learn" },
+            ]
         },
+        { title: "Donate", path: "/donate" },
     ];
-
-    // Desktop navigation styles
-    const navLinkStyles = ({
-        isActive,
-    }: {
-        isActive: boolean;
-    }) =>
-        `relative text-sm font-bold text-primary-dim transition-colors duration-200 hover:text-white py-2
-     after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:transition-transform after:duration-200
-     ${isActive
-            ? "after:scale-x-100 text-white"
-            : "after:scale-x-0 hover:after:scale-x-100"
-        }`;
 
     return (
         <header className="sticky top-0 z-30 border-b border-line bg-primary backdrop-blur">
@@ -124,16 +120,7 @@ const Header = () => {
                 {/* Desktop Menu */}
                 <div className="hidden items-center gap-7 md:flex">
                     <ul className="flex items-center gap-9">
-                        {links.map((link) => (
-                            <li key={link.href}>
-                                <NavLink
-                                    to={link.href}
-                                    className={navLinkStyles}
-                                >
-                                    {link.label}
-                                </NavLink>
-                            </li>
-                        ))}
+                        {links.map((link, idx) => (<NavItem key={idx} item={link} />))}
                     </ul>
 
                     {/* Language Switcher */}
@@ -334,7 +321,7 @@ const Header = () => {
 
                         {/* Mobile Navigation */}
                         <ul className="flex flex-col items-center gap-8">
-                            {links.map((link) => (
+                            {/*  {links.map((link) => (
                                 <li key={link.href}>
                                     <NavLink
                                         onClick={() => setOpen(false)}
@@ -352,7 +339,7 @@ const Header = () => {
                                         {link.label}
                                     </NavLink>
                                 </li>
-                            ))}
+                            ))} */}
                         </ul>
 
                         {/* Mobile Language Switcher */}
