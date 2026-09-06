@@ -321,25 +321,7 @@ const Header = () => {
 
                         {/* Mobile Navigation */}
                         <ul className="flex flex-col items-center gap-8">
-                            {/*  {links.map((link) => (
-                                <li key={link.href}>
-                                    <NavLink
-                                        onClick={() => setOpen(false)}
-                                        to={link.href}
-                                        className={({ isActive }) =>
-                                            `relative block py-2 text-2xl font-medium transition-colors duration-200
-                                        after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-12
-                                        after:-translate-x-1/2 after:bg-white after:transition-transform
-                                        ${isActive
-                                                ? "text-white after:scale-x-100"
-                                                : "text-primary-dim after:scale-x-0 hover:text-white hover:after:scale-x-100"
-                                            }`
-                                        }
-                                    >
-                                        {link.label}
-                                    </NavLink>
-                                </li>
-                            ))} */}
+                            {links.map((link, idx) => (<NavItem key={idx} item={link} />))}
                         </ul>
 
                         {/* Mobile Language Switcher */}
