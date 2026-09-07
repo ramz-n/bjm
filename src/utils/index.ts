@@ -1,6 +1,6 @@
 import { gregorianToHijri } from "@tabby_ai/hijri-converter";
 
-const HIJRI_MONTHS_EN = [
+export const HIJRI_MONTHS_EN = [
     "Muharram",
     "Safar",
     "Rabi' al-Awwal",
@@ -15,7 +15,7 @@ const HIJRI_MONTHS_EN = [
     "Dhu al-Hijjah",
 ];
 
-const HIJRI_MONTHS_NP = [
+export const HIJRI_MONTHS_NP = [
     "मुहर्रम",
     "सफर",
     "रबीउल अव्वल",
@@ -61,8 +61,8 @@ export const hijriFormatter = (
         const day =
             language === "np"
                 ? toNepaliDigits(
-                      String(hijri.day).padStart(2, "0")
-                  )
+                    String(hijri.day).padStart(2, "0")
+                )
                 : String(hijri.day).padStart(2, "0");
 
         const year =
