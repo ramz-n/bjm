@@ -18,8 +18,8 @@ const KeyDates = () => {
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
-                    <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
-                        <h1 className="text-4xl font-bold text-white">
+                    <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
+                        <h1 className="text-xl md:text-4xl font-bold text-white">
                             {t.keyDates.title}
                         </h1>
                     </div>

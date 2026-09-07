@@ -41,8 +41,8 @@ const Learn = () => {
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
-                    <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
-                        <h1 className="text-4xl font-bold text-white">
+                    <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
+                        <h1 className="text-xl md:text-4xl font-bold text-white">
                             Learn Quran
                         </h1>
                     </div>
@@ -51,15 +51,22 @@ const Learn = () => {
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Learn Quran</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">Search a topic.</h2>
+                        <div className="mb-6 flex items-center gap-3">
+                            <span className="h-px w-10 bg-islamic-gold" />
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">Learn Holy Quran</p>
+                        </div>
+
+                        <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-primary md:text-5xl">
+                            Search a
+                            <span className="text-secondary-green"> topic</span>
+                        </h2>
                     </div>
 
                 </div>
 
                 <div className="">
                     <div className="grid md:grid-cols-[1fr_200px] gap-2">
-                        <input type="text" name="search" className="border-primary rounded-xl border-2 p-2" onChange={(e) => setSearchString(e.target.value)} />
+                        <input type="text" name="search" placeholder="Type a topic to learn" className="border-primary rounded-xl border-2 p-2" onChange={(e) => setSearchString(e.target.value)} />
                         <button className="bg-primary text-primary-dim py-3 px-3 md:py-0 rounded-xl cursor-pointer hover:bg-accent"
                             disabled={searchString.length === 0}
                             onClick={handleSearch}

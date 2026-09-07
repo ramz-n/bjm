@@ -16,8 +16,8 @@ const AboutUs = () => {
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
-                    <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
-                        <h1 className="text-4xl font-bold text-white">
+                    <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
+                        <h1 className="text-xl md:text-4xl font-bold text-white">
                             About Barkati Masjid
                         </h1>
                     </div>
@@ -26,8 +26,15 @@ const AboutUs = () => {
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">The Oldest mosques in Chitwan</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">Al Jamiatul Barkatiya Jame Masjid</h2>
+                        <div className="mb-6 flex items-center gap-3">
+                            <span className="h-px w-10 bg-islamic-gold" />
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">The oldest mosque in chitwan</p>
+                        </div>
+
+                        <h2 className="max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-primary md:text-5xl">
+                            Al Jamiatul Barkatiya Jame
+                            <span className="text-secondary-green"> Masjid</span>
+                        </h2>
 
                         <div className="mt-6 flex flex-col gap-3">
                             <p>
@@ -37,13 +44,25 @@ const AboutUs = () => {
                                 It serves not only as a house of worship but also as a vital gathering space that fosters unity, peace, and mutual support among neighbors and visitors alike.
                             </p>
 
-                            <h3 className="flex items-center justify-start gap-2 font-semibold text-lg mt-6">
-                                <Landmark />
-                                Historical Significance
-                            </h3>
-                            <ul>
-                                <li><strong>Establishment: </strong>Founded in <strong>1959 A.D.</strong> (2016B.S.), it is recognized as the <strong>oldest mosque in Chitwan</strong>.</li>
-                            </ul>
+                            <div className="mt-9 flex items-center gap-5">
+
+                                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary shadow-lg">
+                                    <span className="text-xl font-extrabold text-islamic-gold">
+                                        <Landmark />
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <p className="text-sm font-bold text-primary">
+                                        Historical Significance
+                                    </p>
+
+                                    <p className="mt-1 text-xs text-accent">
+                                        Founded in 1959 A.D. (2016B.S.), it is recognized as the oldest mosque in Chitwan
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

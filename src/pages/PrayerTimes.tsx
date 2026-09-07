@@ -61,7 +61,7 @@ const PrayerTimes = () => {
                         }
 
                         if (computedStyle.borderColor.includes("oklab") || computedStyle.borderColor.includes("oklch")) {
-                            element.style.borderColor = "#e5e7eb"; 
+                            element.style.borderColor = "#e5e7eb";
                         }
                     });
                 }
@@ -100,27 +100,30 @@ const PrayerTimes = () => {
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
-                    <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
-                        <h1 className="text-4xl font-bold text-white">
-                            Timetable
+                    <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
+                        <h1 className="text-xl md:text-4xl font-bold text-white">
+                            Prayer Timetable
                         </h1>
                     </div>
                 </div>
             </div>
             <div className="mx-auto max-w-6xl px-6 py-20">
-                <div className="mb-5 flex justify-between gap-4 items-center">
+                <div className="mb-6 flex items-center gap-3">
+                    <span className="h-px w-10 bg-islamic-gold" />
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">Monthy prayer schedule</p>
+                </div>
+                <div className="mb-5 flex justify-between gap-6 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-islamic-gold">Monthly schedule</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">{month.monthName} {month.year}</h2>
+                        <h2 className="mt-2 font-display text-xl md:text-3xl font-semibold">{month.monthName} {month.year}</h2>
                     </div>
                     <div>
                         <button onClick={downloadPDF} className='flex gap-1 hover:text-islamic-gold cursor-pointer'>
                             <FileDown />
-                            Download
+                            <span className='hidden md:block'>Download</span>
                         </button>
                     </div>
                     <div>
-                        <p className="font-bold text-md uppercase text-primary">{hijriFormatter(now)}</p>
+                        <p className="font-bold text-sm md:text-md uppercase text-primary">{hijriFormatter(now)}</p>
                         <p className="font-bold text-xs uppercase text-primary">{nepaliMonth.format("MMMM, YYYY", "np")} BS</p>
                     </div>
                 </div>
@@ -193,7 +196,7 @@ const PrayerTimes = () => {
 
                                             <td className="relative whitespace-nowrap px-4 py-3 font-body text-sm">
                                                 <span className={isToday ? "font-semibold text-primary" : "text-secondary-green"}>
-                                                    {hijriFormatter(day.date, "en", "dayMonth" )}
+                                                    {hijriFormatter(day.date, "en", "dayMonth")}
                                                 </span>
                                             </td>
 

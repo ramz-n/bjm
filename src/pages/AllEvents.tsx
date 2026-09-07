@@ -14,9 +14,9 @@ const AllEvents = () => {
 
                 {/* Text */}
                 <div className="absolute bottom-8 left-18">
-                    <div className="rounded-2xl bg-accent px-6 py-3 shadow-lg backdrop-blur-sm">
-                        <h1 className="text-4xl font-bold text-white">
-                            AllEvents  Events
+                    <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
+                        <h1 className="text-xl md:text-4xl font-bold text-white">
+                            All Events
                         </h1>
                     </div>
                 </div>
@@ -24,8 +24,15 @@ const AllEvents = () => {
             <div className="mx-auto max-w-6xl px-6 py-20">
                 <div className="mb-5 flex justify-between gap-4 items-center">
                     <div>
-                        <p className="font-bold text-xs uppercase tracking-[0.2em] text-primary">New events</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold">AllEvents  Events</h2>
+                        <div className="mb-6 flex items-center gap-3">
+                            <span className="h-px w-10 bg-islamic-gold" />
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">All Events from Barkati Masjid</p>
+                        </div>
+
+                        <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-primary md:text-5xl">
+                            Events by Barkati
+                            <span className="text-secondary-green"> Masjid</span>
+                        </h2>
 
                         <div className="mt-6 flex flex-col gap-3">
                             <p>
