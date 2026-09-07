@@ -18,40 +18,7 @@ import {
 
 import { formatNepaliDate } from "../utils/nepali-date";
 import { formatGregorianDate } from "../data/prayer-schedule";
-
-// ============================================================
-// HIJRI DATE
-// ============================================================
-
-const HIJRI_MONTHS_EN = [
-    "Muharram",
-    "Safar",
-    "Rabi al-Awwal",
-    "Rabi al-Thani",
-    "Jumada al-Awwal",
-    "Jumada al-Thani",
-    "Rajab",
-    "Sha'ban",
-    "Ramadan",
-    "Shawwal",
-    "Dhul Qi'dah",
-    "Dhul Hijjah",
-];
-
-const HIJRI_MONTHS_NP = [
-    "मुहर्रम",
-    "सफर",
-    "रबीउल अव्वल",
-    "रबीउल आखिर",
-    "जमादिउल अव्वल",
-    "जमादिउल आखिर",
-    "रजब",
-    "शाबान",
-    "रमजान",
-    "शव्वाल",
-    "जुलकादा",
-    "जुलहिज्जा",
-];
+import { HIJRI_MONTHS_EN, HIJRI_MONTHS_NP } from "../utils";
 
 const NEPALI_DIGITS = "०१२३४५६७८९";
 
