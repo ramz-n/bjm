@@ -9,9 +9,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt",
       includeAssets: ["favicon.svg"],
       manifest: {
+        id: "/",
         name: "Al Jameatul Barkatiya Jame Masjid",
         short_name: "Barkati Masjid",
         description: "Oldest mosque in Chitwan",
