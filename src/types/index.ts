@@ -37,6 +37,6 @@ export interface NextPrayer {
 
 export interface LinkItem {
     title: string;
-    path?: string;
+    path: string;
     submenu?: LinkItem[];
 }

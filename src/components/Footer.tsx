@@ -4,7 +4,7 @@ const Footer = () => {
     const { t } = useLanguage();
     return (
         <footer className="bg-primary text-primary-dim bg-linear-to-r from-primary/50 via-primary/5 to-primary/90">
-            <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-13 pb-10 md:grid-cols-3">
+            <div className="mx-auto grid max-w-6xl 2xl:max-w-7xl gap-10 px-6 pt-13 pb-10 md:grid-cols-3">
                 <div>
                     <img src="./logo-white.webp" alt="bjm" className="h-25" />
                 </div>

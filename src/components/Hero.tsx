@@ -45,7 +45,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
         <section className="relative min-h-screen text-primary-dim pt-15 md:pt-0 px-3 overflow-hidden">
             <div className="min-h-[calc(100dvh-7.5rem)] flex flex-col items-start justify-center gap-7 md:h-screen">
                 <div
-                    className="absolute inset-0 bg-cover bg-center"
+                    className="absolute inset-0 bg-cover bg-center 2xl:bg-[center_35%]"
                     style={{ backgroundImage: `url("/home-bg.webp")` }}
                 >
                     {/* Bottom fade */}
@@ -60,19 +60,19 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                 <div className="container mx-auto z-10 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_380px] gap-5 items-center justify-between">
                     <div className="flex flex-col justify-center z-10 gap-3 md:gap-5">
-                        <div className="md:max-w-2xl flex flex-col items-start gap-3 md:gap-5 justify-center bg-accent/90 border-accent-dim py-7 px-5 md:p-8 rounded-2xl">
+                        <div className="md:max-w-2xl 2xl:max-w-4xl flex flex-col items-start gap-3 md:gap-5 justify-center bg-accent/90 border-accent-dim py-7 2xl:py-9 px-5 md:p-8 rounded-2xl">
                             {/* Location */}
                             <div className="flex items-center gap-3">
 
                                 <span className="h-px w-12 bg-islamic-gold" />
 
-                                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/75 md:text-sm">
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/75 md:text-sm 2xl:text-[16px]">
                                     {t.hero.location}
                                 </p>
 
                             </div>
                             {/* Heading */}
-                            <h1 className="max-w-2xl text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+                            <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl">
 
                                 {t.hero.title.titleFront}
 
@@ -86,7 +86,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </h1>
                             {/* Description */}
-                            <p className="max-w-xl tracking-wide text-sm leading-normal md:leading-7 text-primary-dim/95 sm:text-base md:text-lg md:leading-8">
+                            <p className="tracking-wide text-sm 2xl:text-lg leading-normal md:leading-7 text-primary-dim/95 sm:text-base">
                                 {t.hero.description}
                             </p>
 
@@ -104,11 +104,11 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                             <div className="flex min-w-auto items-center gap-4 rounded-xl border border-accent-gray/15 bg-accent/25 px-4 py-3 backdrop-blur-md">
 
                                 <div>
-                                    <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/55">
+                                    <p className="text-[9px] 2xl:text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
                                         {t.hero.localTime}
                                     </p>
 
-                                    <p className="pt-1 font-mono text-sm md:text-xl font-bold text-white">
+                                    <p className="pt-1 font-mono text-sm md:text-xl  2xl:text-[22px] font-bold text-white">
                                         {timeLabel}
                                     </p>
                                 </div>
@@ -121,13 +121,13 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                 <div className="flex min-w-auto items-center gap-4 rounded-xl border border-accent-gray/30 bg-accent/25 px-4 py-3 backdrop-blur-md">
 
                                     <div>
-                                        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-soft-yellow">
+                                        <p className="text-[9px] 2xl:text-[10px] font-semibold uppercase tracking-[0.2em] text-soft-yellow">
                                             {next.isTomorrow
                                                 ? t.hero.tomorrow
                                                 : t.hero.nextPrayer}
                                         </p>
 
-                                        <p className="pt-1 font-mono text-sm md:text-xl font-bold text-white">
+                                        <p className="pt-1 font-mono text-sm md:text-xl 2xl:text-[22px] font-bold text-white">
                                             {/* Translated prayer name */}
                                             {t.prayer[next.key as keyof typeof t.prayer]}
                                             <span className="md:mx-2 text-white/30"> · </span>
@@ -136,7 +136,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                         </p>
                                     </div>
 
-                                    <span className="rounded-full  bg-soft-yellow px-4 py-2 text-[11px] md:text-[12px] whitespace-nowrap font-bold text-primary">
+                                    <span className="rounded-full  bg-soft-yellow px-4 py-2 text-[11px] md:text-[12px] 2xl:text-[13px] whitespace-nowrap font-bold text-primary">
                                         {formatCountdown(next.minutesUntil, language)}
                                     </span>
 
@@ -151,7 +151,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         PRAYER CARD
                     ================================================== */}
 
-                    <div className="w-full md:-mt-15 lg:max-w-[400px]">
+                    <div className="w-full md:-mt-15 2xl:w-[500px] 2xl:min-h-[620px]">
 
                         <div className="overflow-hidden scroll-pt-2 rounded-3xl bg-accent-gray shadow-[0_25px_80px_rgba(0,0,0,0.35)]">
 
@@ -163,11 +163,11 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                                     <div>
 
-                                        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-islamic-gold">
+                                        <p className="text-[10px] 2xl:text-[12px] 2xl:pt-3 2xl:pb-1 font-bold uppercase tracking-[0.22em] 2xl:tracking-widest text-islamic-gold">
                                             {t.hero.dailySchedule}
                                         </p>
 
-                                        <h2 className="mt-1 text-2xl font-extrabold text-[#063D2E]">
+                                        <h2 className="mt-1 text-2xl 2xl:text-4xl 2xl:pb-4 font-extrabold text-[#063D2E]">
                                             {t.hero.prayerTimes}
                                         </h2>
 
@@ -181,11 +181,11 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                                     <div className="px-2 text-center">
 
-                                        <p className="text-[8px] font-bold uppercase tracking-wider text-[#3F6459]/60">
+                                        <p className="text-[8px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#3F6459]/60">
                                             {t.hero.gregorian}
                                         </p>
 
-                                        <p className="mt-1 text-[10px] font-medium text-primary">
+                                        <p className="mt-1 text-[10px] 2xl:text-[12px] font-medium text-primary">
                                             {formatGregorianDate(now, language)}
                                         </p>
 
@@ -194,11 +194,11 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                                     <div className="px-2 text-center">
 
-                                        <p className="text-[8px] font-bold uppercase tracking-wider text-[#3F6459]/60">
+                                        <p className="text-[8px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#3F6459]/60">
                                             {t.hero.nepali}
                                         </p>
 
-                                        <p className="mt-1 text-[10px] font-medium text-primary">
+                                        <p className="mt-1 text-[10px] 2xl:text-[12px] font-medium text-primary">
                                             {nepaliDateLabel.format(
                                                 "ddd DD, MMMM YYYY",
                                                 "np"
@@ -210,11 +210,11 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                                     <div className="px-2 text-center">
 
-                                        <p className="text-[8px] font-bold uppercase tracking-wider text-[#3F6459]/60">
+                                        <p className="text-[8px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#3F6459]/60">
                                             {t.hero.hijri}
                                         </p>
 
-                                        <p className="mt-1 text-[10px] font-medium text-primary">
+                                        <p className="mt-1 text-[10px] 2xl:text-[12px] font-medium text-primary">
                                             {hijriFormatter(now, language)}
                                         </p>
 
@@ -250,6 +250,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                 rounded-xl
                                                 px-4
                                                 py-3
+                                                2xl:py-4
                                                 ${isNext
                                                     ? "bg-primary"
                                                     : "hover:bg-[#063D2E]/5"
@@ -263,6 +264,8 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                     className={`
                                                         h-2
                                                         w-2
+                                                        2xl:h-3
+                                                        2xl:w-3
                                                         rounded-full
                                                         ${isNext
                                                             ? "bg-soft-yellow"
@@ -274,6 +277,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                 <span
                                                     className={`
                                                         text-sm
+                                                        2xl:text-[16px]
                                                         ${isNext
                                                             ? "font-bold text-white"
                                                             : "font-medium text-primary"
@@ -290,6 +294,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                 className={`
                                                     font-mono
                                                     text-sm
+                                                    2xl:text-[16px]
                                                     ${isNext
                                                         ? "font-bold text-soft-yellow"
                                                         : "font-medium text-primary"

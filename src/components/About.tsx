@@ -74,10 +74,10 @@ const About = () => {
                         </h2>
 
                         {/* Description */}
-                        <p className="mt-7 max-w-xl text-sm leading-7 text-accent md:text-base md:leading-8">
+                        <p className="mt-7 max-w-xl 2xl:max-w-2xl text-sm leading-7 text-accent md:text-base md:leading-8">
                             {t.about.paragraph1}
                         </p>
-                        <p className="mt-4 max-w-xl text-sm leading-7 text-accent md:text-base md:leading-8">
+                        <p className="mt-4 max-w-xl 2xl:max-w-2xl text-sm leading-7 text-accent md:text-base md:leading-8">
                             {t.about.paragraph2}
                         </p>
                         {/* Heritage statistic */}

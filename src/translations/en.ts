@@ -12,7 +12,8 @@ const en = {
     learn: "Learn",
     names99: "99 Names of Allah",
     learnQuran: "Learn Quran",
-    donate: "Donate"
+    donate: "Donate",
+    language: "Language",
   },
 
   hero: {

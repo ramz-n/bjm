@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { NavItem } from "./NavItem";
+import {
+    Menu,
+    X,
+    ChevronDown,
+    Globe,
+} from "lucide-react";
+import {
+    Link,
+    useLocation,
+} from "react-router-dom";
 
+import { NavItem } from "./NavItem";
 import { useLanguage } from "../context/LanguageContext";
-import { Link } from "react-router-dom";
+
+import type { LinkItem } from "../types";
 
 const langOptions = [
     {
@@ -17,12 +27,23 @@ const langOptions = [
 ];
 
 const Header = () => {
-
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-
-    const { language, setLanguage, t } = useLanguage();
     const [langOpen, setLangOpen] = useState(false);
+
+    const {
+        language,
+        setLanguage,
+        t,
+    } = useLanguage();
+
+    const location = useLocation();
+
+    /*
+     * -------------------------------------------------------
+     * SCROLL DETECTION
+     * -------------------------------------------------------
+     */
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,84 +52,198 @@ const Header = () => {
 
         handleScroll();
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener(
+            "scroll",
+            handleScroll
+        );
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener(
+                "scroll",
+                handleScroll
+            );
         };
     }, []);
 
-    const links = [
+    /*
+     * -------------------------------------------------------
+     * CLOSE MOBILE MENU WHEN ROUTE CHANGES
+     * -------------------------------------------------------
+     */
+
+    useEffect(() => {
+        setOpen(false);
+        setLangOpen(false);
+    }, [location.pathname]);
+
+    /*
+     * -------------------------------------------------------
+     * NAVIGATION LINKS
+     * -------------------------------------------------------
+     */
+
+    const links: LinkItem[] = [
         {
-            title: t.nav.home, path: "/"
+            title: t.nav.home,
+            path: "/",
         },
+
         {
             title: t.nav.about,
+            path: "/about-us",
+
             submenu: [
-                { title: t.nav.aboutUs, path: "/about-us" },
-                { title: t.nav.committeMember, path: "/committee-members" },
+                {
+                    title: t.nav.aboutUs,
+                    path: "/about-us",
+                },
+                {
+                    title: t.nav.committeMember,
+                    path: "/committee-members",
+                },
             ],
         },
+
         {
-            title: t.nav.prayerTimetable, path: "/prayer-timetable",
+            title: t.nav.prayerTimetable,
+            path: "/prayer-timetable",
         },
+
         {
             title: t.nav.keyDatesAndEvents,
+            path: "/key-dates",
+
             submenu: [
-                { title: t.nav.keyDates, path: "/key-dates" },
-                { title: t.nav.upCommingEvents, path: "/upcoming-events" },
-                { title: t.nav.allEvents, path: "/all-events" }
-            ]
+                {
+                    title: t.nav.keyDates,
+                    path: "/key-dates",
+                },
+                {
+                    title: t.nav.upCommingEvents,
+                    path: "/upcoming-events",
+                },
+                {
+                    title: t.nav.allEvents,
+                    path: "/all-events",
+                },
+            ],
         },
+
         {
             title: t.nav.learn,
+            path: "/learn",
+
             submenu: [
-                { title: t.nav.names99, path: "/99-names" },
-                { title: t.nav.learnQuran, path: "/learn" },
-            ]
+                {
+                    title: t.nav.names99,
+                    path: "/99-names",
+                },
+                {
+                    title: t.nav.learnQuran,
+                    path: "/learn",
+                },
+            ],
         },
-        { title: t.nav.donate, path: "/donate" },
+
+        {
+            title: t.nav.donate,
+            path: "/donate",
+        },
     ];
 
     return (
-        <header className="sticky top-0 z-30 border-b border-line bg-primary">
+        <header
+            className="
+                sticky top-0 z-30
+                border-b border-line
+                bg-primary
+            "
+        >
+            {/* =================================================
+                MAIN NAVIGATION
+            ================================================= */}
+
             <nav
-                className={`mx-auto flex max-w-6xl items-center justify-between px-10
-                    ${scrolled ? "h-20" : "h-22"}
-                    transition-all duration-300`}
+                className={`
+                    mx-auto
+                    flex
+                    max-w-6xl
+                    items-center
+                    justify-between
+                    px-4
+                    sm:px-6
+                    lg:px-8
+                    2xl:max-w-7xl
+
+                    ${scrolled
+                        ? "h-20"
+                        : "h-22"
+                    }
+
+                    transition-all duration-300
+                `}
             >
-                {/* Logo */}
+                {/* =================================================
+                    LOGO
+                ================================================= */}
+
                 <Link
                     to="/"
-                    className="relative z-40 block h-24 w-56 overflow-visible"
+                    className="
+                        relative z-40
+                        block
+                        h-20 w-40
+                        shrink-0
+                        overflow-visible
+                        sm:h-24 sm:w-52
+                    "
                 >
                     {/* Large vertical logo */}
+
                     <img
                         src="/logo-white13.webp"
                         alt="BJM Logo"
                         className={`
-                                absolute left-0 top-0
-                                h-35 w-auto
-                                object-contain
-                                origin-top-left
-                                transition-all duration-300 ease-in-out
-                                ${scrolled
+                            absolute
+                            left-0
+                            top-0
+                            h-28
+                            w-auto
+                            origin-top-left
+                            object-contain
+                            transition-all
+                            duration-300
+                            ease-in-out
+
+                            sm:h-35
+
+                            ${scrolled
                                 ? "translate-x-2 translate-y-2 scale-50 opacity-0"
                                 : "translate-x-0 translate-y-0 scale-100 opacity-90"
                             }
-                    `}
+                        `}
                     />
 
                     {/* Small horizontal logo */}
+
                     <img
                         src="/logo-scroll.webp"
                         alt="BJM Logo"
                         className={`
-                            absolute left-0 top-3
-                            h-18 w-auto
-                            py-1.5
+                            absolute
+                            left-0
+                            top-3
+                            h-15.5
+                            md:h-18
+                            w-auto
                             object-contain
-                            transition-all duration-300 ease-out
+                            transition-all
+                            duration-300
+                            ease-out
+
+                            sm:top-3
+                            sm:h-18
+
                             ${scrolled
                                 ? "scale-100 opacity-100"
                                 : "scale-75 opacity-0"
@@ -117,266 +252,563 @@ const Header = () => {
                     />
                 </Link>
 
-                {/* Desktop Menu */}
-                <div className="hidden items-center gap-7 md:flex">
-                    <ul className="flex items-center gap-9 whitespace-nowrap">
-                        {links.map((link, idx) => (<NavItem key={idx} item={link} />))}
+                {/* =================================================
+                    DESKTOP NAVIGATION
+                ================================================= */}
+
+                <div
+                    className="
+                        hidden
+                        min-w-0
+                        items-center
+                        gap-5
+                        md:flex
+                        lg:gap-7
+                    "
+                >
+                    <ul
+                        className="
+                            flex
+                            min-w-0
+                            items-center
+                            gap-5
+                            whitespace-nowrap
+                            lg:gap-7
+                            xl:gap-9
+                        "
+                    >
+                        {links.map((link) => (
+                            <NavItem
+                                key={link.path}
+                                item={link}
+                            />
+                        ))}
                     </ul>
 
-                    {/* Language Switcher */}
-                    <div className="relative hidden lg:block">
+                    {/* =================================================
+                        DESKTOP LANGUAGE SWITCHER
+                    ================================================= */}
+
+                    <div
+                        className="
+                            relative
+                            hidden
+                            shrink-0
+                            lg:block
+                        "
+                    >
                         <button
                             type="button"
-                            onClick={() => setLangOpen((v) => !v)}
+                            onClick={() =>
+                                setLangOpen(
+                                    (previous) =>
+                                        !previous
+                                )
+                            }
                             aria-haspopup="listbox"
                             aria-expanded={langOpen}
                             className="
                                 group
-                                flex items-center gap-2
+                                flex
+                                items-center
+                                gap-2
                                 rounded-full
-                                border border-white/15
+                                border
+                                border-white/15
                                 bg-white/[0.04]
-                                px-3.5 py-2
-                                text-xs font-semibold tracking-wide
+                                px-3.5
+                                py-2
+                                text-xs
+                                font-semibold
+                                tracking-wide
                                 text-islamic-gold
                                 shadow-sm
                                 backdrop-blur-sm
-                                transition-all duration-300 ease-out
+                                transition-all
+                                duration-300
                                 hover:border-white/30
                                 hover:bg-white/10
                                 hover:text-white
                                 hover:shadow-lg
                             "
                         >
-                            {/* Globe */}
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.7"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-                            >
-                                <circle cx="12" cy="12" r="9" />
-                                <path d="M3 12h18" />
-                                <path d="M12 3a14 14 0 0 1 0 18" />
-                                <path d="M12 3a14 14 0 0 0 0 18" />
-                            </svg>
+                            <Globe
+                                className="
+                                    h-3.5 w-3.5
+                                    opacity-70
+                                    transition-opacity
+                                    duration-300
+                                    group-hover:opacity-100
+                                "
+                            />
 
-                            {/* Current Language */}
-                            <span>
-                                {language === "en" ? "English" : "नेपाली"}
+                            <span className="whitespace-nowrap">
+                                {language === "en"
+                                    ? "English"
+                                    : "नेपाली"}
                             </span>
 
-                            {/* Chevron */}
-                            <svg
-                                width="10"
-                                height="6"
-                                viewBox="0 0 10 6"
-                                fill="none"
+                            <ChevronDown
                                 className={`
-                                    ml-0.5
-                                    transition-transform duration-300
-                                    ${langOpen ? "rotate-180" : ""}
+                                    h-3.5 w-3.5
+                                    transition-transform
+                                    duration-300
+                                    ${langOpen
+                                        ? "rotate-180"
+                                        : ""
+                                    }
                                 `}
-                            >
-                                <path
-                                    d="M1 1L5 5L9 1"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            />
                         </button>
 
-                        {/* Dropdown */}
+                        {/* Language dropdown */}
+
                         <div
                             className={`
-                                absolute right-0 top-full mt-2.5
-                                w-40
+                                absolute
+                                right-0
+                                top-full
+                                z-50
+                                mt-3
+                                w-48
                                 origin-top-right
                                 overflow-hidden
                                 rounded-2xl
-                                border border-white/15
-                                bg-primary/95
-                                shadow-2xl
+                                border
+                                border-white/10
+                                bg-primary/98
+                                shadow-[0_20px_50px_rgba(0,0,0,0.35)]
                                 backdrop-blur-xl
-                                transition-all duration-200 ease-out
+                                transition-all
+                                duration-200
+
                                 ${langOpen
                                     ? "visible translate-y-0 scale-100 opacity-100"
-                                    : "invisible -translate-y-1 scale-95 opacity-0"
+                                    : "invisible -translate-y-2 scale-95 opacity-0"
                                 }
                             `}
                         >
-                            <div className="p-2 space-y-1.5">
-                                {langOptions.map((lng) => {
-                                    const active = language === lng.value;
+                            {/* Gold accent */}
 
-                                    return (
-                                        <button
-                                            key={lng.value}
-                                            type="button"
-                                            onClick={() => {
-                                                setLanguage(lng.value as "en" | "np");
-                                                setLangOpen(false);
-                                            }}
-                                            className={`
-                                                flex w-full items-center justify-between
-                                                rounded-xl
-                                                px-3.5 py-2.5
-                                                text-left text-sm
-                                                
-                                                transition-all duration-200
-                                                ${active
-                                                    ? "bg-white/10 text-islamic-gold"
-                                                    : "text-primary-dim hover:bg-white/[0.07] hover:text-white"
+                            <div
+                                className="
+                                    h-0.5
+                                    w-full
+                                    bg-islamic-gold
+                                "
+                            />
+
+                            <div className="p-2 space-y-1.5">
+                                <div
+                                    className="
+                                        px-3
+                                        pb-2
+                                        pt-1
+                                    "
+                                >
+                                    <p
+                                        className="
+                                            text-[9px]
+                                            font-bold
+                                            uppercase
+                                            tracking-[0.2em]
+                                            text-primary-dim/50
+                                        "
+                                    >
+                                        {t.nav.language}
+                                    </p>
+                                </div>
+
+                                {langOptions.map(
+                                    (lng) => {
+                                        const active =
+                                            language ===
+                                            lng.value;
+
+                                        return (
+                                            <button
+                                                key={
+                                                    lng.value
                                                 }
-                                            `}
-                                        >
-                                            <span className="flex items-center gap-3">
-                                                {/* Language indicator */}
+                                                type="button"
+                                                onClick={() => {
+                                                    setLanguage(
+                                                        lng.value as
+                                                        | "en"
+                                                        | "np"
+                                                    );
+
+                                                    setLangOpen(
+                                                        false
+                                                    );
+                                                }}
+                                                className={`
+                                                    flex
+                                                    w-full
+                                                    items-center
+                                                    justify-between
+                                                    gap-3
+                                                    rounded-xl
+                                                    px-3
+                                                    py-2.5
+                                                    text-left
+                                                    transition-all
+                                                    duration-200
+
+                                                    ${active
+                                                        ? "bg-islamic-gold/15 text-islamic-gold"
+                                                        : "text-primary-dim hover:bg-white/10 hover:text-white"
+                                                    }
+                                                `}
+                                            >
                                                 <span
-                                                    className={`
-                                                        flex h-7 w-7 items-center justify-center
-                                                        rounded-full
-                                                        text-[10px] font-bold
-                                                        ${active
-                                                            ? "bg-islamic-gold/15 text-islamic-gold"
-                                                            : "bg-white/5 text-primary-dim"
-                                                        }
-                                                    `}
+                                                    className="
+                                                        flex
+                                                        items-center
+                                                        gap-3
+                                                    "
                                                 >
-                                                    {lng.value === "en" ? "EN" : "ने"}
+                                                    <span
+                                                        className={`
+                                                            flex
+                                                            h-8 w-8
+                                                            shrink-0
+                                                            items-center
+                                                            justify-center
+                                                            rounded-full
+                                                            border
+                                                            text-[10px]
+                                                            font-bold
+
+                                                            ${active
+                                                                ? "border-islamic-gold/15 bg-islamic-gold/15 text-islamic-gold"
+                                                                : "border-white/10 bg-white/5 text-primary-dim"
+                                                            }
+                                                        `}
+                                                    >
+                                                        {lng.value ===
+                                                            "en"
+                                                            ? "EN"
+                                                            : "ने"}
+                                                    </span>
+
+                                                    <span
+                                                        className="
+                                                            whitespace-nowrap
+                                                            text-sm
+                                                            font-semibold
+                                                        "
+                                                    >
+                                                        {
+                                                            lng.label
+                                                        }
+                                                    </span>
                                                 </span>
 
-                                                <span>{lng.label}</span>
-                                            </span>
-
-                                            {/* Active check */}
-                                            {active && (
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="15"
-                                                    height="15"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                >
-                                                    <path d="m5 12 4 4L19 6" />
-                                                </svg>
-                                            )}
-                                        </button>
-                                    );
-                                })}
+                                                {active && (
+                                                    <span
+                                                        className="
+                                                            flex
+                                                            h-5 w-5
+                                                            shrink-0
+                                                            items-center
+                                                            justify-center
+                                                            rounded-full
+                                                            bg-primary/10
+                                                        "
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="12"
+                                                            height="12"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeWidth="3"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        >
+                                                            <path d="m5 12 4 4L19 6" />
+                                                        </svg>
+                                                    </span>
+                                                )}
+                                            </button>
+                                        );
+                                    }
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Mobile Trigger */}
+                {/* =================================================
+                    MOBILE MENU BUTTON
+                ================================================= */}
+
                 <button
                     type="button"
                     aria-label="Open menu"
+                    aria-expanded={open}
                     onClick={() => setOpen(true)}
-                    className="text-primary-dim transition-colors hover:text-white md:hidden"
+                    className="
+                        flex
+                        h-10 w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-xl
+                        border
+                        border-white/10
+                        bg-white/[0.04]
+                        text-primary-dim
+                        transition-all
+                        duration-200
+                        hover:bg-white/10
+                        hover:text-white
+                        md:hidden
+                    "
                 >
                     <Menu className="h-6 w-6" />
                 </button>
             </nav>
 
-            {/* Mobile Menu */}
+            {/* =================================================
+                MOBILE MENU
+            ================================================= */}
+
             {open && (
-                <div className="fixed inset-0 z-50 flex h-dvh w-screen max-w-full flex-col overflow-x-hidden bg-primary animate-fade-in">
+                <div
+                    className="
+                        fixed
+                        inset-0
+                        z-50
+                        flex
+                        h-dvh
+                        w-screen
+                        max-w-full
+                        flex-col
+                        overflow-x-hidden
+                        bg-primary
+                        animate-fade-in
+                    "
+                >
+                    {/* Mobile header */}
 
-                    {/* Mobile Header */}
-                    <div className="relative flex shrink-0 items-center justify-between border-b border-line px-6 py-10 sm:px-8 sm:py-10">
+                    <div
+                        className="
+                            relative
+                            flex
+                            shrink-0
+                            items-center
+                            justify-between
+                            border-b
+                            border-line
+                            px-5
+                            py-7
+                            sm:px-8
+                            sm:py-8
+                        "
+                    >
+                        {/* Mobile logo */}
 
-                        {/* Mobile Logo */}
                         <img
                             src="/logo-white.webp"
                             alt="BJM Logo"
-                            className="absolute left-1/2 top-1/2 h-16 w-auto max-w-[70vw] -translate-x-1/2 -translate-y-1/2 object-contain sm:h-20"
+                            className="
+                                absolute
+                                left-1/2
+                                top-1/2
+                                h-15.5
+                                w-auto
+                                mt-1
+                                max-w-[65vw]
+                                -translate-x-1/2
+                                -translate-y-1/2
+                                object-contain
+                                sm:h-18
+                            "
                         />
 
-                        {/* Close Button */}
+                        {/* Close */}
+
                         <button
                             type="button"
                             aria-label="Close menu"
-                            onClick={() => setOpen(false)}
-                            className="ml-auto shrink-0 text-primary-dim transition-colors hover:text-white"
+                            onClick={() =>
+                                setOpen(false)
+                            }
+                            className="
+                                ml-auto
+                                flex
+                                h-10 w-10
+                                shrink-0
+                                items-center
+                                justify-center
+                                rounded-xl
+                                border
+                                border-white/10
+                                bg-white/[0.04]
+                                text-primary-dim
+                                transition-all
+                                duration-200
+                                hover:bg-white/10
+                                hover:text-white
+                            "
                         >
                             <X className="h-6 w-6" />
                         </button>
                     </div>
 
-                    {/* Mobile Content */}
-                    <div className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden bg-primary px-6 pb-10">
+                    {/* Mobile content */}
 
-                        {/* Mobile Navigation */}
-                        <ul className="flex w-full flex-col items-center gap-8">
-                            {links.map((link, idx) => (
-                                <NavItem key={idx} item={link} />
+                    <div
+                        className="
+                            flex
+                            min-h-0
+                            flex-1
+                            flex-col
+                            items-center
+                            justify-start
+                            overflow-y-auto
+                            overflow-x-hidden
+                            bg-primary
+                            px-5
+                            pb-10
+                            pt-8
+                            sm:px-8
+                            sm:pt-10
+                        "
+                    >
+                        {/* Mobile navigation */}
+
+                        <ul
+                            className="
+                                flex
+                                w-full
+                                max-w-md
+                                flex-col
+                                items-center
+                                gap-4
+                            "
+                        >
+                            {links.map((link) => (
+                                <NavItem
+                                    key={link.path}
+                                    item={link}
+                                />
                             ))}
                         </ul>
 
-                        {/* Mobile Language Switcher */}
-                        <div className="mt-10 flex max-w-full flex-col items-center">
+                        {/* =================================================
+                            MOBILE LANGUAGE SWITCHER
+                        ================================================= */}
 
-                            <span className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dim/60">
+                        <div
+                            className="
+                                mt-10
+                                flex
+                                max-w-full
+                                flex-col
+                                items-center
+                            "
+                        >
+                            <span
+                                className="
+                                    mb-3
+                                    text-[10px]
+                                    font-semibold
+                                    uppercase
+                                    tracking-[0.2em]
+                                    text-primary-dim/60
+                                "
+                            >
                                 Language
                             </span>
 
-                            <div className="flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/4 p-1.5 backdrop-blur-sm">
+                            <div
+                                className="
+                                    flex
+                                    max-w-full
+                                    items-center
+                                    gap-1.5
+                                    rounded-full
+                                    border
+                                    border-white/10
+                                    bg-white/[0.04]
+                                    p-1.5
+                                    backdrop-blur-sm
+                                "
+                            >
+                                {langOptions.map(
+                                    (lng) => {
+                                        const active =
+                                            language ===
+                                            lng.value;
 
-                                {langOptions.map((lng) => {
-                                    const active = language === lng.value;
-
-                                    return (
-                                        <button
-                                            key={lng.value}
-                                            type="button"
-                                            onClick={() =>
-                                                setLanguage(lng.value as "en" | "np")
-                                            }
-                                            className={`
-                                    flex shrink-0 items-center gap-2 rounded-full
-                                    px-4 py-2
-                                    text-sm font-semibold
-                                    transition-all duration-200
-                                    ${active
-                                                    ? "bg-islamic-gold text-primary shadow-md"
-                                                    : "text-primary-dim hover:bg-white/10 hover:text-white"
+                                        return (
+                                            <button
+                                                key={
+                                                    lng.value
                                                 }
-                                `}
-                                        >
-                                            <span
+                                                type="button"
+                                                onClick={() =>
+                                                    setLanguage(
+                                                        lng.value as
+                                                        | "en"
+                                                        | "np"
+                                                    )
+                                                }
                                                 className={`
-                                        flex h-6 w-6 shrink-0 items-center justify-center
-                                        rounded-full text-[10px] font-bold
-                                        ${active
-                                                        ? "bg-primary/10 text-primary"
-                                                        : "bg-white/5 text-primary-dim"
+                                                    flex
+                                                    shrink-0
+                                                    items-center
+                                                    gap-2
+                                                    rounded-full
+                                                    px-4
+                                                    py-2
+                                                    text-sm
+                                                    font-semibold
+                                                    transition-all
+                                                    duration-200
+
+                                                    ${active
+                                                        ? "bg-islamic-gold text-primary shadow-md"
+                                                        : "text-primary-dim hover:bg-white/10 hover:text-white"
                                                     }
-                                    `}
+                                                `}
                                             >
-                                                {lng.value === "en" ? "EN" : "ने"}
-                                            </span>
+                                                <span
+                                                    className={`
+                                                        flex
+                                                        h-6 w-6
+                                                        shrink-0
+                                                        items-center
+                                                        justify-center
+                                                        rounded-full
+                                                        text-[10px]
+                                                        font-bold
 
-                                            <span className="whitespace-nowrap">
-                                                {lng.label}
-                                            </span>
-                                        </button>
-                                    );
-                                })}
+                                                        ${active
+                                                            ? "bg-primary/10 text-primary"
+                                                            : "bg-white/5 text-primary-dim"
+                                                        }
+                                                    `}
+                                                >
+                                                    {lng.value ===
+                                                        "en"
+                                                        ? "EN"
+                                                        : "ने"}
+                                                </span>
 
+                                                <span className="whitespace-nowrap">
+                                                    {
+                                                        lng.label
+                                                    }
+                                                </span>
+                                            </button>
+                                        );
+                                    }
+                                )}
                             </div>
                         </div>
                     </div>

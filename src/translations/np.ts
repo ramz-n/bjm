@@ -13,6 +13,7 @@ const np = {
     names99: "९९ नामहरू",
     learnQuran: "कुरआन सिक्नुहोस्",
     donate: "दान गर्नुहोस्",
+    language: "भाषा",
   },
 
   hero: {
