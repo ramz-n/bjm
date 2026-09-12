@@ -1,21 +1,22 @@
-import { Routes, Route } from "react-router-dom"
-import Header from "./components/Header"
-import Home from "./pages/Home"
-import Footer from "./components/Footer"
-import PrayerTimes from "./pages/PrayerTimes"
-import KeyDates from "./pages/KeyDates"
-import Names from "./pages/99Names"
-import Learn from "./pages/Learn"
-import AboutUs from "./pages/AboutUs"
-import Committee from "./pages/Committee"
-import Upcoming from "./pages/Upcoming"
-import AllEvents from "./pages/AllEvents"
-import Domate from "./pages/Donate"
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import PrayerTimes from "./pages/PrayerTimes";
+import KeyDates from "./pages/KeyDates";
+import Names from "./pages/99Names";
+import Learn from "./pages/Learn";
+import AboutUs from "./pages/AboutUs";
+import Committee from "./pages/Committee";
+import Upcoming from "./pages/Upcoming";
+import AllEvents from "./pages/AllEvents";
+import Domate from "./pages/Donate";
+import Install from "./components/Install";
 
 function App() {
-
   return (
     <div className="min-h-screen bg-white">
+      <Install />
       <Header />
       <main>
         <Routes>
@@ -32,8 +33,8 @@ function App() {
         </Routes>
       </main>
       <Footer />
-    </div >
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
