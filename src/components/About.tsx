@@ -59,7 +59,7 @@ const About = () => {
                 ========================================== */}
                 <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
                     {/* TEXT */}
-                    <div className="order-2 lg:order-1">
+                    <div className="order-1 lg:order-1">
 
                         {/* Eyebrow */}
                         <div className="mb-6 flex items-center gap-3">
@@ -74,10 +74,10 @@ const About = () => {
                         </h2>
 
                         {/* Description */}
-                        <p className="mt-7 max-w-xl text-sm leading-7 text-accent md:text-base md:leading-8">
+                        <p className="mt-7 max-w-xl 2xl:max-w-2xl text-sm leading-7 text-accent md:text-base md:leading-8">
                             {t.about.paragraph1}
                         </p>
-                        <p className="mt-4 max-w-xl text-sm leading-7 text-accent md:text-base md:leading-8">
+                        <p className="mt-4 max-w-xl 2xl:max-w-2xl text-sm leading-7 text-accent md:text-base md:leading-8">
                             {t.about.paragraph2}
                         </p>
                         {/* Heritage statistic */}
@@ -104,29 +104,47 @@ const About = () => {
                     {/* =========================================
                         IMAGE
                     ========================================== */}
-                    <div className="order-1 lg:order-2">
-                        <div className="relative mx-auto max-w-xl">
+                    <div className="order-2 w-full lg:order-2">
+                        <div className="relative mx-auto w-full max-w-xl px-2 sm:px-0">
+
                             {/* Gold decorative frame */}
                             <div
                                 className="
                                     absolute
-                                    -bottom-4 -right-4
+                                    -bottom-2 -right-2
                                     h-full w-full
-                                    rounded-[2rem]
-                                    border-2 border-islamic-gold/40
+                                    rounded-2xl
+                                    border border-islamic-gold/40
+                                    sm:-bottom-3 sm:-right-3
+                                    sm:rounded-[1.5rem]
+                                    sm:border-2
+                                    lg:-bottom-4 lg:-right-4
+                                    lg:rounded-[2rem]
                                 "
                             />
 
                             {/* Image */}
-                            <div className="group relative overflow-hidden rounded-[2rem] bg-primary shadow-2xl">
+                            <div
+                                className="
+                                    group
+                                    relative
+                                    overflow-hidden
+                                    rounded-2xl
+                                    bg-primary
+                                    shadow-xl
+                                    sm:rounded-[1.5rem]
+                                    lg:rounded-[2rem]
+                                    lg:shadow-2xl
+                                "
+                            >
                                 <img
                                     src="./bjm.webp"
                                     alt="Barkati Jame Masjid"
                                     loading="lazy"
                                     decoding="async"
                                     className="
+                                        block
                                         aspect-[4/3]
-                                        h-full
                                         w-full
                                         object-cover
                                         transition-transform
@@ -135,23 +153,54 @@ const About = () => {
                                         group-hover:scale-105
                                     "
                                 />
+
                                 {/* Gradient */}
-                                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/10" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-black/5" />
 
                                 {/* Image content */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-
-                                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-islamic-gold">
+                                <div
+                                    className="
+                                        absolute
+                                        bottom-0
+                                        left-0
+                                        right-0
+                                        p-4
+                                        sm:p-6
+                                        md:p-8
+                                    "
+                                >
+                                    <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-islamic-gold sm:text-xs sm:tracking-[0.25em]">
                                         {t.about.established}
                                     </p>
 
-                                    <div className="mt-1 flex items-end justify-between gap-4">
+                                    <div className="mt-1 flex items-end justify-between gap-3 sm:gap-4">
 
-                                        <h3 className="text-xl font-extrabold text-white md:text-2xl">
+                                        <h3
+                                            className="
+                                                min-w-0
+                                                text-base
+                                                font-extrabold
+                                                leading-tight
+                                                text-white
+                                                sm:text-xl
+                                                md:text-2xl
+                                            "
+                                        >
                                             {t.about.mosqueName}
                                         </h3>
 
-                                        <span className="hidden text-4xl font-black leading-none text-white/30 sm:block md:text-5xl">
+                                        <span
+                                            className="
+                                                hidden
+                                                shrink-0
+                                                text-3xl
+                                                font-black
+                                                leading-none
+                                                text-white/30
+                                                sm:block
+                                                md:text-5xl
+                                            "
+                                        >
                                             {t.about.establishedYear}
                                         </span>
 
@@ -165,7 +214,7 @@ const About = () => {
                 {/* =========================================
                     DIVIDER
                 ========================================== */}
-                <div className="my-16 flex items-center gap-5 md:my-15">
+                <div className="hidden md:flex my-16 items-center gap-5 md:my-15">
                     <div className="h-px flex-1 bg-accent/20" />
 
                     <div className="h-2 w-2 rotate-45 bg-islamic-gold" />
@@ -176,7 +225,7 @@ const About = () => {
                 {/* =========================================
                     FEATURES
                 ========================================== */}
-                <div className="grid gap-6 md:grid-cols-3">
+                <div className="grid gap-6 mt-15 md:grid-cols-3">
 
                     {features.map((feature) => {
                         const Icon = feature.icon;

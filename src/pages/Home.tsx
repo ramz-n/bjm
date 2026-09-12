@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import Hero from "../components/Hero"
-import WhatWeDo from "../components/WhatWeDo"
+import WhatWeDo from "../components/HomeQuote"
 import useNow from "../hooks/useNow";
 import { getMonthSchedule, isoKeyFor } from "../data/prayer-schedule";
 import About from "../components/About";
