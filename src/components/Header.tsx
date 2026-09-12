@@ -274,7 +274,7 @@ const Header = () => {
                             gap-5
                             whitespace-nowrap
                             lg:gap-7
-                            xl:gap-9
+                            2xl:gap-9
                         "
                     >
                         {links.map((link) => (
