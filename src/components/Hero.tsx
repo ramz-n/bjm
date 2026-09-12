@@ -98,7 +98,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         {/* =================================================
                             TIME + NEXT PRAYER
                         ================================================== */}
-                        <div className="mt-3 flex flex-row md:flex-col gap-3">
+                        <div className="mt-3 flex flex-row gap-3">
 
                             {/* Current time */}
                             <div className="flex min-w-auto items-center gap-4 rounded-xl border border-accent-gray/15 bg-accent/25 px-4 py-3 backdrop-blur-md">
