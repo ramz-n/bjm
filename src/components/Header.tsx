@@ -67,11 +67,11 @@ const Header = () => {
                 { title: t.nav.learnQuran, path: "/learn" },
             ]
         },
-        { title: "Donate", path: "/donate" },
+        { title: t.nav.donate, path: "/donate" },
     ];
 
     return (
-        <header className="sticky top-0 z-30 border-b border-line bg-primary backdrop-blur">
+        <header className="sticky top-0 z-30 border-b border-line bg-primary">
             <nav
                 className={`mx-auto flex max-w-6xl items-center justify-between px-10
                     ${scrolled ? "h-20" : "h-22"}
@@ -119,7 +119,7 @@ const Header = () => {
 
                 {/* Desktop Menu */}
                 <div className="hidden items-center gap-7 md:flex">
-                    <ul className="flex items-center gap-9">
+                    <ul className="flex items-center gap-9 whitespace-nowrap">
                         {links.map((link, idx) => (<NavItem key={idx} item={link} />))}
                     </ul>
 
@@ -294,16 +294,16 @@ const Header = () => {
 
             {/* Mobile Menu */}
             {open && (
-                <div className="fixed inset-0 z-50 flex h-screen flex-col bg-primary animate-fade-in">
+                <div className="fixed inset-0 z-50 flex h-dvh w-screen max-w-full flex-col overflow-x-hidden bg-primary animate-fade-in">
 
                     {/* Mobile Header */}
-                    <div className="relative flex items-center justify-between border-b border-line px-8 py-10">
+                    <div className="relative flex shrink-0 items-center justify-between border-b border-line px-6 py-10 sm:px-8 sm:py-10">
 
                         {/* Mobile Logo */}
                         <img
                             src="/logo-white.webp"
                             alt="BJM Logo"
-                            className="absolute left-1/2 top-1/2 h-20 w-auto -translate-x-1/2 -translate-y-1/2 object-contain"
+                            className="absolute left-1/2 top-1/2 h-16 w-auto max-w-[70vw] -translate-x-1/2 -translate-y-1/2 object-contain sm:h-20"
                         />
 
                         {/* Close Button */}
@@ -311,26 +311,31 @@ const Header = () => {
                             type="button"
                             aria-label="Close menu"
                             onClick={() => setOpen(false)}
-                            className="ml-auto text-primary-dim transition-colors hover:text-white"
+                            className="ml-auto shrink-0 text-primary-dim transition-colors hover:text-white"
                         >
                             <X className="h-6 w-6" />
                         </button>
                     </div>
 
-                    <div className="z-10 flex flex-1 flex-col items-center justify-center bg-primary pb-20">
+                    {/* Mobile Content */}
+                    <div className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-y-auto overflow-x-hidden bg-primary px-6 pb-10">
 
                         {/* Mobile Navigation */}
-                        <ul className="flex flex-col items-center gap-8">
-                            {links.map((link, idx) => (<NavItem key={idx} item={link} />))}
+                        <ul className="flex w-full flex-col items-center gap-8">
+                            {links.map((link, idx) => (
+                                <NavItem key={idx} item={link} />
+                            ))}
                         </ul>
 
                         {/* Mobile Language Switcher */}
-                        <div className="mt-10 flex flex-col items-center">
+                        <div className="mt-10 flex max-w-full flex-col items-center">
+
                             <span className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary-dim/60">
                                 Language
                             </span>
 
-                            <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/4 p-1.5 backdrop-blur-sm">
+                            <div className="flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/4 p-1.5 backdrop-blur-sm">
+
                                 {langOptions.map((lng) => {
                                     const active = language === lng.value;
 
@@ -342,33 +347,36 @@ const Header = () => {
                                                 setLanguage(lng.value as "en" | "np")
                                             }
                                             className={`
-                                                flex items-center gap-2 rounded-full
-                                                px-4 py-2
-                                                text-sm font-semibold
-                                                transition-all duration-200
-                                                ${active
+                                    flex shrink-0 items-center gap-2 rounded-full
+                                    px-4 py-2
+                                    text-sm font-semibold
+                                    transition-all duration-200
+                                    ${active
                                                     ? "bg-islamic-gold text-primary shadow-md"
                                                     : "text-primary-dim hover:bg-white/10 hover:text-white"
                                                 }
-                                            `}
+                                `}
                                         >
                                             <span
                                                 className={`
-                                                    flex h-6 w-6 items-center justify-center
-                                                    rounded-full text-[10px] font-bold
-                                                    ${active
+                                        flex h-6 w-6 shrink-0 items-center justify-center
+                                        rounded-full text-[10px] font-bold
+                                        ${active
                                                         ? "bg-primary/10 text-primary"
                                                         : "bg-white/5 text-primary-dim"
                                                     }
-                                                `}
+                                    `}
                                             >
                                                 {lng.value === "en" ? "EN" : "ने"}
                                             </span>
 
-                                            <span>{lng.label}</span>
+                                            <span className="whitespace-nowrap">
+                                                {lng.label}
+                                            </span>
                                         </button>
                                     );
                                 })}
+
                             </div>
                         </div>
                     </div>

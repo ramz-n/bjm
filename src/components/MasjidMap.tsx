@@ -4,14 +4,14 @@ import { useLanguage } from "../context/LanguageContext";
 const MasjidMap = () => {
     const { t } = useLanguage();
     return (
-        <section className="relative w-full overflow-hidden bg-primary pt-16">
+        <section className="relative w-full overflow-hidden bg-primary">
             {/* Decorative background */}
             <div className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-islamic-gold/[0.06] blur-3xl" />
             <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-white/[0.025] blur-3xl" />
 
             <div className="relative w-full">
                 {/* Section Header */}
-                <div className="mx-auto mb-12 max-w-3xl px-5 text-center md:mb-10 md:px-8">
+                <div className="mx-auto mt-13 pb-9 max-w-3xl px-5 text-center md:mb-10 md:px-8">
                     <div className="mb-6 flex items-center justify-center gap-4">
                         <span className="h-px w-10 bg-islamic-gold" />
 
@@ -47,30 +47,36 @@ const MasjidMap = () => {
                     </div>
 
                     {/* Location Card */}
-                    <div className="absolute bottom-5 left-5 right-5 md:bottom-8 md:left-8 md:right-auto">
-                        <div className="flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl sm:flex-row sm:items-center sm:p-5">
-                            {/* Icon */}
-                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-islamic-gold/10">
-                                <MapPin
-                                    size={21}
-                                    strokeWidth={1.7}
-                                    className="text-islamic-gold"
-                                />
-                            </div>
+                    <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 md:bottom-8 md:left-8 md:right-auto">
+                        <div className="flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl sm:p-5 md:flex-row md:items-center">
 
-                            {/* Address */}
-                            <div className="min-w-0">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-islamic-gold">
-                                    {t.location.ourLocation}
-                                </p>
+                            {/* Icon + Address */}
+                            <div className="flex min-w-0 items-center gap-3">
 
-                                <p className="mt-1 text-sm font-semibold text-primary">
-                                    {t.location.address}
-                                </p>
+                                {/* Icon */}
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-islamic-gold/10">
+                                    <MapPin
+                                        size={21}
+                                        strokeWidth={1.7}
+                                        className="text-islamic-gold"
+                                    />
+                                </div>
 
-                                <p className="mt-0.5 text-xs text-gray-500">
-                                    {t.location.country}
-                                </p>
+                                {/* Address */}
+                                <div className="min-w-0">
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-islamic-gold">
+                                        {t.location.ourLocation}
+                                    </p>
+
+                                    <p className="mt-1 text-sm font-semibold leading-tight text-primary">
+                                        {t.location.address}
+                                    </p>
+
+                                    <p className="mt-0.5 text-xs text-gray-500">
+                                        {t.location.country}
+                                    </p>
+                                </div>
+
                             </div>
 
                             {/* Directions */}
@@ -78,15 +84,35 @@ const MasjidMap = () => {
                                 href="https://www.google.com/maps/search/?api=1&query=Al-jame+Atul+Barkatiya+Barkati+Jame+Masid"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-islamic-gold px-5 py-3 text-xs font-bold text-primary transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#d7b12d] hover:shadow-lg"
+                                className="
+                                    inline-flex
+                                    w-full
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    gap-2
+                                    rounded-xl
+                                    bg-islamic-gold
+                                    px-5
+                                    py-3
+                                    text-xs
+                                    font-bold
+                                    text-primary
+                                    transition-all
+                                    duration-200
+                                    hover:-translate-y-0.5
+                                    hover:bg-[#d7b12d]
+                                    hover:shadow-lg
+                                    md:w-auto
+                                "
                             >
                                 <Navigation
                                     size={15}
                                     strokeWidth={2}
                                 />
-
                                 {t.location.getDirections}
                             </a>
+
                         </div>
                     </div>
                 </div>

@@ -4,12 +4,12 @@ const Footer = () => {
     const { t } = useLanguage();
     return (
         <footer className="bg-primary text-primary-dim bg-linear-to-r from-primary/50 via-primary/5 to-primary/90">
-            <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-20 pb-14 md:grid-cols-3">
+            <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-13 pb-10 md:grid-cols-3">
                 <div>
                     <img src="./logo-white.webp" alt="bjm" className="h-25" />
                 </div>
 
-                <div>
+                <div className="pl-6 md:pl-0">
                     <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">{t.footer.visit}</p>
                     <address className="mt-3 space-y-1 font-body text-sm not-italic text-primary-dim/80">
                         <p>{t.footer.address.road}</p>
@@ -19,7 +19,7 @@ const Footer = () => {
                     </address>
                 </div>
 
-                <div>
+                <div className="pl-6 md:pl-0">
                     <p className="font-bold text-xs uppercase tracking-[0.2em] text-white">{t.footer.contact}</p>
                     <ul className="mt-3 space-y-1 font-body text-sm text-primary-dim/80">
                         <li>info@bjm.com.np</li>

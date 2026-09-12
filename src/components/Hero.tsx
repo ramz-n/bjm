@@ -42,8 +42,8 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
     useEffect(() => { const notify = async () => { const granted = await requestNotificationPermission(t.notifications.unsupported); if (!granted || !next) return; if (next.minutesUntil === 5 || next.minutesUntil === 0) { const prayerName = language === "np" ? t.prayer[next.key as keyof typeof t.prayer] : next.label; const countdown = formatCountdown(next.minutesUntil, language); if (next.minutesUntil === 0) { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय सुरु भएको छ!` : `${prayerName} time has started!`); } else { showNotification(language === "np" ? "नमाज सूचना ⏰" : "Namaz Alert ⏰", language === "np" ? `${prayerName} को समय ${countdown} मा सुरु हुनेछ।` : `${prayerName} time in ${countdown}!`); } } }; notify(); }, [next?.minutesUntil, language, t]);
 
     return (
-        <section className="relative min-h-screen text-primary-dim px-3 overflow-hidden">
-            <div className="h-screen flex flex-col items-start justify-center gap-7">
+        <section className="relative min-h-screen text-primary-dim pt-15 px-3 overflow-hidden">
+            <div className="min-h-[calc(100dvh-7.5rem)] flex flex-col items-start justify-center gap-7 md:h-screen">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url("/home-bg.webp")` }}
@@ -60,13 +60,13 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                 <div className="container mx-auto z-10 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_380px] gap-5 items-center justify-between">
                     <div className="flex flex-col justify-center z-10 gap-3 md:gap-5">
-                        <div className="md:max-w-2xl flex flex-col items-start gap-3 md:gap-5 justify-center bg-accent/90 border-accent-dim p-5 md:p-8 rounded-2xl">
+                        <div className="md:max-w-2xl flex flex-col items-start gap-3 md:gap-5 justify-center bg-accent/90 border-accent-dim py-7 px-5 md:p-8 rounded-2xl">
                             {/* Location */}
                             <div className="flex items-center gap-3">
 
                                 <span className="h-px w-12 bg-islamic-gold" />
 
-                                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/75 md:text-sm">
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/75 md:text-sm">
                                     {t.hero.location}
                                 </p>
 
@@ -86,7 +86,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             </h1>
                             {/* Description */}
-                            <p className="max-w-xl tracking-wide text-sm leading-7 text-primary-dim/95 sm:text-base md:text-lg md:leading-8">
+                            <p className="max-w-xl tracking-wide text-sm leading-normal md:leading-7 text-primary-dim/95 sm:text-base md:text-lg md:leading-8">
                                 {t.hero.description}
                             </p>
 
@@ -98,17 +98,17 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                         {/* =================================================
                             TIME + NEXT PRAYER
                         ================================================== */}
-                        <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                        <div className="mt-3 flex flex-row md:flex-col gap-3">
 
                             {/* Current time */}
-                            <div className="flex items-center gap-4 rounded-xl border border-accent-gray/15 bg-accent/25 px-5 py-3 backdrop-blur-md">
+                            <div className="flex min-w-auto items-center gap-4 rounded-xl border border-accent-gray/15 bg-accent/25 px-4 py-3 backdrop-blur-md">
 
                                 <div>
                                     <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/55">
                                         {t.hero.localTime}
                                     </p>
 
-                                    <p className="mt-1 font-mono text-xl font-bold text-white">
+                                    <p className="pt-1 font-mono text-sm md:text-xl font-bold text-white">
                                         {timeLabel}
                                     </p>
                                 </div>
@@ -118,7 +118,7 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
 
                             {/* Next prayer */}
                             {next && (
-                                <div className="flex items-center gap-4 rounded-xl border border-accent-gray/30 bg-accent/25 md:px-5 py-2 md:py-4 backdrop-blur-md">
+                                <div className="flex min-w-auto items-center gap-4 rounded-xl border border-accent-gray/30 bg-accent/25 px-4 py-3 backdrop-blur-md">
 
                                     <div>
                                         <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-soft-yellow">
@@ -127,10 +127,16 @@ const Hero = ({ now, todayEntry, tomorrowEntry }: HeroProps) => {
                                                 : t.hero.nextPrayer}
                                         </p>
 
-                                        <p className="mt-1 text-sm font-semibold text-white"> {/* Translated prayer name */} {t.prayer[next.key as keyof typeof t.prayer]} <span className="mx-2 text-white/30"> · </span> {/* Translated prayer time */} {formatPrayerTime(next.minutes, language)} </p>
+                                        <p className="pt-1 font-mono text-sm md:text-xl font-bold text-white">
+                                            {/* Translated prayer name */}
+                                            {t.prayer[next.key as keyof typeof t.prayer]}
+                                            <span className="md:mx-2 text-white/30"> · </span>
+                                            {/* Translated prayer time */}
+                                            {formatPrayerTime(next.minutes, language)}
+                                        </p>
                                     </div>
 
-                                    <span className="rounded-full bg-soft-yellow px-3 py-2 text-[12px] font-bold text-primary">
+                                    <span className="rounded-full  bg-soft-yellow px-4 py-2 text-[11px] md:text-[12px] whitespace-nowrap font-bold text-primary">
                                         {formatCountdown(next.minutesUntil, language)}
                                     </span>
 
