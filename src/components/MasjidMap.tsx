@@ -4,14 +4,14 @@ import { useLanguage } from "../context/LanguageContext";
 const MasjidMap = () => {
     const { t } = useLanguage();
     return (
-        <section className="relative w-full overflow-hidden bg-primary">
+        <section className="relative w-full overflow-hidden bg-primary md:pt-16">
             {/* Decorative background */}
             <div className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-islamic-gold/[0.06] blur-3xl" />
             <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-white/[0.025] blur-3xl" />
 
             <div className="relative w-full">
                 {/* Section Header */}
-                <div className="mx-auto mt-13 pb-9 max-w-3xl px-5 text-center md:mb-10 md:px-8">
+                <div className="mx-auto mt-10 md:mt-0 pb-9 md:pb-0 max-w-3xl pt-5 md:pt-0 text-center md:mb-12 md:px-8">
                     <div className="mb-6 flex items-center justify-center gap-4">
                         <span className="h-px w-10 bg-islamic-gold" />
 
@@ -37,7 +37,7 @@ const MasjidMap = () => {
                     <div className="w-full overflow-hidden">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.569875118396!2d84.42493427405277!3d27.699685925831897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fbcd3f47cbed%3A0x5c4cb26456a049cb!2sAl-jame%20Atul%20Barkatiya%20Barkati%20Jame%20Masid!5e0!3m2!1sen!2snp!4v1787651106779!5m2!1sen!2snp"
-                            className="block h-[320px] w-full sm:h-[380px] md:h-[300px] lg:h-[380px]"
+                            className="block h-[450px] w-full sm:h-[380px] md:h-[300px] lg:h-[380px]"
                             style={{ border: 0 }}
                             allowFullScreen
                             loading="lazy"
