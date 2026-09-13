@@ -97,8 +97,8 @@ export default function HomeKeyDates() {
         .slice(0, 4);
 
     return (
-        <section className="bg-white px-5 py-16 md:px-8 md:py-25">
-            <div className="mx-auto max-w-6xl">
+        <section className="overflow-x-hidden bg-white px-5 py-16 md:px-8 md:py-25">
+            <div className="mx-auto min-w-0 max-w-6xl">
 
                 {/* ----------------------------------------- */}
                 {/* HEADER                                    */}
@@ -138,7 +138,7 @@ export default function HomeKeyDates() {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
 
                             {/* Event */}
-                            <div className="flex items-center gap-4 p-5 md:p-6">
+                            <div className="flex min-w-0 items-center gap-4 p-5 md:p-6">
 
                                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-islamic-gold/10">
                                     <CalendarDays
@@ -187,7 +187,7 @@ export default function HomeKeyDates() {
                 {/* UPCOMING EVENTS                            */}
                 {/* ----------------------------------------- */}
 
-                <div className="grid gap-3 md:grid-cols-2">
+                <div className="grid w-full min-w-0 gap-3 md:grid-cols-2">
 
                     {upcomingEvents.map(
                         (event, index) => {
@@ -198,8 +198,8 @@ export default function HomeKeyDates() {
                                 <div
                                     key={`${event.key}-${event.hijriDate}`}
                                     className={`
-                                        group flex items-center justify-between
-                                        rounded-xl border p-4
+                                        group flex min-w-0 items-center justify-between gap-3
+                                        overflow-hidden rounded-xl border p-4
                                         transition-all duration-300
                                         ${isNext
                                             ? "border-islamic-gold/20 bg-islamic-gold/[0.04]"
@@ -208,7 +208,7 @@ export default function HomeKeyDates() {
                                     `}
                                 >
 
-                                    <div className="flex min-w-0 items-center gap-3">
+                                    <div className="flex min-w-0 flex-1 items-center gap-3">
 
                                         {/* Number */}
                                         <span
@@ -240,7 +240,7 @@ export default function HomeKeyDates() {
                                                 {t.keyDates.events[event.key]}
                                             </h4>
 
-                                            <p className="mt-1 text-xs text-gray-400">
+                                            <p className="mt-1 truncate text-xs text-gray-400">
                                                 {formatHijriString(
                                                     event.hijriDate,
                                                     language
@@ -252,26 +252,21 @@ export default function HomeKeyDates() {
 
 
                                     {/* Date */}
-                                    <div className="ml-4 flex shrink-0 items-center gap-2">
-
-                                        <span className="hidden text-right text-xs text-gray-400 sm:block">
-                                            {formatGregorianDate(
-                                                event.gregorianDate,
-                                                language
-                                            )}
+                                    <div className="ml-2 flex shrink-0 items-center gap-2 sm:ml-4">
+                                        <span className="hidden max-w-[9rem] truncate text-right text-xs text-gray-400 sm:block">
+                                            {formatGregorianDate(event.gregorianDate, language)}
                                         </span>
 
                                         <ChevronRight
                                             size={15}
                                             className={`
-                                                transition-transform duration-300
+                                                shrink-0 transition-transform duration-300
                                                 ${isNext
                                                     ? "text-islamic-gold"
                                                     : "text-gray-300 group-hover:translate-x-1 group-hover:text-islamic-gold"
                                                 }
-                                            `}
+                `}
                                         />
-
                                     </div>
 
                                 </div>

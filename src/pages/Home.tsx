@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import Hero from "../components/Hero"
-import WhatWeDo from "../components/HomeQuote"
+import HomeQuote from "../components/HomeQuote"
 import useNow from "../hooks/useNow";
 import { getMonthSchedule, isoKeyFor } from "../data/prayer-schedule";
 import About from "../components/About";
@@ -32,7 +32,7 @@ const Home = () => {
         <div>
             <Hero now={now} todayEntry={todayEntry} tomorrowEntry={tomorrowEntry} />
             <About />
-            <WhatWeDo />
+            <HomeQuote />
             <HomeKeyDates />
             <MasjidMap />
         </div>
