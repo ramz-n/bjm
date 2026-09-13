@@ -28,7 +28,7 @@ const About = () => {
         },
     ];
     return (
-        <section className="relative overflow-hidden bg-white py-20 md:py-25">
+        <section className="relative overflow-hidden bg-white py-15 md:py-25">
             {/* Decorative background element */}
             <div
                 className="

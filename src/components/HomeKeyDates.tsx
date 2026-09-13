@@ -97,7 +97,7 @@ export default function HomeKeyDates() {
         .slice(0, 4);
 
     return (
-        <section className="overflow-x-hidden bg-white px-5 py-16 md:px-8 md:py-25">
+        <section className="overflow-x-hidden bg-white px-5 py-15 md:px-8 md:py-25">
             <div className="mx-auto min-w-0 max-w-6xl">
 
                 {/* ----------------------------------------- */}
