@@ -62,14 +62,14 @@ const en = {
       "It continues to welcome everyone with a spirit of unity, compassion, and service.",
 
     heritage: {
-      year: "70",
+      year: "67",
       title: "Years of service",
-      description: "Serving the community since 1955",
+      description: "Serving the community since 1959",
     },
 
     established: "Established",
 
-    establishedYear: "1955",
+    establishedYear: "1959",
 
     mosqueName: "Al Jameatul Barkati Jame Masjid",
 
