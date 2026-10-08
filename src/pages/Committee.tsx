@@ -1,5 +1,3 @@
-import { Phone } from "lucide-react";
-
 const comitteeMembers = [
     {
         name: "Haji Kaji Miya",
