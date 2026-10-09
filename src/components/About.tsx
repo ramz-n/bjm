@@ -1,12 +1,15 @@
-import { CalendarHeart, HandHelping, Handshake, type LucideIcon } from "lucide-react";
+import {
+    CalendarHeart,
+    HandHelping,
+    Handshake,
+    type LucideIcon,
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-
 interface Features {
-    icon: LucideIcon,
+    icon: LucideIcon;
     title: string;
     body: string;
 }
-
 
 const About = () => {
     const { t } = useLanguage();
@@ -60,17 +63,20 @@ const About = () => {
                 <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
                     {/* TEXT */}
                     <div className="order-1 lg:order-1">
-
                         {/* Eyebrow */}
                         <div className="mb-6 flex items-center gap-3">
                             <span className="h-px w-10 bg-islamic-gold" />
-                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">{t.about.eyebrow}</p>
+                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">
+                                {t.about.eyebrow}
+                            </p>
                         </div>
 
                         {/* Heading */}
                         <h2 className="max-w-2xl text-3xl font-extrabold leading-[1.15] tracking-tight text-primary md:text-5xl">
                             {t.about.title.start}
-                            <span className="text-secondary-green">{t.about.title.end}</span>
+                            <span className="text-secondary-green">
+                                {t.about.title.end}
+                            </span>
                         </h2>
 
                         {/* Description */}
@@ -82,7 +88,6 @@ const About = () => {
                         </p>
                         {/* Heritage statistic */}
                         <div className="mt-9 flex items-center gap-5">
-
                             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary shadow-lg">
                                 <span className="text-xl font-extrabold text-islamic-gold">
                                     {t.about.heritage.year}+
@@ -106,7 +111,6 @@ const About = () => {
                     ========================================== */}
                     <div className="order-2 w-full lg:order-2">
                         <div className="relative mx-auto w-full max-w-xl px-2 sm:px-0">
-
                             {/* Gold decorative frame */}
                             <div
                                 className="
@@ -174,7 +178,6 @@ const About = () => {
                                     </p>
 
                                     <div className="mt-1 flex items-end justify-between gap-3 sm:gap-4">
-
                                         <h3
                                             className="
                                                 min-w-0
@@ -203,7 +206,6 @@ const About = () => {
                                         >
                                             {t.about.establishedYear}
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +228,6 @@ const About = () => {
                     FEATURES
                 ========================================== */}
                 <div className="grid gap-6 mt-15 md:grid-cols-3">
-
                     {features.map((feature) => {
                         const Icon = feature.icon;
 
@@ -246,7 +247,6 @@ const About = () => {
                                     hover:shadow-xl
                                 "
                             >
-
                                 {/* Icon */}
                                 <div
                                     className="

@@ -7,6 +7,8 @@ import About from "../components/About";
 import HomeKeyDates from "../components/HomeKeyDates";
 import MasjidMap from "../components/MasjidMap";
 import Feedback from "../components/Feedback";
+import Reload from "../components/Reload";
+
 const Home = () => {
     const now = useNow();
 
@@ -45,6 +47,7 @@ const Home = () => {
             <HomeKeyDates />
             <MasjidMap />
             <Feedback />
+            <Reload />
         </div>
     );
 };

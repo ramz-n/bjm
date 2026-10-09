@@ -73,7 +73,7 @@ const Install = () => {
                         Install Barkati Masjid App
                     </h4>
                     <p className="text-xs text-gray-500 mt-0.5">
-                        Access prayer times and updates from your home screen.
+                        Get prayer times and updates from your home screen.
                     </p>
                 </div>
             </div>
@@ -89,7 +89,6 @@ const Install = () => {
                     .
                 </div>
             ) : (
-                // Android / Desktop Chrome Button
                 <div className="flex gap-2 justify-end w-full">
                     <button
                         onClick={() => setIsVisible(false)}
