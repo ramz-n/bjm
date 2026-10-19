@@ -1,51 +1,96 @@
-import { comitteeMembers } from "../data/comitteeMembers";
+import { useLanguage } from "../context/LanguageContext";
 
 const Committee = () => {
-    return (
-        <section id="schedule" className="w-full">
-            <div className="relative w-full h-[50vh] overflow-hidden">
-                <img
-                    src="/committee.jpg"
-                    alt="committee members"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                />
+  const { t } = useLanguage();
+  const c = t.committee;
 
-                <div className="absolute inset-0 bg-black/30" />
+  const comitteeMembers = [
+    {
+      name: c.chairmanName,
+      position: c.chairman,
+      bio: c.chairmanDescription,
+    },
+    {
+      name: c.viceChairmanName,
+      position: c.viceChairman,
+      bio: c.viceChairmanDescription,
+    },
+    {
+      name: c.secretaryName,
+      position: c.secretary,
+      bio: c.secretaryDescription,
+    },
+    {
+      name: c.treasurerName,
+      position: c.treasurer,
+      bio: c.treasurerDescription,
+    },
+    {
+      name: c.member1Name,
+      position: c.boardMember,
+      bio: c.member1Description,
+    },
+    {
+      name: c.member2Name,
+      position: c.boardMember,
+      bio: c.member2Description,
+    },
+    {
+      name: c.member3Name,
+      position: c.boardMember,
+      bio: c.member3Description,
+    },
+    {
+      name: c.member4Name,
+      position: c.boardMember,
+      bio: c.member4Description,
+    },
+  ];
+  return (
+    <section id="schedule" className="w-full">
+      <div className="relative w-full h-[50vh] overflow-hidden">
+        <img
+          src="/committee.jpg"
+          alt="committee members"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
 
-                <div className="absolute bottom-8 left-18">
-                    <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
-                        <h1 className="text-xl md:text-4xl font-bold text-white">
-                            Committe Members
-                        </h1>
-                    </div>
-                </div>
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div className="absolute bottom-8 left-18">
+          <div className="rounded-2xl border border-accent-gray/15 bg-accent/25 px-6 py-3 shadow-lg backdrop-blur-md">
+            <h1 className="text-xl md:text-4xl font-bold text-white">
+              {t.committee.committeeMembers}
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mb-5 flex justify-between gap-4 items-center">
+          <div>
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-islamic-gold" />
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">
+                {t.committee.activeCommitteeMembers}
+              </p>
             </div>
 
-            <div className="mx-auto max-w-6xl px-6 py-20">
-                <div className="mb-5 flex justify-between gap-4 items-center">
-                    <div>
-                        <div className="mb-6 flex items-center gap-3">
-                            <span className="h-px w-10 bg-islamic-gold" />
-                            <p className="text-xs font-bold uppercase tracking-[0.22em] text-islamic-gold">
-                                Active committee members
-                            </p>
-                        </div>
+            <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-primary md:text-5xl">
+              {t.committee.respectedCommitteeMembers.respectedCommittee}
+              <span className="text-secondary-green">
+                {" "}
+                {t.committee.respectedCommitteeMembers.members}
+              </span>
+            </h2>
 
-                        <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-primary md:text-5xl">
-                            Our Respected Committee
-                            <span className="text-secondary-green">
-                                {" "}
-                                Members
-                            </span>
-                        </h2>
-
-                        <div className="grid gap-6 md:grid-cols-3 mt-8">
-                            {comitteeMembers.map((member, idx) => {
-                                return (
-                                    <div
-                                        key={idx}
-                                        className="
+            <div className="grid gap-6 md:grid-cols-3 mt-8">
+              {comitteeMembers.map((member, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className="
                                             group
                                             rounded-2xl
                                             border border-accent/10
@@ -57,32 +102,32 @@ const Committee = () => {
                                             hover:-translate-y-1
                                             hover:shadow-xl
                                 "
-                                    >
-                                        {/* Title */}
-                                        <h3 className="mt-6 text-xl font-bold text-primary">
-                                            {member.name}
-                                        </h3>
+                  >
+                    {/* Title */}
+                    <h3 className="mt-6 text-xl font-bold text-primary">
+                      {member.name}
+                    </h3>
 
-                                        <p className="mt-0.5 text-sm font-bold text-secondary-green">
-                                            {member.position}
-                                        </p>
+                    <p className="mt-0.5 text-sm font-bold text-secondary-green">
+                      {member.position}
+                    </p>
 
-                                        {/* Body */}
-                                        <p className="mt-3 text-sm leading-7 text-accent">
-                                            {member.bio}
-                                        </p>
+                    {/* Body */}
+                    <p className="mt-3 text-sm leading-7 text-accent">
+                      {member.bio}
+                    </p>
 
-                                        {/* Bottom accent */}
-                                        <div className="mt-6 h-1 w-8 rounded-full bg-islamic-gold transition-all duration-300 group-hover:w-14" />
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
+                    {/* Bottom accent */}
+                    <div className="mt-6 h-1 w-8 rounded-full bg-islamic-gold transition-all duration-300 group-hover:w-14" />
+                  </div>
+                );
+              })}
             </div>
-        </section>
-    );
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Committee;
