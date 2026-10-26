@@ -1,6 +1,6 @@
 import {
-    gregorianToHijri,
-    hijriToGregorian as convertHijriToGregorian,
+  gregorianToHijri,
+  hijriToGregorian as convertHijriToGregorian,
 } from "@tabby_ai/hijri-converter";
 
 /* =========================================================
@@ -15,13 +15,8 @@ export type Language = "en" | "np";
 
 const NEPALI_DIGITS = "०१२३४५६७८९";
 
-export const toNepaliDigits = (
-    value: string | number
-): string => {
-    return String(value).replace(
-        /\d/g,
-        (digit) => NEPALI_DIGITS[Number(digit)]
-    );
+export const toNepaliDigits = (value: string | number): string => {
+  return String(value).replace(/\d/g, (digit) => NEPALI_DIGITS[Number(digit)]);
 };
 
 /* =========================================================
@@ -29,33 +24,33 @@ export const toNepaliDigits = (
 ========================================================= */
 
 const GREGORIAN_MONTHS_EN = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const GREGORIAN_MONTHS_NP = [
-    "जनवरी",
-    "फेब्रुअरी",
-    "मार्च",
-    "अप्रिल",
-    "मे",
-    "जुन",
-    "जुलाई",
-    "अगस्ट",
-    "सेप्टेम्बर",
-    "अक्टोबर",
-    "नोभेम्बर",
-    "डिसेम्बर",
+  "जनवरी",
+  "फेब्रुअरी",
+  "मार्च",
+  "अप्रिल",
+  "मे",
+  "जुन",
+  "जुलाई",
+  "अगस्ट",
+  "सेप्टेम्बर",
+  "अक्टोबर",
+  "नोभेम्बर",
+  "डिसेम्बर",
 ];
 
 /* =========================================================
@@ -63,33 +58,33 @@ const GREGORIAN_MONTHS_NP = [
 ========================================================= */
 
 const HIJRI_MONTHS_EN = [
-    "Muharram",
-    "Safar",
-    "Rabi' al-Awwal",
-    "Rabi' al-Thani",
-    "Jumada al-Awwal",
-    "Jumada al-Thani",
-    "Rajab",
-    "Sha'ban",
-    "Ramadan",
-    "Shawwal",
-    "Dhu al-Qada",
-    "Dhu al-Hijjah",
+  "Muharram",
+  "Safar",
+  "Rabi' al-Awwal",
+  "Rabi' al-Thani",
+  "Jumada al-Awwal",
+  "Jumada al-Thani",
+  "Rajab",
+  "Sha'ban",
+  "Ramadan",
+  "Shawwal",
+  "Dhu al-Qada",
+  "Dhu al-Hijjah",
 ];
 
 const HIJRI_MONTHS_NP = [
-    "मुहर्रम",
-    "सफर",
-    "रबीउल अव्वल",
-    "रबीउल आखिर",
-    "जमादिउल अव्वल",
-    "जमादिउल आखिर",
-    "रजब",
-    "शाबान",
-    "रमजान",
-    "शव्वाल",
-    "जुलकादा",
-    "जुलहिज्जा",
+  "मुहर्रम",
+  "सफर",
+  "रबीउल अव्वल",
+  "रबीउल आखिर",
+  "जमादिउल अव्वल",
+  "जमादिउल आखिर",
+  "रजब",
+  "शाबान",
+  "रमजान",
+  "शव्वाल",
+  "जुलकादा",
+  "जुलहिज्जा",
 ];
 
 /* =========================================================
@@ -104,39 +99,35 @@ const HIJRI_MONTHS_NP = [
  * सेप्टेम्बर ५, २०२६
  */
 export const formatGregorianDate = (
-    date: Date,
-    language: Language = "en"
+  date: Date,
+  language: Language = "en",
 ): string => {
-    const month =
-        language === "np"
-            ? GREGORIAN_MONTHS_NP[date.getMonth()]
-            : GREGORIAN_MONTHS_EN[date.getMonth()];
+  const month =
+    language === "np"
+      ? GREGORIAN_MONTHS_NP[date.getMonth()]
+      : GREGORIAN_MONTHS_EN[date.getMonth()];
 
-    const day =
-        language === "np"
-            ? toNepaliDigits(date.getDate())
-            : String(date.getDate());
+  const day =
+    language === "np" ? toNepaliDigits(date.getDate()) : String(date.getDate());
 
-    const year =
-        language === "np"
-            ? toNepaliDigits(date.getFullYear())
-            : String(date.getFullYear());
+  const year =
+    language === "np"
+      ? toNepaliDigits(date.getFullYear())
+      : String(date.getFullYear());
 
-    return `${month} ${day}, ${year}`;
+  return `${month} ${day}, ${year}`;
 };
 
 /* =========================================================
    GREGORIAN → HIJRI
 ========================================================= */
 
-export const gregorianToHijriDate = (
-    date: Date
-) => {
-    return gregorianToHijri({
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate(),
-    });
+export const gregorianToHijriDate = (date: Date) => {
+  return gregorianToHijri({
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+  });
 };
 
 /* =========================================================
@@ -152,30 +143,40 @@ export const gregorianToHijriDate = (
  * Nepali:
  * रजब २७, १४४८ हिजरी
  */
+
 export const formatHijriDate = (
-    date: Date,
-    language: Language = "en"
+  date: Date,
+  language: Language = "en",
 ): string => {
-    const hijri = gregorianToHijriDate(date);
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
+    return "";
+  }
 
-    const month =
-        language === "np"
-            ? HIJRI_MONTHS_NP[hijri.month - 1]
-            : HIJRI_MONTHS_EN[hijri.month - 1];
+  const hijri = gregorianToHijri({
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+  });
 
-    const day =
-        language === "np"
-            ? toNepaliDigits(hijri.day)
-            : String(hijri.day);
+  const monthIndex = hijri.month - 1;
 
-    const year =
-        language === "np"
-            ? toNepaliDigits(hijri.year)
-            : String(hijri.year);
+  const month =
+    language === "np"
+      ? HIJRI_MONTHS_NP[monthIndex]
+      : HIJRI_MONTHS_EN[monthIndex];
 
-    return language === "np"
-        ? `${month} ${day}, ${year} हिजरी`
-        : `${month} ${day}, ${year} AH`;
+  const day = language === "np" ? toNepaliDigits(hijri.day) : String(hijri.day);
+
+  const year =
+    language === "np" ? toNepaliDigits(hijri.year) : String(hijri.year);
+
+  if (!month) {
+    return "";
+  }
+
+  return language === "np"
+    ? `${month} ${day}, ${year} हिजरी`
+    : `${month} ${day}, ${year} AH`;
 };
 
 /* =========================================================
@@ -190,36 +191,32 @@ export const formatHijriDate = (
  * hijriToGregorian(1448, 9, 1)
  */
 export const hijriToGregorian = (
-    hijriYear: number,
-    hijriMonth: number,
-    hijriDay: number,
-    adjustment = 0
+  hijriYear: number,
+  hijriMonth: number,
+  hijriDay: number,
+  adjustment = 0,
 ) => {
-    const converted = convertHijriToGregorian({
-        year: hijriYear,
-        month: hijriMonth,
-        day: hijriDay,
-    });
+  const converted = convertHijriToGregorian({
+    year: hijriYear,
+    month: hijriMonth,
+    day: hijriDay,
+  });
 
-    const gregorianDate = new Date(
-        converted.year,
-        converted.month - 1,
-        converted.day
-    );
+  const gregorianDate = new Date(
+    converted.year,
+    converted.month - 1,
+    converted.day,
+  );
 
-    if (adjustment !== 0) {
-        gregorianDate.setDate(
-            gregorianDate.getDate() + adjustment
-        );
-    }
+  if (adjustment !== 0) {
+    gregorianDate.setDate(gregorianDate.getDate() + adjustment);
+  }
 
-    return {
-        gregorianDate,
+  return {
+    gregorianDate,
 
-        hijriDate: `${hijriDay} ${
-            HIJRI_MONTHS_EN[hijriMonth - 1]
-        } ${hijriYear}`,
-    };
+    hijriDate: `${hijriDay} ${HIJRI_MONTHS_EN[hijriMonth - 1]} ${hijriYear}`,
+  };
 };
 
 /* =========================================================
@@ -227,11 +224,11 @@ export const hijriToGregorian = (
 ========================================================= */
 
 export const getCurrentHijriYear = (): number => {
-    const today = new Date();
+  const today = new Date();
 
-    const hijri = gregorianToHijriDate(today);
+  const hijri = gregorianToHijriDate(today);
 
-    return hijri.year;
+  return hijri.year;
 };
 
 /* =========================================================
@@ -252,36 +249,29 @@ export const getCurrentHijriYear = (): number => {
  * "२७ रजब १४४८ हिजरी"
  */
 export const formatHijriString = (
-    hijriDate: string,
-    language: Language = "en"
+  hijriDate: string,
+  language: Language = "en",
 ): string => {
-    const parts = hijriDate.trim().split(/\s+/);
+  const parts = hijriDate.trim().split(/\s+/);
 
-    if (parts.length < 3) {
-        return hijriDate;
-    }
+  if (parts.length < 3) {
+    return hijriDate;
+  }
 
-    const day = parts[0];
-    const year = parts[parts.length - 1];
+  const day = parts[0];
+  const year = parts[parts.length - 1];
 
-    const month = parts
-        .slice(1, -1)
-        .join(" ");
+  const month = parts.slice(1, -1).join(" ");
 
-    if (language === "en") {
-        return `${day} ${month} ${year}`;
-    }
+  if (language === "en") {
+    return `${day} ${month} ${year}`;
+  }
 
-    const monthIndex = HIJRI_MONTHS_EN.findIndex(
-        (item) =>
-            item.toLowerCase() ===
-            month.toLowerCase()
-    );
+  const monthIndex = HIJRI_MONTHS_EN.findIndex(
+    (item) => item.toLowerCase() === month.toLowerCase(),
+  );
 
-    const nepaliMonth =
-        monthIndex >= 0
-            ? HIJRI_MONTHS_NP[monthIndex]
-            : month;
+  const nepaliMonth = monthIndex >= 0 ? HIJRI_MONTHS_NP[monthIndex] : month;
 
-    return `${toNepaliDigits(day)} ${nepaliMonth} ${toNepaliDigits(year)} हिजरी`;
+  return `${toNepaliDigits(day)} ${nepaliMonth} ${toNepaliDigits(year)} हिजरी`;
 };
