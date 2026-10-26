@@ -131,7 +131,7 @@ const PrayerTimes = () => {
             <h2 className="mt-2 font-display text-xl md:text-3xl font-semibold">
               {language === "np"
                 ? `${nepaliMonth.format("MMMM", "np")} ${nepaliMonth.format("YYYY", "np")} वि.सं.`
-                : `${month.monthName} ${month.year}`}
+                : `${month.monthName} ${month.year} A.D.`}
             </h2>
           </div>
           <div>

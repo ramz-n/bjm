@@ -9,7 +9,7 @@ import Learn from "./pages/Learn";
 import AboutUs from "./pages/AboutUs";
 import Committee from "./pages/Committee";
 import OtherEvents from "./pages/OtherEvents";
-import Domate from "./pages/Donate";
+import Donate from "./pages/Donate";
 import Install from "./components/Install";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
           <Route path="/key-dates" element={<KeyDates />} />
           <Route path="/99-names" element={<Names />} />
           <Route path="/learn" element={<Learn />} />
-          <Route path="/donate" element={<Domate />} />
+          <Route path="/donate" element={<Donate />} />
         </Routes>
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 import { QrCode } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
-const Domate = () => {
+const Donate = () => {
   const { t } = useLanguage();
   const charityProjects = [
     {
@@ -122,4 +122,4 @@ const Domate = () => {
   );
 };
 
-export default Domate;
+export default Donate;
