@@ -288,6 +288,36 @@ const en = {
     title: "Monthly Prayer Schedule",
     download: "Download",
   },
+
+  donate: {
+    eyebrow: "Donate",
+    title: "Bring change by Giving",
+    heading: {
+      heading1: "Small Donation, Big ",
+      heading2: "Impact",
+    },
+    description:
+      "Barkati Masjid runs various charitable initiatives and welcomes donations to support our community services and programs.",
+    projectsHeading: "Our Projects",
+    scanToDonate: "Scan to donate",
+    projects: {
+      project1: {
+        title: "Masjid Donation",
+        description:
+          "Support the upkeep and maintenance of Barkati Masjid, ensuring it remains a welcoming place for worship and community gatherings.",
+      },
+      project2: {
+        title: "Emergency Appeal",
+        description:
+          "Support our emergency relief efforts to help those in need during times of crisis.",
+      },
+      project3: {
+        title: "Help poor & needy",
+        description:
+          "Donate our emergency relief efforts to help those in need during times of crisis.",
+      },
+    },
+  },
 };
 
 export default en;
