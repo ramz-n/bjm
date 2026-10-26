@@ -7,8 +7,7 @@ const en = {
     prayerTimetable: "Prayer Timetable",
     keyDatesAndEvents: "Key Dates & Events",
     keyDates: "Key Dates",
-    upCommingEvents: "Upcoming Events",
-    allEvents: "All Events",
+    otherEvents: "Other Events",
     learn: "Learn",
     names99: "99 Names of Allah",
     learnQuran: "Learn Quran",
@@ -257,6 +256,37 @@ const en = {
     searchPlaceholder: "Type a topic to learn",
     searchButton: "Search",
     searchAlert: "Available in English only.",
+  },
+
+  otherEvents: {
+    eyebrow: "Other Events",
+    headings: "Other Events from Barkati Masjid",
+    title1: "Our Other ",
+    title2: "Events",
+    description:
+      "Join us for the annual Urs observances at Barkati Masjid. These special occasions honor revered Islamic scholars and spiritual figures. The calendar below shows the Hijri, Gregorian, and Nepali dates for each observance.",
+    nextEvent: "Next Event",
+    upcoming: "Event Date",
+    calendarLabel: "Annual Observances",
+    calendarTitle: "Urs Calendar",
+    calendarDescription:
+      "Explore the four annual Urs events and their corresponding dates in three calendars.",
+    hijriLabel: "Hijri Date",
+    gregorianLabel: "Gregorian Date (AD)",
+    nepaliLabel: "Nepali Date (BS)",
+    passed: "Passed",
+    events: {
+      alaHazrat: "Urse ‘Ala Hazrat",
+      shereNepal: "Urse Shere Nepal",
+      gausePakh: "Urse Gause Pakh",
+      khwajaGaribNawaz: "Urse Khwaja Garib Nawaz",
+    },
+  },
+
+  prayerTimes: {
+    eyebrow: "Prayer Times",
+    title: "Monthly Prayer Schedule",
+    download: "Download",
   },
 };
 
