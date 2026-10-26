@@ -3,7 +3,6 @@ import { useLanguage } from "../context/LanguageContext";
 
 const Names = () => {
   const { t, language } = useLanguage();
-  const isNepali = language === "np";
 
   return (
     <section id="schedule" className="w-full">
