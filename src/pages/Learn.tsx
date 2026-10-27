@@ -9,10 +9,13 @@ const Learn = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(null);
   const { t } = useLanguage();
+  const [searchNep, setSearchNep] = useState<{ [key: number]: string }>({});
+  const [loadingSearchNep, setLoadingSearchNep] = useState<number | null>(null);
 
   const handleSearch = async () => {
     try {
       setLoading(true);
+      setSearchNep({})
       const res = await seachQuran(searchString);
       setData(res.data);
     } catch (error) {
@@ -24,6 +27,29 @@ const Learn = () => {
     } finally {
       setLoading(false);
       setSearchString("");
+    }
+  };
+
+  const handleSearchTranslate = async (text: string, index: number) => {
+    if (!text) return;
+    setLoadingSearchNep(index);
+
+    try {
+      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|ne`;
+      const response = await fetch(url);
+      const { responseData } = await response.json();
+
+      setSearchNep((prev) => ({
+        ...prev,
+        [index]: responseData.translatedText,
+      }));
+    } catch (error) {
+      setSearchNep((prev) => ({
+        ...prev,
+        [index]: "Translation failed.",
+      }));
+    } finally {
+      setLoadingSearchNep(null);
     }
   };
 
@@ -73,6 +99,7 @@ const Learn = () => {
               name="search"
               placeholder={t.search.searchPlaceholder}
               className="border-primary rounded-xl border-2 p-2"
+              value={searchString}
               onChange={(e) => setSearchString(e.target.value)}
             />
             <button
@@ -111,6 +138,24 @@ const Learn = () => {
                   <p className="text-secondary-dim">{r.arabic}</p>
                   <p>{r.transliteration}</p>
                   <p>{r.translation}</p>
+                  <a
+                    className="italic text-sm underline cursor-pointer hover:font-semibold"
+                    onClick={() => handleSearchTranslate(r.translation, idx)}
+                  >
+                    {loadingSearchNep === idx
+                      ? "Translating..."
+                      : "Translate to Nepali"}
+                  </a>
+
+                  {searchNep[idx] && (
+                    <p className="text-primary-dim font-semibold text-sm pt-2">
+                      {searchNep[idx]}
+
+                      <span className="text-xs text-islamic-gold italic block pt-2">
+                        (Automated translations may contain errors.)
+                      </span>
+                    </p>
+                  )}
                 </div>
               ))
             )}
